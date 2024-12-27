@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>분수를 나누기</title>
+    <style>
+        .box {
+            width: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="number" id="up" class="box">
+        <br>
+        <input type="number" id="do" class="box">
+    </div>
+    <button type="button" id="btn">Lowest</button>
+    <div>
+        <input type="number" id="up2" class="box">
+        <br>
+        <input type="number" id="do2" class="box">
+    </div>
+    <script>
+        class Lowest {
+            constructor(id) {
+                this.id = id;
+                this.up = 0;
+                this.down = 0;
+                this.value = 0;
+                this.tempA =[];
+                this.tempB =[];
+                this.resultA =[];
+            }
+            btnClick() {
+                document.getElementById("btn").addEventListener("click", () => {
+                    this.up = Number(document.getElementById("up").value);
+                    this.down = Number(document.getElementById("do").value);
+                    this.tempA = [];
+                    this.tempB = [];
+                    this.resultA =[];
+                    for (let i=1; i <= this.up; i++) {
+                        if (this.up % i == 0) {
+                            this.tempA.push(this.up / i);
+                        }
+                    }
+                    for (let j = 1; j <= this.down; j++) {
+                        if (this.down % j == 0) {
+                            this.tempB.push(this.down / j);
+                        }
+                    }
+                    console.log(this.tempA);
+                    console.log(this.tempB);
+                    this.result();
+                
+            });
+            }
+            result(){
+                for(let k=0; k< this.tempA.length; k++){
+                    for(let z=0; z<this.tempB.length; z++){
+                        if(this.tempA[k] == this.tempB[z]){
+                            this.resultA.push(this.tempB[z]);
+                        }
+                    }
+                }
+                this.resultA = this.resultA.sort((a,b)=>b-a);
+                console.log(this.resultA);
+                document.getElementById("up2").value = this.up/this.resultA[0];
+                document.getElementById("do2").value = this.down/this.resultA[0];
+            }
+            run() {
+                this.btnClick();
+            }
+        }
+        const lowest = new Lowest("lowest");
+        lowest.run();
+    </script>
+</body>
+
+</html>

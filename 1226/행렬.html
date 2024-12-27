@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const hang1 = [
+            [1,2,3],
+            [4,5,6]
+        ];
+        const hang2 = [
+            [7,10],
+            [8,11],
+            [9,12]
+        ];
+        let resultHang = [];
+
+        for(let i=0; i<hang1[0].length; i++){
+            resultHang[i] = [];
+            for(let j = 0; j<hang2.length; j++){
+                for(let k = 0; k<hang2[i].length; k++){
+                resultHang[i].push(hang1[i][j][k] * hang2[j][k][i]);
+                document.write(hang1[i][j][k] * hang2[k][j][i]);
+                console.log(1)
+                }
+            }
+        }   
+        // console.log(resultHang);
+        </script>
+</body>
+</html>

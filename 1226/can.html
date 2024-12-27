@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .can{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="can" class="can" width="200" height="200"></canvas>
+    <script>
+        const pen = document.getElementById("can").getContext("2d");
+        const scaleFactor = 5;
+        const printDot = (x=0,y=0) =>{
+            pen.fillRect(100 + x *scaleFactor,100 - y*scaleFactor,1,1);
+        }
+        const initXY = () =>{
+            for(let i=-100; i<=100; i++ ){
+                printDot( i , 0);
+                printDot( 0 , i);
+            }
+        }
+        const line = (x1,y1,x2,y2)=>{
+            const gi = (((y1) - (y2)) / ((x1) - (x2)));
+            for(let x=x1; x<x2; x++ ){
+                y = gi * (x - (x1)) + (y1);
+                printDot(x,y);
+            }
+        }
+
+        line(-3,-4,9,-7);
+        // for(let x=-3; x<=9; x=x+0.1){
+        //     let y = -1/4 * x + -19 / 4;
+        //     printDot(x,y);
+        // }
+        initXY();
+        printDot(1,1);
+    </script>
+</body>
+</html>

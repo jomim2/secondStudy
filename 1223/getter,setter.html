@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Foo{
+            constructor(name = '' , age) {
+                this._name = name;
+                this._age = age;
+            }
+            get name(){
+                return this._name;
+            }
+            get age(){
+                return this._age;
+            }
+            set age(inV){
+                if(inV === this._age+1){
+                this._age = inV;
+                }else{
+                    alert("잘못된 나이")
+                }
+            }
+        }
+        const myO = new Foo("Lee" , 10);
+        document.write(myO.name);
+        myO.age = 11;
+        // 대입을 하면 저절로 set age 함수가 작동이 됨. 이름이 같아도 무방함함
+        document.write(myO.age);
+
+        // 왜 setter 를 쓰니? 
+        // 값을 바꿀때 내가 제어를 걸어줄 수 있기 때문.
+    </script>
+</body>
+</html>

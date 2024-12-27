@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .mainBox {
+            /* background-color: beige; */
+            /* border: 1px solid red; */
+            margin: auto;
+            /* margin-top: 2rem; */
+            height: 80vh;
+            width: 100vw;
+            text-align: center;
+        }
+        .inputArea{
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .cal {
+            border: 1px solid red;
+            height: 20rem;
+            width: 35rem;
+            margin: auto;
+            text-align: left;
+        }
+        .yoil{
+            border:1px solid red;
+            text-align: left;
+            margin: auto;
+            width: 35rem;
+            height : 2rem;
+        }
+        .day{
+            box-sizing: border-box;
+            border:1px solid red;
+            display: inline-block;
+            width:5rem;
+            height : 4rem;
+        }
+        .yoil div{
+            /* box-sizing: border-box; */
+            line-height: 2rem;
+            display: inline-block;
+            height : 2rem;
+            width:4.6rem;
+            /* border: 1px solid red; */
+            text-align: center;
+            margin: 0;
+            box-sizing: border-box;
+            margin-left: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainBox">
+        <div class="inputArea">
+            <input type="number" id="year">년
+            <select name="month" id="sel">
+                <option value="1">1월</option>
+                <option value="2">2월</option>
+                <option value="3">3월</option>
+                <option value="4">4월</option>
+                <option value="5">5월</option>
+                <option value="6">6월</option>
+                <option value="7">7월</option>
+                <option value="8">8월</option>
+                <option value="8">9월</option>
+                <option value="10">10월</option>
+                <option value="11">11월</option>
+                <option value="12">12월</option>
+            </select>
+            <!-- getfullyear -->
+            <button id="btn" class="btn">달력보기</button>
+        </div>
+        <div id="yoil" class="yoil"></div>
+        <div id="cal" class="cal">
+            
+        </div>
+        <div>
+            <script>
+                class Calender {
+                    constructor(id) {
+                        this.id = id;
+                        this.year = new Date().getFullYear();
+                        this.month = new Date().getMonth()+1;
+                        this.tempDate = [];
+                    }
+                    btnControl() {
+                        document.getElementById("btn").addEventListener("click", (e) => {
+                            this.month = Number(document.getElementById("sel").value);
+                            this.year = Number(document.getElementById("year").value);
+                            this.display();
+                        });
+                    }
+                    displayYoIl(){
+                        const yoli = ['일','월','화','수','목','금','토']
+                        for(let i =0; i<yoli.length; i++){
+                            document.getElementById("yoil").innerHTML += 
+                                `
+                                <div>${yoli[i]}</div>
+                                `;
+                        }
+                    }
+                    display() {
+                        console.log((new Date(`${this.year}/${this.month}/1`).getDate()));
+                        document.getElementById("cal").innerHTML ='';
+                        for(let i=1; i<=35 ; i++){
+                        if( `${new Date(this.year+"/"+this.month+"/"+i).getDate()}` == 1 && i!=1  || )
+                            document.getElementById("cal").innerHTML +=
+                            `<div class="day">${new Date(this.year+"/"+this.month+"/"+i).getDate()}</div>`;
+                        }
+                        console.log(this.year);
+                        console.log(this.month);
+                    }
+                    run(){
+                        this.btnControl();
+                        // this.display();
+                        this.displayYoIl();
+                    }
+                }
+
+                const calender = new Calender('calender');
+                calender.run();
+            </script>
+</body>
+
+</html>

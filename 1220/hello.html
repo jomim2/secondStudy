@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mainArea">
+    </div>
+    <script>
+        class Gong{
+            constructor(id) {
+                this.id = id;
+                this.num = 0;
+            } 
+            getValue(){
+                document.getElementById("btn").addEventListener("click",()=>{
+                    this.num = Number(document.getElementById("num").value);
+                    let temp =[];
+                    console.log(this.num);
+                    for(let i=0; i<=this.num; i++){
+                        if(num % i == 0){
+                            temp.push(num / i);
+                        }
+                    }
+                    console.log(temp);
+                });
+            }
+            display(){
+                document.getElementById("mainArea").innerHTML=`
+                <input type="number" id="num"><button type="button" id="btn">최대공약수</button>
+                `;
+            }
+        }
+        const gong = new Gong("gong");
+        gong.display();
+        gong.getValue();
+    </script>
+</body>
+</html>

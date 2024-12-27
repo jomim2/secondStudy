@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <title>canvas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            font-family: "Jua", serif;
+        }
+
+        .can {
+            border: 1px dashed orange;
+            border-radius: 50px;
+        }
+
+        input {
+            width: 2.5rem;
+        }
+
+        .mainArea {
+            margin: auto;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .canvasArea {
+            margin: auto;
+        }
+
+        .inputArea {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            text-align: center;
+            margin: auto;
+            height: 10rem;
+            line-height: 2rem;
+            background-color: azure;
+            border-radius: 10rem;
+            width: 50rem;
+        }
+
+        button {
+            font-family: "Jua", serif;
+            height: 1.5rem;
+            width: 5rem;
+            border: none;
+            margin: 1rem;
+            background-color: blanchedalmond;
+            border-radius: 5px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        button:hover {
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainArea" class="mainArea">
+        <div class="canvasArea">
+            <canvas id="can" class="can" width="800" height="800"></canvas><br>
+        </div>
+        <div class="inputArea">
+            <span>A : (<input type="number" id="x1"> , <input type="number" id="y1">)</span><br>
+            <span>B : (<input type="number" id="x2"> , <input type="number" id="y2">)</span><br>
+            <span>width : <input type="number" id="canvasWidth">height : <input type="number" id="canvasHeight">
+            scaleFactor : <input type="number" id="scaleFactor"></span><br>
+            <button id="drawBtn">직선그리기</button>
+        </div>
+    </div>
+    <script>
+        class Canvas {
+            constructor(id) {
+                this.id = id;
+                this.can = document.getElementById("can");
+                this.pen = this.can.getContext("2d");
+                this.scale = 20;
+                this.width = Number(this.can.getAttribute("width"));
+                this.height = Number(this.can.getAttribute("height"));
+            }
+            getValue() {
+                addEventListener("click", (e) => {
+                    switch (e.target.id) {
+                        case "drawBtn":
+                            const x1 = Number(document.getElementById("x1").value);
+                            const x2 = Number(document.getElementById("x2").value);
+                            const y1 = Number(document.getElementById("y1").value);
+                            const y2 = Number(document.getElementById("y2").value);
+                            // document.getElementById("can").setAttribute("width").value = null;
+                            // document.getElementById("can").setAttribute("height").value = null;
+                            document.getElementById("can").width = Number(document.getElementById("canvasWidth").value);
+                            document.getElementById("can").height = Number(document.getElementById("canvasHeight").value);
+                            this.width = Number(this.can.getAttribute("width"));
+                            this.height = Number(this.can.getAttribute("height"));
+                            this.scale = Number(document.getElementById("scaleFactor").value);
+                            this.printLine(x1, y1, x2, y2);
+                            this.printCross();
+                            this.printScale();
+                            break;
+                    }
+                });
+            }
+            printDot(x, y) {
+                this.pen.fillRect((this.width / 2) + (x * this.scale), (this.height / 2) - (y * this.scale), 1, 1);
+            }
+            printCross = () => {
+                for (let i = -this.width / 2; i < this.width / 2; i = i + 0.01) {
+                    this.printDot(i, 0);
+                    this.printDot(0, i);
+                }
+            }
+            printScale() {
+                //수평방향향
+                for (let i =0; i < this.width / 2; i = i + this.scale) {
+                    for (let j = -0.5; j <= 0.5; j = j + 0.1) {
+                        this.printDot(i/ this.scale,  j);
+                        this.printDot(-i/ this.scale, j);
+                    }
+                    this.pen.fillText(i/this.scale,i+this.width/2,this.height/2+this.scale);
+
+                    // this.pen.fillText(-i/this.scale,(i * -1) +this.width/2,this.height/2+this.scale);
+
+                    this.pen.fillText((i/this.scale)-this.scale,i,this.height/2+this.scale);
+
+                }
+                //수직방향향
+                for (let i =0; i < this.height / 2; i = i + this.scale) {
+                    for (let j = -0.5; j <= 0.5; j = j + 0.1) {
+                        this.printDot(j, i / this.scale);
+                        this.printDot(j, -i/ this.scale);
+                    }
+                    this.pen.fillText((-(i/this.scale))==0 ? "" : -(i/this.scale),this.width/2+this.scale,i+this.height/2 );
+                    this.pen.fillText(-((i/this.scale)-this.scale),this.width/2+this.scale,i);
+                }
+                
+                // for (let i = 0; i <= ((this.width) / 2) / this.scale - 1; i = i + this.scale) {
+                //     this.pen.fillText( this.width/this.scale/2 -i , i * this.scale, this.width / 2 -this.scale );
+                //     this.pen.fillText(Math.floor((this.width) / 2) / this.scale - i, this.height / 2 +this.scale , i * this.scale );
+                // }
+                // for (let i = ((this.width) / 2); i >= 0; i=i-(this.scale)) {
+                //     if((this.width/this.scale/2 -i ) ==0 ){
+                //         console.log(0)
+                //     }
+                //     else if((this.width/this.scale/2 -i ) < 0 ){
+                //         this.pen.fillText( -(this.width/(2*this.scale) - i )/this.scale, i * this.scale, this.width / 2 -this.scale );
+                //         this.pen.fillText( (this.width/(2*this.scale) - i)/this.scale, this.height / 2 +this.scale , i * this.scale );
+                //     }
+                //     else{
+                //         this.pen.fillText( -(this.width/(2*this.scale) - i )/this.scale, i * this.scale, this.width / 2 -this.scale );
+                //         this.pen.fillText((this.width/(2*this.scale) - i)/this.scale, this.height / 2 +this.scale , i * this.scale );
+                //     }
+                    
+                // }
+                // for (let i = ((this.width) / 2) / this.scale; i <= this.width; i = i + this.scale) {
+                //     this.pen.fillText(i - Math.floor((this.width) / 2) / this.scale, i * this.scale, this.width / 2  -this.scale);
+                //     if ((this.width) / 2 / this.scale - i != 0) {
+                //         this.pen.fillText(Math.floor((this.width) / 2) / this.scale - i, this.height / 2 +this.scale , i * this.scale);
+                //     }
+                // }
+                // this.pen.fillText("안녕?",10,10);
+            }
+            printLine(x1, y1, x2, y2) {
+                if (x1 > x2) {
+                    [x1, x2] = [x2, x1];
+                    [y1, y2] = [y2, y1];
+                }
+                const gi = (((y1) - (y2)) / ((x1) - (x2)));
+                for (let x = x1; x < x2; x = x + 0.01) {
+                    let y = gi * (x - (x1)) + (y1);
+                    this.printDot(x, y);
+                }
+            }
+            run() {
+                this.printCross();
+                this.printScale();
+                this.getValue();
+            }
+        }
+        const canvas = new Canvas("canvas");
+        canvas.run();
+    </script>
+</body>
+
+</html>

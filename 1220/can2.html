@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="500" height="300" id="can" class="can">
+    <script>
+        const can = document.getElementById("can");
+        const pen = can.getContext("2d");
+        const printCross = ()=>{
+            for(let i =0; i<can.width; i++){
+                pen.fillRect(i, can.height/2 ,1,1);
+            }
+            for(let i =0; i<can.height; i++){
+                pen.fillRect(can.width/2, i ,1,1);
+            }
+        }
+        printCross();
+        const modi = (x,y) =>{
+            pen.fillRect(250+x , 150 -y ,3,3 );
+        }
+        modi(-140,90);
+    </script>
+</body>
+</html>

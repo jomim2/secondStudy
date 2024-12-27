@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="can" class="can" width="300" height="300"></canvas>
+    <script>
+        const can = document.getElementById("can");
+        const pen = can.getContext("2d");
+        const scaleFactor = 25;
+        for (let i = 0; i < 300; i++) {
+            pen.fillRect(i, 150, 1, 1);
+            pen.fillRect(150, i, 1, 1);
+        }
+        const plotDot = (x, y) => {
+            pen.fillRect(scaleFactor * x + 150, 150 - scaleFactor * y, 1, 1);
+        }
+        plotDot(1, 1);
+        const printScale = () => {
+                for(let i = -3 ; i<3; i++){
+                    for(let j=0; j<150; j=j+scaleFactor){
+                        pen.fillRect(j+150 , i+150 , 1,1)
+                        pen.fillRect(i+150, j+150 , 1,1)
+                    }
+                }
+                for(let i = -3 ; i<3; i++){
+                    for(let j=150; j>0; j=j-scaleFactor){
+                        pen.fillRect(j , i+150 , 1,1)
+                        pen.fillRect(i+150, j , 1,1)
+                    }
+                }
+        }
+        printScale();
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, gender, age , bloodType) {
+                //속성
+                this.name = name;
+                this.gender = gender;
+                this.age = age;
+                this.bloodType = bloodType;
+            }
+            checkBloodType(){
+                document.write(`${this.name} : ${this.bloodType} <br>`)
+            }
+            speak() {
+                document.write(`My Name is ${this.name}.<br>`);
+            }
+            run(speed) {
+                document.write(`Running ...${speed} 🚶‍♂️<br>`);
+            }
+        }
+        const cdrP = new Person("CDR", "MAN", 23 , "A");
+        const zardP = new Person("Zard", "WOMAN", 22 , "B");
+        const jomimP = new Person("jomim" , "WOMAN" , 27 , "B");
+        cdrP.speak();
+        cdrP.run(20);
+        zardP.speak();
+        zardP.run(30);
+        cdrP.checkBloodType();
+        zardP.checkBloodType();
+        jomimP.speak();
+        jomimP.checkBloodType();
+        jomimP.run(50);
+    </script>
+</body>
+</html>

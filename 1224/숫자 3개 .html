@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="screenArea"></div>
+    <script>
+        class MinMax {
+            constructor(id) {
+                this.id = id;
+                this.storage = [];
+                this.min = 0;
+                this.max = 0;
+            }
+            init(printArea) {
+                const html = `
+        <input class="values" type="text">
+		<input class="values" type="text">
+		<input class="values" type="text">
+		<button id="solveBtn">Solve</button>
+		<p id="maxV">MAX: 0</p>
+		<p id="minV">MIN: 0</p>
+        `;
+                document.getElementById(printArea).innerHTML = html;
+            }
+            event() {
+                addEventListener(
+                    "click",
+                    (e) => {
+                        switch (e.target.id) {
+                            case 'solveBtn':
+                                const domList = document.getElementsByClassName("values");
+                                for (let i = 0; i < domList.length; i++) {
+                                    this.storage.push(domList[i].value);
+                                }
+                                // console.log( this.storage );
+                                this.getMinMax();
+                                break;
+                        }
+                    }
+                );
+            }
+            getMinMax() {
+                this.min = Math.min(...this.storage);
+                this.max = Math.max(...this.storage);
+                this.printValue();
+            }
+            printValue() {
+                document.getElementById('minV').innerHTML = `MIN: ${this.min}`;
+                document.getElementById('maxV').innerHTML = `MAX: ${this.max}`;
+            }
+            run(printArea) {
+                this.init(printArea);
+                this.event();
+            }
+        }
+
+        const main = (() => {
+            const minMax = new MinMax('minMax');
+            minMax.run('screenArea');
+        })();
+
+
+    </script>
+</body>
+
+</html>

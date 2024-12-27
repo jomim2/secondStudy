@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const myA = {
+            zard: 10,
+            cdr: 'zard the love',
+            love: [100, 1001, 1002, 1003, 1004], 
+            forever: {
+                aaa: "LINE",
+                bbb: "COMPUTER",
+                ccc:"ART",
+                ddd:"ACADEMY"
+            }
+        };
+        // myA.zard    myA.cdr     myA.love[2]    myA
+        // myA['zard'] myA['cdr']  myA['love'][2]
+        // 
+
+
+        document.write(myA['forever']['ddd'][5]);
+        // for (key in myA) {
+        //     document.write(`${key} - ${myA[key]} <br>`);
+        // }
+    </script>
+</body>
+
+</html>

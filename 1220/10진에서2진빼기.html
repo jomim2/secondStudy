@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainArea" class="mainArea"></div>
+    <script>
+        class ChangeToJinSoo {
+            constructor(id) {
+                this.id = id;
+                this.num1 = null;
+                this.num2 = null;
+                this.jinSoo1 = 1;
+                this.jinSoo2 = 2;
+                this.result = [];
+                this.resultString = '';
+                // this.result1 = null;
+                // this.result2 = null;
+            }
+            displayMain() {
+                const htmlValue = `
+                    <div>
+                        DEC <input type="number" id="num1" class="num" placeholder="255이하 숫자 입력"><button id="btn1">변환</button><input
+                            type="text" id="result1" class="num" placeholder="2진수 변환 값">
+                    </div>
+                    <div>
+                        DEC <input type="number" id="num2" class="num" placeholder="255이하 숫자 입력"><button id="btn2">변환</button><input
+                            type="text" id="result2" class="num" placeholder="2진수 변환 값">
+                    </div>
+                    <div>
+                        <button id="minuBtn">빼기</button><br>
+                        <input type="number" id="minus1" class="num" placeholder="10진수 결과">
+                        <br>
+                        <input type="number" id="minus2" class="num" placeholder="2진수 결과">
+                    </div>
+                    `;
+                const cssValue = `
+                <style>
+                        html {
+                        background-color: #F8EDE3;
+                        }
+                        .mainArea {
+                            margin: auto;
+                            margin-top: 5rem;
+                            text-align: center;
+                            padding: 1rem;
+                            font-size: 3rem;
+                            border: 1rem solid #AB886D;
+                            background-color: #FDDBBB;
+                            border-radius: 2rem;
+                            width: 50rem;
+                            height: 35rem;
+                        }
+                        .num {
+                            border-radius: 0.5rem;
+                            width: 15rem;
+                            font-size: 1.5rem;
+                            margin-top: 5rem;
+                        }
+                        button {
+                            width: 5rem;
+                            font-size: 1.5rem;
+                            border-radius: 1rem;
+                            background-color: #F0EAAC;
+                        }
+                        input[type="number"]::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                        }
+                </style>
+                `;
+                document.getElementById("mainArea").innerHTML = htmlValue + cssValue;
+            }
+            btnControl() {
+                window.addEventListener("click", (e) => {
+                    switch (e.target.id) {
+                        case "btn1":
+                            this.num1 = Number(document.getElementById("num1").value);
+                            let area = 'result1';
+                            let jinSoo = 1;
+                            this.toJinSoo(this.num1, area, jinSoo);
+                            break;
+                        case "btn2":
+                            this.num2 = Number(document.getElementById("num2").value);
+                            let area2 = 'result2';
+                            let jinSoo2 = 2;
+                            this.toJinSoo(this.num2, area2, jinSoo2);
+                            break;
+                        case "minuBtn":
+                            this.num1 = Number(document.getElementById("num1").value);
+                            this.num2 = Number(document.getElementById("num2").value);
+                            let resultArea = 'minus1';
+                            let resultJinSooArea = 'minus2';
+                            this.toMinus(resultArea, resultJinSooArea);
+                            break;
+                    }
+                });
+            }
+            toJinSoo(item, area, jinSoo) {
+                let tempString = '';
+                while (item > 0) {
+                    tempString = String(item % 2) + tempString;
+                    item = Math.floor(item / 2);
+                }
+                console.log(tempString);
+                switch (jinSoo) {
+                    case 1: this.jinSoo1 = [...tempString].map((v) => Number(v));
+                        console.log(this.jinSoo1);
+                        break;
+                    case 2: this.jinSoo2 = [...tempString].map((v) => Number(v));;
+                        console.log(this.jinSoo2);
+                        break;
+                }
+                document.getElementById(`${area}`).value = tempString;
+            }
+            toMinus(resultArea, resultJinSooArea) {
+                document.getElementById(`${resultArea}`).value = this.num1 - this.num2;
+                // 오류 발견이요 .. num1 이 5 개고 num2 가 3 개면 결국 안맟춰짐.
+                if (this.jinSoo1.length >= this.jinSoo2.length) {
+                    console.log(this.jinSoo1.length);
+                    console.log(this.jinSoo2.length);
+                    let count = (this.jinSoo1.length - this.jinSoo2.length);
+                    for (let i = 0; i < (count); i++) {
+                        this.jinSoo2.unshift(0);
+                    }
+                }
+                // console.log(this.jinSoo1);
+                console.log(this.jinSoo2);
+
+                for (let i = this.jinSoo2.length - 1; i >= 0; i--) {
+                    switch (this.jinSoo2[this.jinSoo2.length - 1 - i]) {
+                        case 0: this.jinSoo2[this.jinSoo2.length - 1 - i] = 1;
+                            break;
+                        case 1: this.jinSoo2[this.jinSoo2.length - 1 - i] = 0;
+                            break;
+                    }
+                    console.log(this.jinSoo2);
+                    // switch (this.jinSoo2[this.jinSoo2.length - 1]) {
+                    //     case 0: this.jinSoo2[this.jinSoo2.length - 1] = 1;
+                    //         break;
+                    //     case 1: this.jinSoo2[this.jinSoo2.length - 1] = 0;
+                    //         break;
+                    // }
+                }
+                this.jinSoo2[this.jinSoo2.length - 1] = this.jinSoo2[this.jinSoo2.length - 1] + 1;
+                console.log(this.jinSoo2);
+
+                this.jinSoo1.forEach((v, i, a) => {
+                    this.result.push(v + this.jinSoo2[i]);
+                });
+                this.result.unshift(0);
+                console.log(this.result);
+                this.result.forEach((v, i, a) => {
+                    if (this.result[this.result.length - 1 - i] >= 2) {
+                        switch (this.result[this.result.length - 1 - i]) {
+                            case 2: this.result[this.result.length - 1 - i] = 0;
+                                this.result[this.result.length - 2 - i] += 1;
+                                break;
+                            case 3: this.result[this.result.length - 1 - i] = 1;
+                                this.result[this.result.length - 2 - i] += 1;
+                                break;
+                        }
+                    }
+                });
+                this.result.shift();
+                console.log(this.result);
+                let tempCount = 0;
+                // if(this.result[0] === 0){
+                for (let i = 0; i < this.result.length; i++) {
+                    if (this.result[i] == 0) {
+                        tempCount++;
+                    } else {
+                        break;
+                    }
+                }
+                console.log(tempCount);
+                for (let i = 0; i < tempCount; i++) {
+                    this.result.shift();
+                }
+
+                ///////////////////////////////////////////////////////////////////
+                // while(true){
+                //     if(this.result[0] == 0){
+                //         this.result.shift();
+                //         console.log(this.result);
+                //     }else{ break; }
+                // }
+                ///////////////////////////////////////////////////////////////////
+                console.log(this.result);
+                this.result.forEach((v, i, a) => {
+                    this.resultString += String(v);
+                })
+                console.log(this.resultString);
+                document.getElementById(`${resultJinSooArea}`).value = this.resultString;
+            }
+            run() {
+                this.displayMain();
+                this.btnControl();
+            }
+        }
+        const changeToJinSoo = new ChangeToJinSoo('changeToJinSoo');
+        changeToJinSoo.run();
+    </script>
+</body>
+
+</html>

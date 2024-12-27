@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .starArea{
+            width: 100vw;
+            height: 100vh;
+        }
+        .star{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="starArea" class="starArea">
+    </div>
+    <script>
+        class Star{
+            constructor(id) {
+                this.id = id;
+            }
+            display(num){
+                document.getElementById('starArea').innerHTML += `
+                    <div class="star" id="star${num}">
+                        ■
+                    </div>
+                `;
+            }
+            sizeAndColorControl(i){
+                const hexList = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
+                let hexV = Math.floor(Math.random() * 16);
+                // document.write();
+                const star = document.getElementById(`star${i}`);
+                document.getElementById('starArea').style.backgroundColor = `#${hexList[hexV]}${hexList[hexV]}${hexList[hexV]}${hexList[hexV]}${hexList[hexV]}${hexList[hexV]}`;
+                star.style.color = `#${Math.floor(Math.random() * 1000)}`;
+                star.style.top = `${Math.floor(Math.random() * 95)}%`;
+                star.style.left = `${Math.floor(Math.random() * 95)}%`;
+                star.style.fontSize = `${Math.floor(Math.random() * 100)}px`;
+            }
+            run(num){
+                for(let i =0; i<num; i++){
+                    this.display(i);
+                    this.sizeAndColorControl(i);
+                }
+            }
+        }
+        const star = new Star('star')
+        star.run(100);
+    </script>
+</body>
+</html>

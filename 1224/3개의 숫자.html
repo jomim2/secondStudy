@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>min and max</title>
+    <style>
+        .mianArea{
+            margin: auto;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainArea" class="mianArea">
+        <input type="number" id="num1">
+        <input type="number" id="num2">
+        <input type="number" id="num3">
+        <button id="btn">구하기</button>
+        <br>
+        min : <span id="min">0</span><br>
+        max : <span id="max">0</span>
+    </div>
+    <script>
+        class MinAndMax{
+            constructor(id){
+                this.id = id;
+                this._num1 = 0;
+                this._num2 = 0;
+                this._num3 = 0;
+                this.tempA = [];
+            }
+            getValue(){
+                document.getElementById("btn").addEventListener("click",(e)=>{
+                    this._num1 = Number(document.getElementById("num1").value);
+                    this._num2 = Number(document.getElementById("num2").value);
+                    this._num3 = Number(document.getElementById("num3").value);
+                    this.checkMinAndMax();
+                });
+            }
+            // set num1 (){
+            //     this._num1.value = Number(document.getElementById("num1").value);
+            // }
+            // set num2 (){
+            //     this._num1.value = Number(document.getElementById("num1").value);
+            // }
+            // set num1 (){
+            //     this._num1.value = Number(document.getElementById("num1").value);
+            // }
+            checkMinAndMax(){
+                this.tempA.push(this._num1 , this._num2 , this._num3);
+                this.tempA.sort((a,b)=>a-b);
+                console.log(this.tempA);
+                this.displayMinAndMax();
+            }
+            displayMinAndMax(){
+                document.getElementById("min").innerHTML = this.tempA[0];
+                document.getElementById("max").innerHTML = this.tempA[this.tempA.length-1];
+            }
+            run(){
+                this.getValue();
+            }
+        }
+        const minAndMax = new MinAndMax("minAndMax");
+        minAndMax.run();
+    </script>
+</body>
+</html>

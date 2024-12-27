@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="can" class="can" width="200" height="200"></canvas>
+    <script>
+        const myX = [-5,-4,-3,-2,-1,0,1,2,3,4,5];
+        const myY = [5,4,3,2,1,0,-1,-2,-3,-4,-5];
+        const pen = document.getElementById("can").getContext("2d");
+        const scaleFactor = 10;
+        const printDot = (x,y)=>{
+            pen.fillRect(100 + x *scaleFactor,100 -y *scaleFactor,1,1);
+        }
+        const withoutSc = (x,y)=>{
+            pen.fillRect(100 + x ,100 -y ,1,1);
+        }
+        const printCross =()=>{
+            for(let i=-100; i<=100; i=i+0.1){
+                printDot(i,0);
+                printDot(0,i);
+            }
+        }
+        printCross();
+        // printDot(1,1);
+        const line = (x1,y1,x2,y2) =>{
+            let gi = (y1 - y2) / (x1 - x2);
+            for(let x = x1; x<x2; x=x+0.1){
+                y = gi*(x - x1) + y1;
+                printDot(x,y);
+            }
+        }
+        const printScale = ()=>{
+            for(let i=-100; i<=100; i=i+scaleFactor){
+                for(let j=-1; j<=1; j=j+0.1){
+                    withoutSc(i-scaleFactor,j)
+                    withoutSc(j,i-scaleFactor)
+                }
+            }
+        }
+        for(let i=0; i<myX.length; i++){
+            line(myX[i] , myY[i] , myX[i+1] , myY[i+1]);
+        }
+        printScale();
+    </script>
+</body>
+</html>

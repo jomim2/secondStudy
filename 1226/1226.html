@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let myC = (function( ){
+            let myV = 1004;
+            return function (){
+                myV ++;
+                document.write( myV + "<br>")
+            }
+        })()
+        
+        myC();
+        myC();
+        myC();
+        myC();
+        myC();
+        
+    </script>
+</body>
+</html>

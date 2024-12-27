@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대칭</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .can {
+            border: 1px dashed green;
+        }
+
+        .mainArea {
+            text-align: center;
+        }
+
+        input {
+            width: 3rem;
+            height: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainArea" class="mainArea">
+        <div class="canvasArea">
+            <canvas id="can" class="can" width="400" height="400"></canvas>
+        </div>
+        <!-- <div>
+            <label>
+                좌표
+                X:<input type="number" id="x1">
+                Y:<input type="number" id="y1">
+            </label>
+        </div>
+        <div>
+            <label>
+                좌표
+                X:<input type="number" id="x2">
+                Y:<input type="number" id="y2">
+            </label>
+        </div> -->
+        <div>
+        </div>
+        <button id="lineBtn">직선 그리기</button>
+        <button id="XBtn"> X 대칭</button>
+        <button id="YBtn"> Y 대칭</button>
+        <button id="XYBtn"> XY 대칭</button>
+    </div>
+    <script>
+
+        class Canvas {
+            constructor(id, can) {
+                this.id = id;
+                this.pen = document.getElementById(`${can}`).getContext("2d");
+                this.width = Number(document.getElementById(`${can}`).width);
+                this.height = Number(document.getElementById(`${can}`).height);
+                this.scale = 10;
+                this.X1 = 0;
+                this.X2 = 0;
+                this.Y1 = 0;
+                this.Y2 = 0;
+                this.myX = [-5, -4, -3, -2, -1, 0, 4, 2, 3, 4, 5];
+                this.myY = [5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5];
+            }
+            modiDot(x, y) {
+                this.pen.fillRect((this.width / 2) + (x * this.scale), (this.height / 2) - (y * this.scale), 1, 1);
+            }
+            printCross() {
+                // 수평 방향 직선
+                for (let i = 0; i <= this.width; i++) {
+                    this.pen.fillRect(i, this.height / 2, 1, 1);
+                }
+                // 수평방향 스캐일
+                for (let i = 0; i <= this.width; i = i + this.scale) {
+                    for (let j = -3; j <= 3; j++) {
+                        this.pen.fillRect(i, this.height / 2 - j, 1, 1);
+                    }
+                }
+                // 수직 방향 직선
+                for (let i = 0; i <= this.height; i++) {
+                    this.pen.fillRect(this.width / 2, i, 1, 1);
+                }
+                //수직 방향 스캐일
+                for (let i = 0; i <= this.height; i = i + this.scale) {
+                    for (let j = -3; j <= 3; j++) {
+                        this.pen.fillRect(this.width / 2 - j, i, 1, 1);
+                    }
+                }
+            }
+            // printScaleFactor(){
+            //     for(let i=0; i<=this.width; i++){
+
+            //     }
+            // }
+            btnControl() {
+                addEventListener("click", (e) => {
+                    switch (e.target.id) {
+                        case "lineBtn":
+                            
+                            this.printLine();
+                            break;
+                        case "XBtn":
+                            const moveX = [
+                                [1, 0, 0],
+                                [0, -1, 0],
+                                [0, 0, 1]
+                            ];
+                            this.moveTo(moveX);
+                            break;
+                        case "YBtn":
+                            // alert(1);
+                            const moveY = [
+                                [-1, 0, 0],
+                                [0, 1, 0],
+                                [0, 0, 1]
+                            ];
+                            this.moveTo(moveY);
+                            break;
+                        case "XYBtn":
+                            const moveXY = [
+                                [-1, 0, 0],
+                                [0, -1, 0],
+                                [0, 0, 1]
+                            ];
+                            this.moveTo(moveXY);
+                            break;
+                    }
+                });
+            }
+            printLine() {
+                // alert(1);
+                for(let i=0; i<this.myX.length; i ++){
+                    if (this.myX[i] > this.myX[i+1]) {
+                        const gi = (((this.myY[i+1]) - (this.myY[i])) / ((this.myX[i+1]) - (this.myX[i])));
+                        const B = ((gi * this.myX[i+1]) * -1) + this.myY[i+1];
+                        for (let x = this.myX[i+1]; x <= this.myX[i]; x = x + 0.01) {
+                            let y = (gi * x) + B;
+                            canvas.modiDot(x, y);
+                        }
+                }
+                const gi = (((this.myY[i]) - (this.myY[i+1])) / ((this.myX[i]) - (this.myX[i+1])));
+                const B = ((gi * this.myX[i]) * -1) + this.myY[i];
+                for (let x = this.myX[i]; x <= this.myX[i+1]; x = x + 0.01) {
+                    let y = (gi * x) + B;
+                    canvas.modiDot(x, y);
+                }
+                }
+                // console.log(this.X1);
+                
+            }
+            printLineMove(x1,y1,x2,y2) {
+                // alert(1);
+                // for(let i=0; i<this.myX.length; i ++){
+                    if (x1 > x2) {
+                    [x1, x2] = [x2, x1];
+                    [y1, y2] = [y2, y1];
+                    }
+                console.log(x1,y1,x2,y2);
+                
+                const gi = (((y1) - (y2)) / ((x1) - (x2)));
+                const B = ((gi * x1) * -1) + y1;
+                console.log(gi , B);
+                
+                for (let x = x1; x <= x2; x = x + 0.01) {
+                    let y = (gi * x) + B;
+                    this.modiDot(x, y);
+                    console.log(x);
+                }
+                // }
+                // console.log(this.X1);
+                
+            }
+            moveTo(move) {
+                for(let i=0; i<this.myX.length; i ++){
+                let tempX1Y1 = [this.myX[i], this.myY[i], 0];
+                let tempX2Y2 = [this.myX[i+1], this.myY[i+1], 0];
+                // console.log(tempX1Y1)
+                // tempX1Y1[0] * move[0][0] + 
+                // tempX1Y1[1] * move[1][0] +
+                // tempX1Y1[2] * move[2][0]
+
+                // tempX1Y1[0] * move[0][1]
+                // tempX1Y1[1] * move[1][1] 
+                // tempX1Y1[2] * move[2][1]
+
+                // tempX1Y1[0] * move[0][2]
+                // tempX1Y1[1] * move[1][2] 
+                // tempX1Y1[2] * move[2][2]
+            
+                let tempB = [];
+                let tempC = [];
+                for (let i = 0; i < move[0].length; i++) {
+                    tempB[i] = [];
+                    tempC[i] = [];
+                    for (let j = 0; j < tempX1Y1.length; j++) {
+                        tempB[i].push(tempX1Y1[j] * move[j][i]);
+                        tempC[i].push(tempX2Y2[j] * move[j][i]);
+                    }
+                }
+                // console.log(tempB[i]);
+                let result = [];
+                let result2 = [];
+                for (let i = 0; i < tempB.length; i++) {
+                    result.push(tempB[i][i])
+                    result2.push(tempC[i][i])
+                }
+                // console.log(result);
+                // console.log(result2);
+                let x1 = result[0];
+                let y1 = result[1];
+                let x2 = result2[0];
+                let y2 = result2[1];
+                console.log(x1);
+                console.log(y1);
+                console.log(x2);
+                console.log(y2);
+                this.printLineMove(x1,y1,x2,y2);
+                }
+            }
+            run() {
+                this.printCross();
+                this.btnControl();
+            }
+        }
+        const canvas = new Canvas('canvas', 'can');
+        canvas.run();
+        canvas.modiDot(1, 10);
+        // canvas.printLineMove(2,2,3,3)
+    </script>
+</body>
+
+</html>

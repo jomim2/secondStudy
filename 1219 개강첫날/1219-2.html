@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>평균보다 큰 값을 배열에 담아 출력하시오</title>
+</head>
+<body>
+    <script>
+        class Score {
+            constructor(id) {
+                this.id = id;
+                this.avg = 0;
+                this.array = [];
+                this.answerArray = [];
+            }
+            avgScore() {
+                for (let i = 0; i < this.array.length; i++) {
+                    this.avg += this.array[i];
+                }
+                this.avg = this.avg / this.array.length;
+            }
+            pushItem() {
+                //필터로 바꿔보기
+                // for (let i = 0; i < this.myA.length; i++) {
+                //     if (this.myA[i] > this.avg) {
+                //         this.myB.push(this.myA[i]);
+                //     }
+                // }
+                this.answerArray = this.array.filter( v => v > this.avg);
+                
+            }
+            display() {
+                document.write("평균:" + this.avg + "<br>");
+                document.write("평균보다 큰 것:" + this.answerArray.sort((a,b)=>a-b));
+            }
+            run(myA){
+                this.array = myA;
+                this.avgScore();
+                this.pushItem();
+                this.display();
+            }
+        }
+        const score = new Score("score");
+        const myA = [7, 8, 10, 100, 99, 44, 23, 40, 14, 80];
+        score.run(myA);
+    </script>
+</body>
+
+</html>

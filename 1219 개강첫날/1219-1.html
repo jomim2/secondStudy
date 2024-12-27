@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        document.write("dddd".length + "<br>");
+        const myA = [10, 20, 30];
+        document.write(myA.length + "<br>");
+        myA[100] = 100;
+        document.write(myA.length + "<br>");
+        //파라메터 parameters
+        const myF = (a, b = 1, c) => {
+        }
+        myF(10, 20, 30);
+        // 아규먼트 arguments
+
+        document.write(myF.length + "<br>");
+
+        var myV2 = 1004;
+        {
+            var myV2 = 2004;
+            document.write(myV2 + "<br>");
+        }
+        document.write(myV2 + "<br>");
+        // 블럭 개념을 이해못함
+
+        // let 은 블럭개념을 인식함.
+        let myV = 1004;
+        {
+            let myV = 2004;
+            document.write(myV + "<br>");
+        }
+        document.write(myV + "<br>");
+
+
+
+        const myV1 = [10, 20, 30];
+        myV1[10] = 1004;
+
+        document.write(myV1);
+
+        const myV3 = [10, 20, 30];
+        // myV3 = 1004;
+        // document.write(myV3);
+        // 자료형에 대한 상수가 있어서 이게 안먹힘.
+
+        let myV4 = 1004;
+        let myV5 = myV4;
+        myV5 = 1005;
+        document.write("<br>" + myV4);
+        document.write("<br>" + myV5);
+        // 깊은 복사 값을 바꿔도 myV4 에는 영향이 안감
+
+        let myV6 = [10, 20, 30];
+        let myV7 = myV6;
+        myV7[2] = 1005;
+        document.write("<br>" + myV6[2]);
+        document.write("<br>" + myV7[2]);
+        // 얕은 복사가 일어남.(주소의 복사)
+
+        // 따라서 깊은 복사를 하려면?
+        let myV8 = [10, 20, 30];
+        let myV9 = [];
+        for (let i = 0; i <= myV8.length; i++) {
+            myV9[i] = myV8[i];
+        }
+        myV9[2] = 1006;
+        document.write("<br>" + myV8[2]);
+        document.write("<br>" + myV9[2]);
+
+        // 스프레드 쓰면 그냥 바로 복사 가능
+        let myV10 = [10, 20, 30, 1, 3];
+        let myV11 = [...myV10];
+
+        // Ascending 오름차순
+        myV10.sort((a, b) => a - b);
+        document.write("<br>" + myV10);
+
+        // descending 내림차순
+        myV10.sort((a, b) => b-a);
+        document.write("<br>" + myV10);
+    </script>
+</body>
+
+</html>

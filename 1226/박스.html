@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .imgList {}
+
+        .mainBox {
+            width: 100px;
+            height: 200px;
+            /* background-image: url("https://i.namu.wiki/i/1TKhICJY551woFdHg4kBfuBmtuA16SHW1C7Q1gw_6QLr8lVcV16dlubPiaIHn-NWHyQzCcytxYEeMnUB0obZTfA_gH0mZojs_ebnfN-YkIsb3LEeYNgBhSYSmwWVsGE-PLiz1yoSXBe9l4BBLemmQw.webp"); */
+            background-position: 50% 50%;
+            background-size: cover;
+            display: inline-block;
+            float: left;
+        }
+
+        .mainBox:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .mainBox:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="imgList" class="imgList">
+    </div>
+    <script>
+        class PicBox {
+            constructor(id, picInfo) {
+                this.id = id;
+                this.picInfo = picInfo;
+            }
+            init(targetDom) {
+                let html = `
+                <div id="${this.id}" class="mainBox">
+                </div>
+                `;
+                document.getElementById(targetDom).innerHTML += html;
+                document.getElementById(`${this.id}`).style.backgroundImage = `url("${this.picInfo}")`;
+            }
+        }
+        const imgList = []
+        const imgPath = [
+            "https://i.namu.wiki/i/1TKhICJY551woFdHg4kBfuBmtuA16SHW1C7Q1gw_6QLr8lVcV16dlubPiaIHn-NWHyQzCcytxYEeMnUB0obZTfA_gH0mZojs_ebnfN-YkIsb3LEeYNgBhSYSmwWVsGE-PLiz1yoSXBe9l4BBLemmQw.webp" , 
+            "https://i.namu.wiki/i/V7c6zkzP3ub8rzITLKrnTQaFEe6WjUPdHj4YeTRQswb9tfCFyXU9fwu8gsGwdy5kvZik0zJQeUuk7ZsQ9VXl9baMojBArAKqi8LZSSKShDHC6oMgqDqomAK7KSJDIMLS9voSyiRuib6VlxNkl4P7aQ.webp",
+        ];
+        for(let i =0; i<imgPath.length; i++){
+            imgList.push(new PicBox("img"+(i+1) , imgPath[i]));
+            imgList[i].init("imgList");
+        }
+        // const img2 = new PicBox("img2");
+        // img1.init("imgList");
+        // const img3 = new PicBox("img3");
+        // img1.init("imgList");
+    </script>
+</body>
+
+</html>

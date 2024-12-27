@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const myZard = [
+            "zard",
+            {
+                name: {
+                    fN: "zard",
+                    lN: "cdr",
+                },
+                address: {
+                    location: {
+                        location1: "tokyo",
+                        location2: "ansan",
+                    }
+                },
+                song: ["song1", "song2","song3", "song4"]
+            },
+            [
+                1004,
+                {
+                    hoho: "hihi",
+                    haha: {
+                        hihi : "hihi",
+                        huhu : ["Z","A","R","D"]
+                    }
+                }
+            ]
+        ]
+        const [,{name:{fN:myName}},[,{hoho:myhaha}]]= myZard;
+        document.write(myName +"<br>" + myhaha+"<br>");
+        const [,,[Num,{hoho:my1}]] = myZard;
+        document.write(Num + my1);
+        const [,,[,{hoho : myChar}]] = myZard;
+        document.write(myChar);
+        const [,{name : {fN}}] = myZard;
+        document.write(fN);
+        const [,{song:[,,,songName]}] = myZard;
+        document.write(songName);
+        const [,{address:{location:{location1:[,,,,myC]}}}] = myZard;
+        document.write(myC);
+        const [,,[,{haha:{huhu:[,,CCC]}}]] = myZard;
+        document.write(CCC);
+
+    </script>
+</body>
+
+</html>

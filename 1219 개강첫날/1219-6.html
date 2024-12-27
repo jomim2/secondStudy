@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시그마</title>
+    <style>
+        .jin{width: 2rem;}
+    </style>
+</head>
+<body>
+    <input type="text" id="num">
+    <input type="number" id="jin" class="jin">진수 값
+    <button type="button" id="btn">=</button>
+    <input type="number" id="result"> 10진수 값
+    <script>
+        class JinSoo{
+            constructor(id) {
+                this.id= id;
+                this.num =0;
+                this.jin =0;
+                this.result =0;
+            }
+            getValue(){
+                document.getElementById("btn").addEventListener("click",()=>{
+                    this.result =0;
+                    let stringV = document.getElementById("num").value;
+                    this.jin = Number(document.getElementById("jin").value);
+                    let tempA = [];
+                    for(let i=0; i<stringV.length; i++){
+                        tempA.push(stringV[i]);
+                    }
+                    console.log(tempA);
+                    let tempB =[];
+                    
+                    for(let i=0; i<tempA.length; i++){
+                        if(tempA[i] == "a" || "A"){tempA[i] = 10}
+                        if(tempA[i] == "b" || "B"){tempA[i] = 11}
+                        if(tempA[i] == "c" || "C"){tempA[i] = 12}
+                        if(tempA[i] == "d" || "D"){tempA[i] = 13}
+                        if(tempA[i] == "e" || "E"){tempA[i] = 14}
+                        if(tempA[i] == "f" || "F"){tempA[i] = 15}
+                        tempB.push(tempA[i]*(this.jin**(tempA.length-i-1)));
+                    }
+                    console.log(tempB);
+                    tempB.forEach((v,i,a)=>{
+                        this.result += v;
+                    });
+                    
+                    this.display();
+                });
+            }
+            display(){
+                document.getElementById("result").value = this.result;
+            }
+
+        }
+        const jinSoo = new JinSoo("jinSoo");
+        jinSoo.getValue();
+    </script>
+</body>
+</html>

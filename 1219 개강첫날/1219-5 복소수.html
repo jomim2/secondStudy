@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복소수 처리</title>
+    <style>
+        .box {
+            width: 3rem;
+        }
+        .result{
+            margin-top: 1rem;
+            margin-left: 7rem;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="number" id="a" class="box"> + 
+        <input type="number" id="b" class="box">i
+    
+    <button type="button" id="sumBtn">합</button>
+    <button type="button" id="duBtn">곱</button>
+        <input type="number" id="c" class="box">+ 
+        <input type="number" id="d" class="box">i
+    </div>
+    <div class="result">
+        <input type="number" id="A" class="box">+ 
+        <input type="number" id="B" class="box">i
+    </div>
+    <script>
+        class HeoSu{
+            constructor(id){
+                this.id =id;
+                this.a = 0;
+                this.b = 0;
+                this.c = 0;
+                this.d = 0;
+            }
+            getValue(){
+                window.addEventListener("click",(e)=>{
+                    if(e.target.id == "sumBtn" || e.target.id =="duBtn"){
+                        this.a = Number(document.getElementById("a").value);
+                        this.b = Number(document.getElementById("b").value);
+                        this.c = Number(document.getElementById("c").value);
+                        this.d = Number(document.getElementById("d").value);
+                    }
+                switch (e.target.id){
+                    case "sumBtn" : 
+                        document.getElementById("A").value = this.a + this.c;
+                        document.getElementById("B").value = this.b + this.d;
+                        break;
+                    case "duBtn" : 
+                        document.getElementById("A").value = (this.a * this.c) - (this.b*this.d);
+                        document.getElementById("B").value = (this.a * this.d) + (this.b*this.c);
+                        break;
+                }
+                });
+            }
+        }
+        const heoSu = new HeoSu("heoSu");
+        heoSu.getValue();
+    </script>
+</body>
+</html>

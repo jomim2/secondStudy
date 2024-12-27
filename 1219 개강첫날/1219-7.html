@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>진수</title>
+</head>
+<body>
+    <div id="mainArea">
+    </div>
+    <script>
+        class JinSoo {
+            constructor(id) {
+                this.id = id;
+                this.num = 0;
+                this.jin = 0;
+                this.result = 0;
+            }
+            getValue() {
+                window.addEventListener("click", (e) => {
+                    if (e.target.id == "btn2" || e.target.id == "btn8" || e.target.id == "btn10" || e.target.id == "btn16") {
+                        this.result = 0;
+                        let stringV = document.getElementById("num").value;
+                        this.jin = Number(document.getElementById("jin").value);
+                        //입력받은거 배열에 넣기
+                        let tempA = [...stringV];
+                        console.log(tempA);
+                        //16 진수 반환
+                        if (this.jin == 16) {
+                            for (let i = 0; i < tempA.length; i++) {
+                                switch (tempA[i]) {
+                                    case "A":
+                                    case "a": { tempA[i] = 10 }
+                                        break;
+                                    case "B":
+                                    case "b": { tempA[i] = 11 }
+                                        break;
+                                    case "C":
+                                    case "c": { tempA[i] = 12 }
+                                        break;
+                                    case "D":
+                                    case "d": { tempA[i] = 13 }
+                                        break;
+                                    case "E":
+                                    case "e": { tempA[i] = 14 }
+                                        break;
+                                    case "F":
+                                    case "f": { tempA[i] = 15 }
+                                        break;
+                                }
+                            }
+                        }
+                        // 배열에 있는거 꺼내서 제곱하기(10진수로 변환)
+                        let tempB = tempA.map((v,i)=>{
+                            return v*(this.jin ** (tempA.length - i - 1));
+                        });
+                        // for (let i = 0; i < tempA.length; i++) {
+                        //     tempB.push(tempA[i] * (this.jin ** (tempA.length - i - 1)));
+                        // }
+                        console.log(tempB);
+                        // 변환한거 더해서 담기
+                        tempB.forEach((v, i, a) => {
+                            this.result += v;
+                        });
+                        console.log(this.result);
+                        // 바꾼 10 진수를 다시 변환하기
+                        let tempC = [];
+                        let tempD = [];
+                        switch (e.target.id) {
+                            case "btn2":
+                                while (this.result > 0) {
+                                    tempC.unshift(Math.floor(this.result % 2));
+                                    this.result = Math.floor(this.result / 2);
+                                }
+                                tempC.forEach((v,i)=>{
+                                    tempD += tempC[i];
+                                })
+                                document.getElementById("result").innerHTML = tempD;
+                                console.log(tempC);
+                                break;
+                            case "btn8":
+                                while (this.result > 0) {
+                                    tempC.unshift(Math.floor(this.result % 8));
+                                    this.result = Math.floor(this.result / 8);
+                                }
+                                // console.log(tempC);
+                                tempC.forEach((v,i)=>{
+                                    tempD += tempC[i];
+                                })
+                                document.getElementById("result").innerHTML = tempD;
+                                break;
+                            case "btn10":
+                                document.getElementById("result").innerHTML = this.result;
+                                break;
+                            case "btn16":
+                                while (this.result > 0) {
+                                    tempC.unshift(Math.floor(this.result % 16));
+                                    this.result = Math.floor(this.result / 16);
+                                }
+                                for (let i = 0; i < tempC.length; i++) {
+                                    switch (tempC[i]) {
+                                        case 10: tempC[i] = 'A';
+                                            break;
+                                        case 11: tempC[i] = 'B';
+                                            break;
+                                        case 12: tempC[i] = 'C';
+                                            break;
+                                        case 13: tempC[i] = 'D';
+                                            break;
+                                        case 14: tempC[i] = 'E';
+                                            break;
+                                        case 15: tempC[i] = 'F';
+                                            break;
+                                    }
+                                }
+                                tempC.forEach((v,i)=>{
+                                    tempD += tempC[i];
+                                })
+                                document.getElementById("result").innerHTML = tempD;
+                                break;
+                        }
+                    }
+                });
+            }
+            display() {
+                const jinSooCss = `
+                <style>
+                *{
+                    margin: 0;
+                    padding: 0;
+                }
+                    .mainBox{
+                        border-radius:10px;
+                        padding-top:1rem;
+                        border:1px solid gold;
+                        width:20rem;
+                        background-color:lightblue;
+                        font-size: 0.5rem;
+                        margin: auto;
+                        text-align: center;
+                    }
+                    .num{
+                        font-size: 0.5rem;
+                        width: 5rem;
+                        height: 1rem;
+                    }
+                    .jin{width: 2rem;
+                        height: 1rem;
+                        font-size: 0.5rem;
+                        
+                    }
+                    button{
+                        border-radius: 0.5rem;
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        border:0.1px solid gray;
+
+                        background-color: azure;
+                    }
+                    button:hover{
+                        background-color:skyblue;
+                    }
+                    .result{
+                        padding: 1rem;
+                    }
+                </style>
+                `;
+                const jinSooHtml = `
+                <div class="mainBox">
+                <input type="text" id="num" class="num" placeholder="숫자를 입력하세요.">
+                <input type="number" id="jin" class="jin">진수
+                <br>
+                <button type="button" id="btn2">2</button>
+                <button type="button" id="btn8">8</button>
+                <button type="button" id="btn10">10</button>
+                <button type="button" id="btn16">16</button>
+                <br>
+                <div id="result" class="result">0</div>
+                <span id="jinV"></span>
+                </div>
+                `;
+                document.getElementById("mainArea").innerHTML = jinSooHtml + jinSooCss;
+            }
+            run() {
+                this.display();
+                this.getValue();
+            }
+        }
+        const jinSoo = new JinSoo("jinSoo");
+        jinSoo.run();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="okBtn">OK</button>
+    <button id="cancelBtn">Cancel</button>
+    <input id="inputText" type="text">
+    <script>
+        addEventListener(
+            "click",
+            (e)=>{
+            switch (e.target.id) {
+                case "okBtn" : alert("hi");
+                break;
+                case "cancelBtn" : alert("can");
+                break;
+                case "inputText":
+                    e.target.style.backgroundColor = "gold";
+                break;
+            }
+        }
+    )
+    </script>
+</body>
+</html>

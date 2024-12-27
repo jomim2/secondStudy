@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stack</title>
+</head>
+<body>
+    <script>
+        
+        // let rS = "";
+        // for(let i=0; i<myS.length; i++){
+        //     rS = myS[i] + rS;
+        // }
+        // document.write(rS);
+        const myS = "I Love Zard";
+        let mySS = [...myS];
+        class Stack {
+            constructor(id){
+                this.id = id;
+                this.storage =[];
+            }
+            push( item ){
+                this.storage.push(item);
+            }
+            pop(){
+                return this.storage.pop();
+            }
+            displayStack(){
+                document.write(this.storage + "<br>")
+            }
+            getLength(){
+                return this.storage.length;
+            }
+        }
+        const myStack = new Stack('myStack');
+        myStack.push( mySS );
+        myStack.displayStack();
+
+        let rS = '';
+        let stackCounter = myStack.getLength();
+        for(let i=0; i<stackCounter; i++){
+            rS += myStack.pop();
+        }
+        document.write(rS);
+        // myStack.push("C");
+        // myStack.displayStack();
+        // myStack.push("D");
+        // myStack.displayStack();
+        // myStack.push("R");
+        // myStack.displayStack();
+        // myStack.pop();
+        // myStack.displayStack();
+
+    </script>
+</body>
+</html>

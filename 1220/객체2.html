@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myA=[
+            {
+                aaa:'blackPink',
+                bbb:'forever young',
+                ccc: ()=>{
+                    document.write('forever young@');
+                }
+            },
+            (inV)=>{
+                document.write(`forever ${inV}!`);
+            },
+            'zard',
+            1004
+        ];
+            // myA[0].ccc();
+            // document.write(myA[2][3]);
+            // myA[1]('mimi');
+            
+            const myZard ={
+                name:"Zard",
+                age:21,
+                job :"singer",
+                album:[
+                    "A1","A2","A3"
+                ],
+                sing:()=>{
+                    document.write('lalala');
+                }
+            }
+            document.write(myZard.age);
+            document.write(typeof myZard.name);
+            document.write(Array.isArray(myZard.album));
+    </script>
+</body>
+</html>

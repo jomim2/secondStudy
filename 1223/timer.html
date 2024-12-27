@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .timerArea{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            font-size: 30px;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="timerArea" class="timerArea">0</div>
+    <button id="startBtn">START</button>
+    <button id="stoptBtn">STOP</button>
+    <button id="resetBtn">RESET</button>
+    <script>
+        class Timer{
+            constructor(id){
+                this.id = id;
+                this.timerArea = document.getElementById("timerArea");
+                this.nowTime =0;
+            }
+            btnControl(){
+                window.addEventListener("click",(e)=>{
+                    const startTime = () =>{setInterval(()=>{this.timerArea.innerHTML = this.nowTime++;}, 1000);}
+                    switch(e.target.id){
+                        case "startBtn" : 
+                                startTime();
+                        break;
+                        case "stoptBtn" : 
+                                clearInterval(startTime);
+                        break;
+                        case "resetBtn" : 
+                        break;
+                    }
+                });
+            }
+            run(){
+                this.btnControl();
+                // this.timeStart();
+            }
+        }
+        const timer = new Timer('timer');
+        timer.run();
+    </script>
+</body>
+</html>

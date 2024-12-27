@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mainArea">
+
+    </div>
+    <script>
+        class Factorial {
+            constructor(id) {
+                this.id = id;
+                this.num = 0;
+                this.fac = 1;
+            }
+            display() {
+                document.getElementById("mainArea").innerHTML = `
+                <input type="number" id="num">
+                <button id="btn">팩토리</button>
+                <div id="result">0</div>
+                `;
+            }
+            getValue() {
+                document.getElementById("btn").addEventListener("click", () => {
+                    this.num = Number(document.getElementById("num").value);
+                    for (let i = 1; i <= this.num; i++) {
+                        this.fac *= i;
+                    }
+                    document.getElementById("result").innerHTML = this.fac;
+                    console.log(this.fac);
+                });
+            }
+            run() {
+                this.display();
+                this.getValue();
+            }
+        }
+        const factorial = new Factorial("factorial");
+        factorial.run();
+    </script>
+</body>
+
+</html>

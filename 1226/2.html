@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const zard = {
+        //     name : "zard",
+        //     job : "singer",
+        //     sing : ()=>{document.write("lalal");}
+        // }
+        // document.write(zard.name + "<br>");
+        // zard.sing();
+        class Person{
+            constructor(name , job ){
+                this._name = name;
+                this._job = job;
+            }
+            sing(lyrics){
+                document.write(lyrics + "<br>");
+            }
+            get name (){
+                return this._name;
+            }
+            get job (){
+                return this._job;
+            }
+            set job (selectJob){
+                this._job = selectJob;
+            }
+        }
+        const zard = new Person ( "ZARD" , "singer");
+        const cdr = new Person ( "cdr" , "singer");
+
+        cdr.job = "teacher";
+        document.write(zard.name +":" );
+        zard.sing("lalala");
+        document.write(cdr.job + ":");
+        cdr.sing("lololo");
+
+    </script>
+</body>
+</html>

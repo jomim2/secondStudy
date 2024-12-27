@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 배열 고차 함수 배우기 (Array Higher Order Function)
+        //1. forEach  - 순회목적
+        //2. map - 순회를 통해 새로운 배열을 만드는 것
+        //3. filter - 순회를 통해 특정 조건의 값으로 새로운 배열을 만드는 것
+        const myA = [1004, 1005, 1006, 1007,1008];
+        const s = "hello";
+        let tempA = [...s];
+        document.write(tempA);
+        
+        // for(let i=0; i<myA.length; i++){
+        //     document.write(myA[i] + "<br>")
+        // }
+        // myA.forEach((v,i,a)=>{ //value, index , array
+        //     document.write(v +"/" + "/"+i +"/"+ a + "<br>")
+        // });
+
+        // let myMap = myA.map((v,i,a)=>{
+        //     return ++v;
+        // });
+        // document.write(myMap);
+
+        let myFilter = myA.filter((v,i,a)=>{
+            return v > 1006;
+        })
+        document.write(myFilter);
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const myO ={name : "Zard" , gender : "Female" , address : "ansan"}
+        const myA = [1,2,3,4,5]; //배열도 돌릴 수는 있음
+        // for(let key in myO){
+        //     document.write( key + "/" + myO[key] + "<br>") 
+        // }
+        // const myA = [1, 2, { a: "A" }, 3, 4, 5];
+        // for (let v of myA) {
+        //     if (typeof v == "object") {
+        //         for (let key in v) {
+        //             document.write(  v[key] + "<br>")
+        //         }
+        //     } else {
+        //         document.write(v);
+        //     }
+        // }
+        document.write( "name" in myO );
+        document.write( 5 in myA );
+        
+        // name 이라는 키가 있는지 물어보는 것 true , false 로 나옴.
+    </script>
+</body>
+
+</html>
