@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변환기기</title>
+    <style>
+        .can {
+            border: 1px solid red;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="number" id="changeTo">
+    <select id="sel">
+        <option value="deg">도</option>
+        <option value="rad">라디안</option>
+        <option value="mill">밀</option>
+    </select>
+    <button id="btn">변환</button>
+    <div>
+        각도:<span id="degV"></span><br>
+        라디안 :<span id="radV"></span><br>
+        밀 : <span id="milV"></span><br>
+    </div>
+    <canvas width="300" height="300" id="can" class="can"></canvas>
+    <script>
+        class Change {
+            constructor(id) {
+                this.id = id;
+                this.degV = 0;
+            }
+            btnControl() {
+                document.getElementById("btn").addEventListener("click", () => {
+                    const sel = document.getElementById("sel").value;
+                    switch (sel) {
+                        case "deg":
+                            let deg = Number(document.getElementById("changeTo").value);
+                            this.degV = deg;
+                            let radian = Math.PI / 180 * deg;
+                            let mill = (90-deg) * (6400 / 360);
+                            if(mill < 0){
+                                mill =   6400+((90-deg) * (6400 / 360));
+                            }
+                            if(deg > 360){
+                                alert("범위에서 벗어났습니다.")
+                                break;
+                            }
+                            document.getElementById("degV").innerHTML = deg;
+                            document.getElementById("radV").innerHTML = radian;
+                            document.getElementById("milV").innerHTML = mill;
+                            break;
+                        case "rad":
+                            let radian2 = Number(document.getElementById("changeTo").value);
+                            let deg2 = (180 / Math.PI) * radian2;
+                            this.degV = deg2;
+                            let mill2 = 6400 / 360 * deg2;
+                            if(deg2 > 360){
+                                alert("범위에서 벗어났습니다.")
+                                break;
+                            }
+                            document.getElementById("degV").innerHTML = deg2;
+                            document.getElementById("radV").innerHTML = radian2;
+                            document.getElementById("milV").innerHTML = mill2;
+                            break;
+                        case "mill":
+                            let mill3 = Number(document.getElementById("changeTo").value);
+                            let deg3 = 360 / 6400 * mill3;
+                            this.degV = deg3;
+                            let radian3 = Math.PI / 180 * deg3;
+                            if(deg3 > 360){
+                                alert("범위에서 벗어났습니다.")
+                                break;
+                            }
+                            document.getElementById("degV").innerHTML = deg3;
+                            document.getElementById("radV").innerHTML = radian3;
+                            document.getElementById("milV").innerHTML = mill3;
+                            break;
+                    }
+                    this.canvasControl(this.id);
+                });
+            }
+            canvasControl() {
+                class Can {
+                    constructor(id) {
+                        this.id = id;
+                        this.pen = document.getElementById("can").getContext("2d");
+                        this.width = document.getElementById("can").width;
+                        this.height = document.getElementById("can").height;
+                        this.degV = change.degV;
+                    }
+                    modiDot(x, y) {
+                        this.pen.fillRect(this.width / 2 + x, this.height / 2 - y, 1, 1);
+                    }
+                    printCross() {
+                        for (let i = 0; i < this.width; i++) {
+                            this.pen.fillRect(this.width / 2, i, 1, 1);
+                            this.pen.fillRect(i, this.height / 2, 1, 1);
+                        }
+                    }
+                    line(x1, y1, x2, y2) {
+                        if(x1 == x2){
+                            [x1, x2] = [y1, y2];
+                            [y1, y2] = [x1, x2];
+                        }
+                        if (x1 > x2) {
+                            [x1, x2] = [x2, x1];
+                            [y1, y2] = [y2, y1];
+                        }
+                        const gi = (((y1) - (y2)) / ((x1) - (x2)));
+                        const B = ((gi * x2) * -1) + y2;
+                        for (let x = x1; x <= x2; x = x + 0.01) {
+                            let y = (gi * x) + B;
+                            let radian = Math.PI/180 * this.degV;
+                            this.pen.fillStyle='red';
+                            this.modiDot(Math.cos(radian)*x, Math.sin(radian)*y);
+                        }
+                    }
+                    run() {
+                        this.printCross();
+                        this.line(0,0,150,150);
+                    }
+                }
+                const can = new Can("can");
+                can.run();
+            }
+            control() {
+                this.btnControl();
+            }
+        }
+        const change = new Change("change");
+        change.control();
+
+
+    </script>
+</body>
+
+</html>

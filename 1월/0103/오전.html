@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    높이:<input type="number" id="h"><br>
+    각a:<input type="number" id="degA"><br>
+    각b:<input type="number" id="degB"><br>
+    <button id="btn">삼각형 그리기</button>
+    <canvas width="500" height="500" id="can" class="can"></canvas>
+    <script>
+     class Can{
+        constructor(id) {
+            this.id = id;
+            this.can = document.getElementById("can");
+            this.pen = this.can.getContext("2d");
+            this.width = this.can.width;
+            this.scale = 10;
+            this.h = 0;
+            this.degA =0;
+            this.degB=0;
+        }
+        printCross(){
+            for(let i =10 ; i<=this.width; i++){
+                this.pen.fillRect(i+10,this.width-20,1,1);
+                this.pen.fillRect(20,i-20,1,1);
+            }
+        }
+        btnControl(){
+            document.getElementById("btn").addEventListener("click",()=>{
+                this.h = Number(document.getElementById("h").value);
+                this.degA = Number(document.getElementById("degA").value);
+                this.degB = Number(document.getElementById("degB").value);
+                this.printDeg();
+            });
+        }
+        printDot(x,y){
+            this.pen.fillRect(20+x*this.scale,this.width-y*this.scale-20,1,1);
+        }
+        printDeg(){
+            this.printDot(0,this.h);
+            let degC = 90 - this.degB; // 각 2에서 남은 그 각각
+            let degD = 180 - this.degA - this.degB; // 각 a , 각 b 의 그 사이 각
+            console.log(degD);
+            let gil = (this.h*(Math.sin(this.degA)/Math.sin(degD))) < 0 ? -(this.h*(Math.sin(this.degA)/Math.sin(degD))): (this.h*(Math.sin(this.degA)/Math.sin(degD)));
+            console.log(gil);
+            let degE = 180 - degC - 90; // 조그만 직각 삼각형의 위의 각
+            let x2 = Math.cos(degC) * gil; // 맨 아래 삼각형의 밑변의 길이
+            let y2 = Math.sin(degE) * gil;// 조그만 직각 삼각형의 높이
+            console.log(x2 , y2);
+            this.printDot(x2,y2);
+            console.log(degC);
+        }
+        run(){
+            this.printCross();
+            this.btnControl();
+        }
+     }
+     const can = new Can("can");
+     can.run();
+    </script>
+</body>
+</html>

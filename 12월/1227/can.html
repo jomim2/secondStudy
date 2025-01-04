@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can{border: 1px solid red;}
+    </style>
+</head>
+<body>
+    <canvas width="400" height="400" id="can" class="can"></canvas><br>
+    <input type="number" id="num"><button id="btn">선그리기</button>
+    <script>
+        class Canvas{
+            constructor(id){
+                this.id=id;
+                this.pen = document.getElementById("can").getContext("2d");
+                this.width = document.getElementById("can").width;
+                this.height = document.getElementById("can").height;
+                this.num = 0;
+            }
+            printDot(x,y){
+                this.pen.fillRect(this.width/2+x,this.height/2-y,1,1);
+            }
+            printCross(){
+                for(let i=0; i<this.width; i++){
+                    this.pen.fillRect(i,this.height/2,1,1);
+                }
+                for(let i=0; i<this.height; i++){
+                    this.pen.fillRect(this.width/2,i,1,1);
+                }
+            }
+            printCircle(){
+                for(let x=0; x<=360; x=x+0.1){
+                    let r = this.width/2;
+                    let radian = Math.PI/180*x;
+                    this.printDot(r*Math.cos(radian),r*Math.sin(radian));
+                }
+            }
+            btnControl(){
+                document.getElementById("btn").addEventListener("click",()=>{
+                this.num =  Number(document.getElementById("num").value);
+                
+                });
+            }
+            printLine(){
+                for(let x=0; x>=-this.width/7.5; x--){
+                    let r = this.width/2;
+                    let radian = Math.PI/180*x;
+                    this.printDot(x,r*radian);
+                }
+                for(let x=-this.width/7.5; x<=0; x++){
+                    let r = this.width/2;
+                    let radian = Math.PI/180*x;
+                    this.printDot(x,r*radian);
+                }
+            }
+            run(){
+                this.printCross();
+                this.printCircle();
+                this.printLine();
+            }
+        }
+        const canvas = new Canvas("canvas");
+        canvas.run();
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="sec">
+    <button id="btn">각도로 변환</button>
+    <div id="degArea"></div>
+    <script>
+        document.getElementById("btn").addEventListener("click",()=>{
+            let sec = Number(document.getElementById("sec").value)*6;
+            if (sec/6 > 15){
+                let deg = (360 - sec)+90;
+                document.getElementById("degArea").innerHTML = deg;
+            }else{
+                let deg = 90 - sec;
+                document.getElementById("degArea").innerHTML = deg;
+            }
+            });
+            
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <style>
+        .can {
+            border: 1px solid red;
+        }
+
+        .mainArea {
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainArea">
+        <canvas width="800" height="800" id="can" class="can"></canvas>
+    </div>
+    <script>
+        class MathCanvas {
+            constructor(id) {
+                this.id = id;
+                this.can = document.getElementById("can");
+                this.pen = this.can.getContext("2d");
+                this.width = Number(this.can.width);
+                this.height = Number(this.can.height);
+                this.scale = 5;
+                this.dotCollection = [
+                    {
+                        dot: [
+                            { x: -20, y: 50 }
+                        ]
+                    },
+                    {
+                        line: [
+                            { x: -9, y: -10 },
+                            { x: 12, y: -15 }
+                        ]
+                    },
+                    {
+                        triangle: [
+                            { x: 5, y: 8 },
+                            { x: -8, y: 0 },
+                            { x: 10, y: -10 }
+                        ]
+                    },
+                    {
+                        rectangle: [
+                            { x: 15, y: 8 },
+                            { x: -8, y: 0 },
+                            { x: -10, y: -10 },
+                            { x: 10, y: -9 }
+                        ]
+                    },
+                    {
+                        circle: [
+                            { r: 9 },
+                            { a: -8 },
+                            { b: 10 }
+                        ]
+                    }
+                ]
+            }
+            printDot(x, y) {
+                // let Arr =[];
+                // Dot.forEach((v ,i) => {
+                //     console.log(Dot)
+                // });
+                this.pen.fillRect(this.width / 2 + (x * this.scale), this.height / 2 - (y) * this.scale, 1, 1)
+            }
+            printCross() {
+                for (let i = 0; i <= this.width; i++) {
+                    this.pen.fillRect(i, this.height / 2, 1, 1);
+                }
+                for (let i = 0; i <= this.height; i++) {
+                    this.pen.fillRect(this.width / 2, i, 1, 1);
+                }
+            }
+            printScale() {
+                for (let i = 0; i <= this.width; i += this.scale) {
+                    for (let j = -3; j <= 3; j++) {
+                        this.pen.fillRect(i, j + this.width / 2, 1, 1);
+                    }
+                }
+                for (let i = 0; i <= this.height; i += this.scale) {
+                    for (let j = -3; j <= 3; j++) {
+                        this.pen.fillRect(j + this.height / 2, i, 1, 1);
+                    }
+                }
+            }
+            printLine(x1, y1, x2, y2) {
+                if (x1 > x2) {
+                    [x1, x2] = [x2, x1];
+                    [y1, y2] = [y2, y1];
+                }
+                for (let x = x1; x <= x2; x = x + 0.1) {
+                    let gi = (y1 - y2) / (x1 - x2);
+                    let y = gi * (x - x1) + (y1);
+                    this.printDot(x, y);
+                }
+                if (x1 == x2) {
+                    if (y1 > y2) {
+                        [x1, x2] = [x2, x1];
+                        [y1, y2] = [y2, y1];
+                    }
+                    for (let y = y1; y <= y2; y = y + 0.1) {
+                        let gi = (y1 - y2) / (x1 - x2);
+                        let x = gi * (x - x1) + (y1);
+                        this.printDot(x, y);
+                    }
+                }
+            }
+            printTriangle(x1, y1, x2, y2, x3, y3) {
+                if (x1 > x2) {
+                    [x1, x2] = [x2, x1];
+                    [y1, y2] = [y2, y1];
+                }
+                for (let x = x1; x <= x2; x = x + 0.1) {
+                    let gi = (y1 - y2) / (x1 - x2);
+                    let y = gi * (x - x1) + (y1);
+                    this.printDot(x, y);
+                }
+                if (x2 > x3) {
+                    [x3, x2] = [x2, x3];
+                    [y3, y2] = [y2, y3];
+                }
+                for (let x = x2; x <= x3; x = x + 0.1) {
+                    let gi = (y2 - y3) / (x2 - x3);
+                    let y = gi * (x - x2) + (y2);
+                    this.printDot(x, y);
+                }
+                if (x3 > x1) {
+                    [x3, x1] = [x1, x3];
+                    [y3, y1] = [y1, y3];
+                }
+                for (let x = x3; x <= x1; x = x + 0.1) {
+                    let gi = (y3 - y1) / (x3 - x1);
+                    let y = gi * (x - x3) + (y3);
+                    this.printDot(x, y);
+                }
+            }
+            printRectangle(x1, y1, x2, y2, x3, y3, x4, y4) {
+                if (x1 > x2) {
+                    [x1, x2] = [x2, x1];
+                    [y1, y2] = [y2, y1];
+                }
+                for (let x = x1; x <= x2; x = x + 0.1) {
+                    let gi = (y1 - y2) / (x1 - x2);
+                    let y = gi * (x - x1) + (y1);
+                    this.printDot(x, y);
+                }
+                if (x2 > x3) {
+                    [x3, x2] = [x2, x3];
+                    [y3, y2] = [y2, y3];
+                }
+                for (let x = x2; x <= x3; x = x + 0.1) {
+                    let gi = (y2 - y3) / (x2 - x3);
+                    let y = gi * (x - x2) + (y2);
+                    this.printDot(x, y);
+                }
+                if(x3 > x4){
+                    [x3 , x4] = [x4 , x3];
+                    [y3 , y4] = [y4 , y3];
+                }
+                for(let x=x3; x<=x4; x=x+0.1){
+                    let gi = (y3 - y4)/(x3 - x4);
+                    let y = gi*(x - x3) + (y3);
+                    this.printDot(x,y);
+                }
+                if(x4 > x1){
+                    [x4 , x1] = [x1 , x4];
+                    [y4 , y1] = [y1 , y4];
+                }
+                for(let x=x1; x<=x4; x=x+0.1){
+                    let gi = (y4 - y1)/(x4 - x1);
+                    let y = gi*(x - x4) + (y4);
+                    this.printDot(x,y);
+                }
+            }
+            printCircle() {
+                for (let i = 0; i <= 360; i++) {
+                    let a = -8;
+                    let b = 10;
+                    let r = 9;
+                    let radian = (Math.PI / 180) * i;
+                    this.printDot(Math.cos(radian) * r + a, Math.sin(radian) * r + b);
+                }
+            }
+            run() {
+                this.printCross();
+                this.printScale();
+                this.printDot(this.dotCollection[0].dot.x, this.dotCollection[0].dot.y);
+                this.printLine(this.dotCollection[1].line[0].x, this.dotCollection[1].line[0].y, this.dotCollection[1].line[1].x, this.dotCollection[1].line[1].y)
+                this.printTriangle(this.dotCollection[2].triangle[0].x, this.dotCollection[2].triangle[0].y, this.dotCollection[2].triangle[1].x, this.dotCollection[2].triangle[1].y, this.dotCollection[2].triangle[2].x, this.dotCollection[2].triangle[2].y);
+                this.printRectangle(this.dotCollection[3].rectangle[0].x, this.dotCollection[3].rectangle[0].y, this.dotCollection[3].rectangle[1].x, this.dotCollection[3].rectangle[1].y, this.dotCollection[3].rectangle[2].x, this.dotCollection[3].rectangle[2].y, this.dotCollection[3].rectangle[3].x, this.dotCollection[3].rectangle[3].y)
+                this.printCircle();
+            }
+        }
+        const mathCanvas = new MathCanvas("mathCanvas");
+        mathCanvas.run();
+    </script>
+</body>
+
+</html>

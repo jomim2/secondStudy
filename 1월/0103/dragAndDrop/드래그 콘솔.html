@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="drag" draggable="true">❤️</p>
+    <br>
+    <div id="drop">here</div>
+    <script>
+        document.getElementById("drag").ondragstart = function(e){
+            e.dataTransfer.setData('data',this.innerHTML); // 드래그 해보세요 문자열 전달
+        };
+        document.getElementById("drop").ondragover = function(e){
+            e.preventDefault(); // 필수 이 부분 없으면 이벤트 발생 안함함
+        };
+        document.getElementById("drop").ondrop = function(e){
+            alert(e.dataTransfer.getData('data')); // 데이터를 가져옵니다.
+        }
+    </script>
+</body>
+</html>

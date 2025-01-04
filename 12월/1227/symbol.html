@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myS = "mimi";
+        const myPointer = myS[Symbol.iterator]();
+        // value , done? 
+        // 현재 , t,f
+
+        const {value : value1 , done: done1} = myPointer.next();
+        document.write(value1 + "<br>");
+        document.write(done1 + "<br>");
+        const {value: value2 ,done: done2} = myPointer.next();
+        document.write(value2 + "<br>");
+        document.write(done2 + "<br>");
+        const {value: value3 ,done: done3} = myPointer.next();
+        document.write(value3 + "<br>");
+        document.write(done3 + "<br>");
+        const {value: value4 ,done: done4} = myPointer.next();
+        document.write(value4 + "<br>");
+        document.write(done4 + "<br>");
+        const {value: value5 ,done: done5} = myPointer.next();
+        document.write(value5 + "<br>");
+        document.write(done5 + "<br>");
+
+        const array = [1,2,3];
+        const iterator = array[Symbol.iterator]();
+        console.log('next' in iterator);
+        let iteratorResult = iterator.next();
+        console.log(iteratorResult);
+    </script>
+</body>
+</html>

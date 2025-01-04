@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+.calArea {
+  width: 20rem;
+  height: 30rem;
+  border: 1px solid red; }
+
+.result {
+  width: 100%;
+  height: 3rem;
+  border: 1px solid red;
+  background-color: antiquewhite; }
+
+.nav {
+  border: 1px solid red;
+  display: inline-block; }
+
+.btnArea {
+  display: flex;
+  height: 5.4rem; }
+
+.can {
+  border: 1px solid red; }
+
+.btn {
+  border: 1px solid red;
+  box-sizing: border-box;
+  flex: 1; }
+
+/*# sourceMappingURL=calc.css.map */

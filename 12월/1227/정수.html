@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100개 출력하고</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .can{
+            border:1px solid red;
+            margin-top: 5rem;
+            
+        }
+        .canvasArea{
+
+            margin-top: 5rem;
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainArea" class="mainArea">
+
+    </div>
+    <div class="canvasArea">
+    <canvas id="can" class="can" width="400" height="400"></canvas>
+    </div>
+    <script>
+        class Num {
+            constructor(id) {
+                this.id = id;
+                this.valueArray = [];
+                this.sortValue = [];
+                this.avg = 0;
+                this.min = 0;
+                this.max = 0;
+                this.mid = 0;
+                this.modeV =[];
+                this.pen = document.getElementById("can").getContext("2d");
+                this.width = document.getElementById("can").width;
+            }
+            setValueArea() {
+                for (let i = 0; i < 100; i++) {
+                    this.valueArray.push(Math.floor(Math.random() * 101));
+                }
+                console.log(this.valueArray);
+                this.valueControl();
+            }
+            valueControl() {
+                this.min = Math.min(...this.valueArray);
+                this.max = Math.max(...this.valueArray);
+                let tempA = [...this.valueArray];
+                let sor = [...this.valueArray.sort((a, b) => a - b)];
+                console.log(sor)
+                //selection sort
+                // for(let i=0; i<this.valueArray.length; i++){
+                //     let index = i;
+                //     for(let j=i+1; j<this.valueArray.length; j++){
+                //         if(tempA[j] < tempA[index]){
+                //             index = j;
+                //         }
+                //     }
+                //     if(index !=i){
+                //         [tempA[i] , tempA[index]] = [tempA[index] , tempA[i]];
+                //     }
+                //     console.log(tempA);
+                // }
+                //insertion sort
+                // for(let i=1; i<tempA.length; i++){
+                //     for(let j=i; j>0; j--){
+                //         if(tempA[j] < tempA[j-1]){
+                //             [tempA[j], tempA[j-1]] = [tempA[j-1] , tempA[j]]
+                //         } 
+                //     }
+                // }
+                // bubble sort
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempA.length; j++) {
+                        if (tempA[j] > tempA[j + 1]) {
+                            [tempA[j],tempA[j + 1]] = [tempA[j + 1], tempA[j]];
+                        }
+                    }
+                }
+                console.log(tempA);
+                this.sortValue = [...tempA];
+                if ((tempA.length / 2) % 2 == 0) {
+                    this.mid = ((tempA[Math.floor((tempA.length - 1) / 2)]) + (tempA[Math.floor((tempA.length - 1) / 2) + 1])) / 2;
+                } else {
+                    this.mid = tempA[Math.floor(tempA.length - 1) / 2];
+                }
+                let tempAvg = 0;
+                tempA.forEach((v) => {
+                    tempAvg += v;
+                });
+                this.avg = tempAvg / this.valueArray.length;
+                console.log(this.avg);
+            }
+            standard(){
+                let sort = [...this.sortValue];
+                
+            }
+            modeValue(){
+                let temp = [...this.sortValue];
+                let tempA = [[]];
+                for(let i=0; i<temp.length; i++){
+                    if(tempA[tempA.length-1][0] == temp[i]){
+                        tempA[tempA.length-1][1]+=1;
+                    }else{
+                        tempA.push([temp[i],1]);
+                    }
+                }
+                    console.log(tempA);
+                    let maxA = tempA[1][1];
+                    let maxIndex =0;
+                    tempA.forEach((v,i,a)=>{
+                        console.log(v[1])
+                        console.log(maxA);
+                        if(v[1]> maxA){
+                            maxA = v[1];
+                            maxIndex = i;
+                        }
+                    });
+                    tempA.forEach((v,i,a)=>{
+                        if(v[1] === tempA[maxIndex][1]){
+                            this.modeV.push( v[0] +"이"+ v[1] +"번 등장");
+                        }
+                    })
+                    // console.log (tempA[maxIndex]);
+                    console.log(this.modeV);
+                    // let mode ={};
+                // temp.forEach((v,i)=>{
+                //     if( mode[v] ){
+                //     mode[v] += 1;
+                //     // 만약 이미 있으면 +1 을 키값으로 설정 하는 것.
+                //     }else{
+                //     mode[v] = 1;
+                //     // 키와 키값을 넣는 것 .
+                //     }
+                // });
+                // let tem = [];
+                // for(let key in mode){
+                //     console.log( key + ":" + mode[key])
+                //     console.log( )
+                // }
+                
+                
+            }
+            btnControl() {
+                document.getElementById("btn").addEventListener("click", () => {
+                    document.getElementById("numArea").innerHTML = this.sortValue;
+                    document.getElementById("avgV").innerHTML += this.avg;
+                    document.getElementById("midV").innerHTML += this.mid;
+                    document.getElementById("maxV").innerHTML += this.max;
+                    document.getElementById("minV").innerHTML += this.min;
+                    document.getElementById("modeV").innerHTML += this.modeV;
+                });
+            }
+            canvasControl(){
+                this.pen.fillRect(1,1,1,1);
+            }
+            display() {
+                const html = `
+                <div id="numArea" class="numArea"></div>
+                <button id="btn">출력하기</button>
+                <div id="avgV" class="avgV">평균:</div>
+                <div id="midV" class="midV">중앙 값:</div>
+                <div id="maxV" class="maxV">큰 값:</div>
+                <div id="minV" class="maxV">작은 값:</div>
+                <div id="modeV" class="modeV">최빈 값:</div>
+                `;
+                const css = `
+                <style>
+                    .mainArea{
+                        font-size: 1.2rem;
+                        padding: 3rem;
+                        box-sizing: border-box;
+                        width: 50rem;
+                        height: 20rem;
+                        background-color: pink;
+                        margin: auto;
+                        text-align: center;
+                        border-radius: 10rem;
+                    }
+                    .numArea{
+                        width: 100%;
+                        overflow: scroll;
+                    }
+                    button{
+                        position: relative;
+                        top:10rem;
+                        background-color: bisque;
+                        width: 4rem;
+                        height: 2rem;
+                    }
+                </style>
+                `;
+                document.getElementById("mainArea").innerHTML = html + css;
+            }
+            run() {
+                this.display();
+                this.btnControl();
+                this.setValueArea();
+                this.modeValue();
+                this.canvasControl();
+            }
+        }
+        const num = new Num('num');
+        num.run();
+    </script>
+</body>
+
+</html>

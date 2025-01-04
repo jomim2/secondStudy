@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;
+            padding: 0;
+        }
+        html{
+            background-color: beige;
+        }
+        .can {
+            border: 1px solid red;
+            border-radius: 0.1rem;
+        }
+        .mainArea {
+            font-size: 2rem;
+            text-align: center;
+            margin: auto;
+            width: 100%;
+            margin: 5rem;
+            height: 100%;
+            /* border:1px solid black; */
+        }
+        .inputArea{
+            padding: 2rem;
+        }
+        input{
+            width: 2rem;
+            height: 2rem;
+            background-color: azure;
+        }
+        select{
+            background-color:bisque;
+            width: 5rem;
+            height: 2rem;
+        }
+        button{
+            width: 3rem;
+            height: 2rem;
+            background-color: azure;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainArea">
+        <div class="inputArea">
+            y = <input type="number" id="pok">
+            <select id="sel">
+                <option value="sin">sin</option>
+                <option value="cos">cos</option>
+                <option value="tan">tan</option>
+            </select>
+            <input type="number" id="zu">
+            x
+            <button id="btn">그리기</button>
+            <br>
+        </div>
+        <canvas width="500" height="500" class="can" id="can"></canvas>
+    </div>
+    <script>
+        class SinCos {
+            constructor(id) {
+                this.id = id;
+                this.can = document.getElementById("can");
+                this.pen = this.can.getContext("2d");
+                this.width = this.can.width;
+                this.scale = 10;
+            }
+            printCross() {
+                for (let i = 0; i <= this.width; i++) {
+                    this.pen.fillRect(i, this.width / 2, 1, 1);
+                }
+                for (let i = 0; i <= this.width; i++) {
+                    this.pen.fillRect(0, i, 1, 1);
+                }
+            }
+            modiDot(x,y){
+                this.pen.fillRect(x*this.scale,this.width/2-y*this.scale,1,1)
+            }
+            printScale(){
+                for(let i=0; i<=this.width; i+=Math.PI){
+                    for(let j=-1; j<=1; j+=0.1){
+                        this.modiDot(i,j);
+                        this.pen.fillRect(j*this.scale,i*this.scale,1,1);
+                    }
+                }
+                
+                for(let i=Math.PI*2; i<=this.width; i+=Math.PI*2){
+                        this.pen.fillText("2PI",i*this.scale-1,this.width/2+20);
+                        for(let j=-Math.sqrt(3); j<Math.sqrt(3); j+=Math.sqrt(3)){
+                            this.pen.fillText(i,this.scale,i*this.scale)
+                        }
+                    }
+            }
+            btnControl() {
+                document.getElementById("btn").addEventListener("click", () => {
+                    let pok = Number(document.getElementById("pok").value);
+                    let zu = Number(document.getElementById("zu").value);
+                    switch (document.getElementById("sel").value) {
+                        case "sin":
+                            for (let x = 0; x <= this.width; x += 0.01) {
+                                let y = pok * Math.sin(zu * x);
+                                this.pen.fillStyle = "red";
+                                this.pen.fillRect(x * this.scale, this.width / 2 - y * this.scale, 1, 1);
+                            }
+                            break;
+                        case "cos":
+                            for (let x = 0; x <= this.width; x += 0.01) {
+                                this.pen.fillStyle = "blue";
+                                let y = pok * Math.cos(zu * x);
+                                this.pen.fillRect(x * this.scale, this.width / 2 - y * this.scale, 1, 1);
+                            }
+                            break;
+                            case "tan":
+                            for (let x = 0; x <= this.width; x += 0.01) {
+                                let y = pok * Math.tan(zu * x);
+                                this.pen.fillStyle = "green";
+                                this.pen.fillRect(x * this.scale, this.width / 2 - y * this.scale, 1, 1);
+                            }
+                            break;
+                    }
+                })
+            }
+            run() {
+                this.printCross();
+                this.btnControl();
+                this.printScale();
+            }
+        }
+        const sinCos = new SinCos('sinCos');
+        sinCos.run();
+    </script>
+</body>
+
+</html>

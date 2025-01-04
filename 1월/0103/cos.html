@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can{border : 1px solid red}
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500" class="can" id="can">
+    <script>
+        class Cos{
+            constructor(id){
+                this.id=id;
+                this.can = document.getElementById("can");
+                this.pen = this.can.getContext("2d");
+                this.width = this.can.width;
+                this.scale = 10;
+            }
+            modiDot(x,y){
+                this.pen.fillRect(this.width/2 +x*this.scale ,y*this.scale,1,1);
+            }
+            printCross(){
+                for(let i =0; i<=this.width; i+=0.1){
+                    this.modiDot(0,i);
+                }
+            }
+            printCos(){
+                for(let x=0; x<=this.width; x=x+0.01){
+                    let y =Math.sin(3*x); // 3은 x 의 주기가 바뀌는 것
+                    this.pen.fillStyle = 'red';
+                    this.pen.fillRect(x*this.scale, this.width/2- y *this.scale,1,1);
+                }
+                for(let y=0; y<=this.width; y+=0.01){
+                    let x = 5*Math.cos(y); // 5는  반지름이 됩니다. 폭이 커짐
+                    this.pen.fillStyle = "blue";
+                    this.modiDot(x,y);
+                }
+            }
+            run(){
+                this.printCross();
+                this.printCos();
+            }
+        }
+        const cos = new Cos("cos");
+        cos.run();
+    </script>
+</body>
+</html>

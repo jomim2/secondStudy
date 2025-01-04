@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            background-color: #f8edeb;
+        }
+        .mainArea {
+            text-align: center;
+            margin: auto;
+            margin-top: 2rem;
+        }
+
+        .num,
+        .numBox {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid black;
+            border-radius: 1rem;
+            background-color: #fcd5ce;
+            text-align: center;
+            line-height: 2rem;
+            margin: 0.1rem;
+        }
+
+        .numBox {
+            margin: 1rem;
+            position: relative;
+            line-height: 2rem;
+            top:-1rem;
+        }
+
+        .numArea {
+            text-align: center;
+            height: 5rem;
+            line-height: 5rem;
+        }
+
+        span {
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>HI MIMI❤️🐻😊</h1>
+    <div class="mainArea">
+        <div class="num" draggable="true">0</div>
+        <div class="num" draggable="true">1</div>
+        <div class="num" draggable="true">2</div>
+        <div class="num" draggable="true">3</div>
+        <div class="num" draggable="true">4</div>
+        <div class="num" draggable="true">5</div>
+        <div class="num" draggable="true">6</div>
+        <div class="num" draggable="true">7</div>
+        <div class="num" draggable="true">8</div>
+        <div class="num" draggable="true">9</div>
+        <div class="numArea">
+            <div id="num1" class="num1 numBox">0</div><span>+</span>
+            <div id="num2" class="num2 numBox">0</div><span>=</span>
+            <div id="result" class="result numBox"></div>
+        </div>
+        <button id="btn">계산하기</button>
+    </div>
+    <script>
+        class DragAndSum {
+            constructor(id) {
+                this.id = id;
+                this.num1 = 0;
+                this.num2 = 0;
+                this.result = 0;
+            }
+            dragStart() {
+                const numbers = document.querySelectorAll(".num");
+                numbers.forEach(num=>{
+                    num.ondragstart = function (e) {
+                    e.dataTransfer.setData('data', this.innerHTML);
+                    // alert(this.innerHTML);
+                }
+                });
+                document.getElementById("num1").ondragover = function (e) {
+                    e.preventDefault();
+                }
+                document.getElementById("num2").ondragover = function (e) {
+                    e.preventDefault();
+                }
+                document.getElementById("num1").ondrop = function (e) {
+                   document.getElementById("num1").innerHTML = (e.dataTransfer.getData('data'));
+                }
+                document.getElementById("num2").ondrop = function (e) {
+                    document.getElementById("num2").innerHTML = (e.dataTransfer.getData('data'));
+                }
+            }
+            btnControl(){
+                document.getElementById("btn").addEventListener("click",()=>{
+                    this.num1 = Number(document.getElementById("num1").innerHTML);
+                    this.num2 = Number(document.getElementById("num2").innerHTML);
+                    this.result = this.num1 + this.num2;
+                    document.getElementById("result").innerHTML = this.result;
+                })
+            }
+            run() {
+                this.dragStart();
+                this.btnControl();
+            }
+        }
+        const drag = new DragAndSum('drag');
+        drag.run();
+    </script>
+</body>
+
+</html>

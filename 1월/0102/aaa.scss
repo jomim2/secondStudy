@@ -1,0 +1,16 @@
+$primary_1 : #ff0000;
+$primary_2 : #00ff00;
+.main{
+    background-color: $primary_1;
+}
+.menu{
+    background-color: $primary_2;
+}
+$myColor:red;
+h1{
+    $myColor : green !global;
+    color: $myColor;
+}
+p{
+    color: $myColor;
+}

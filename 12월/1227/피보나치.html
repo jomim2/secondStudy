@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num =0;
+        let A = 0;
+        let B = 1;
+        let result=[];
+        while(num < 100){
+            num = A + B;
+            if(num > 100){
+                break;
+            }else{
+                result.push(num);
+            }
+            [A , B ] = [num , A];
+        }
+        document.write(result + "<br>");
+        
+    </script>
+</body>
+</html>

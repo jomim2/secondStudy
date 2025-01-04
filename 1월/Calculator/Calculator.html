@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e3a9d44341.js" crossorigin="anonymous"></script>
+    <title>계산기</title>
+    <link rel="stylesheet" href="./calc.css">
+</head>
+<body>
+    <div id="mainArea">
+        <div class="canvasArea">
+            <canvas width="500" height="500" id="can" class="can"></canvas>
+        </div>
+        <nav class="navArea">
+            <div class="nav"><i class="fa-solid fa-arrow-up"></i></div>
+            <div class="nav"><i class="fa-solid fa-arrow-left"></i></div><div class="nav">reset</div><div class="nav"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="nav"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div><div><i class="fa-solid fa-arrow-down"></i></div><div><i class="fa-solid fa-down-left-and-up-right-to-center"></i></div>
+        </nav>
+        <article class="optionArea">
+            <div class="option">1차</div>
+            <div class="option">2차</div>
+            <div class="option">3차</div>
+            <div class="option">원</div>
+            <div class="bangArea">
+            </div>
+            <div class="drawBtn">그리기</div>
+        </article>
+        <div class="calArea">
+            <div id="cal" class="cal">
+                <div id="result" class="result"></div>
+                <div class="btnArea">
+                    <div class="btn"><i class="fa-solid fa-square-root-variable"></i></div>
+                    <div class="btn">(</div>
+                    <div class="btn">)</div>
+                    <div class="btn"><i class="fa-solid fa-caret-left"></i></div>
+                </div>
+                <div class="btnArea">
+                    <div class="btn">7</div>
+                    <div class="btn">8</div>
+                    <div class="btn">9</div>
+                    <div class="btn"><i class="fa-solid fa-divide"></i></div>
+                </div>
+                <div class="btnArea">
+                    <div class="btn">4</div>
+                    <div class="btn">5</div>
+                    <div class="btn">6</div>
+                    <div class="btn"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+                <div class="btnArea">
+                    <div class="btn">1</div>
+                    <div class="btn">2</div>
+                    <div class="btn">3</div>
+                    <div class="btn"><i class="fa-solid fa-minus"></i></div>
+                </div>
+                <div class="btnArea">
+                    <div class="btn">0</div>
+                    <div class="btn">.</div>
+                    <div class="btn">=</div>
+                    <div class="btn"><i class="fa-solid fa-plus"></i></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        class Calculator {
+            constructor(id) {
+                this.id = id;
+            }
+            run() {
+
+            }
+        }
+        const calculator = new Calculator('calculator');
+        calculator.run();
+    </script>
+</body>
+
+</html>

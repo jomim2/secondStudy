@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<input type="text" id="stringV">
+<div id="result"></div>
+<button id="btn">팰?</button>
+<body>
+    <script>
+        
+        document.getElementById("btn").addEventListener("click",()=>{
+            tempA = [...document.getElementById("stringV").value];
+            let tempS = [];
+            console.log(tempA);
+            tempA.forEach((v)=>{
+                tempS.unshift(v);
+            });
+            
+            console.log(tempS);
+            tempS.forEach((v,i)=>{
+                document.getElementById("result").innerHTML = tempS[i] == tempA[i] ? "pal" : "notpal";
+                
+            });
+        });
+    </script>
+</body>
+</html>
