@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css.css">
+</head>
+<body>
+    <div class="mainArea" id="mainArea">
+        <div class="textArea">🛍️오늘의 쇼핑 제안</div>
+        <section class="boxesArea" id="boxesArea">
+        </section>
+    </div>
+    <script>
+        class MakeBox{
+            constructor(id){
+                this.id = id;
+            }
+            display(){
+                const myImg = ["./2.png" ,"./image.png","./2.png" ,"./image.png","./2.png" ];
+                const myText = ["더미식 귀리쌀밥" , "집밥연구소" , "즉석 라면 조리기","더미식 흑미밥","더미식 매움주의 장인라면"];
+                const star = ["⭐⭐⭐⭐⭐"];
+                myText.forEach((v,i,a)=>{
+                    document.getElementById("boxesArea").innerHTML += `
+                    <article class="box">
+                        <img src=${myImg[i]}><div class="text">${myText[i]}</div>
+                        <div class="free">무료배송</div>
+                        <div class="star">${star[0]}</div>
+                    </article>
+                `;
+                });
+            }
+        }
+        const make = new MakeBox("make");
+        make.display();
+    </script>
+</body>
+</html>

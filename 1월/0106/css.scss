@@ -1,0 +1,39 @@
+*{padding:0; margin: 0;}
+
+$font:"Gowun Batang", serif;
+
+.mainArea{
+    width: 70%;
+    margin: auto;
+    margin-top:5rem;
+
+}
+.boxesArea{
+    display: flex;
+    // border: 1px solid red;
+    justify-content:space-around;
+
+}
+.textArea{
+    font-size: 2rem;
+    font-family: $font;
+}
+.box{
+    display: inline-block;
+
+    // border: 1px solid red;
+    height: 15rem;
+}
+.text{
+    text-align: left;
+    height: 1.2rem;
+    overflow: hidden;
+}
+img{
+    overflow: hidden;
+    box-sizing: border-box;
+    height: 100%;
+}
+.free{
+    color: gray;
+}
