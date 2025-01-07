@@ -1,0 +1,41 @@
+*{margin: 0; padding:0;font-size: 1.5rem; font-family:"Do Hyeon", serif ;}
+$font : "Gowun Batang", serif;
+.mainArea{
+    margin-top: 5rem;
+    text-align: center;
+    width: 100%;
+    height: 30rem;
+}
+.can {
+    border: 1px dashed red;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+input{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+button{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.keyPadArea{
+    width: 20rem;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+.smallkeyPad{
+   width: 2rem;
+}
