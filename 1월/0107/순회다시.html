@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const some ={
+            key1 : [10 ,20, 30, 40 ,[50,60,70]]
+        }
+        const checkType = (item)=>{
+            if(typeof item == "object"){
+                if(Array.isArray(item)){
+                    arrFunc(item);
+                }else{
+                    objFunc(item);
+                }
+            }else{
+                priFunc(item);
+            }
+        }
+        const arrFunc = (arr)=>{
+            for(let value of arr){
+                checkType(value);
+            }
+        }
+        const objFunc = (obj) =>{
+            for(let key in obj){
+                checkType(obj[key]);
+            }
+        }
+        const priFunc = (pri) =>{
+            document.write(pri + "<br>");
+        }
+        checkType(some);
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myO = {
+            list : [
+                {singer : "zard" , title : "I Love You" , like : 5},
+                {singer : "cdr" , title : "I Love You" , like : 4},
+                {singer : "love" , title : "I Love You" , like : 2},
+            ]
+        }
+        const {list : singerList} = myO;
+        const printLove = loveCounter =>{
+            let loveSing = '';
+            for(let i=0; i<loveCounter; i++){
+                loveSing +='❤️';
+            }
+            return loveSing;
+        }
+        singerList.forEach((v)=>{
+            let {singer , title , like} = v;
+            document.write(`${singer} / ${title} / ${printLove(like)} <br>`);
+        });
+
+    </script>
+</body>
+</html>

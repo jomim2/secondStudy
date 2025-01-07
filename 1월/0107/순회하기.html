@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myA = {
+            key1 : [
+            10,
+            [20,21,22,23,24],{gender : ["man" , "woman"]},
+            30,
+            [40,41,42,43,44],
+            [50,51,52,53],
+            {name : "zard" , address :["Tokyo" , "Ansan"]}
+            ]
+        };
+        const arrayFunc = (arr) =>{
+            for(let value of arr){
+                checkType(value);
+            }
+        }
+        const objectFunc = (obj) =>{
+            for(let key in obj){
+                checkType(obj[key]);
+            }
+        }
+        
+        const primitiveFunc = (pri) =>{
+            document.write(pri + "<br>");
+        }
+
+        const checkType = item =>{
+            if(typeof item == "object"){
+                if(Array.isArray(item)){
+                    arrayFunc(item);
+                }
+                else{
+                    objectFunc(item);
+                }
+            }else{
+                primitiveFunc(item);
+            }
+        }
+        checkType(myA);
+        // let temp = [];
+        // const tra = (arr)=>{
+        //     for(let i=0; i<arr.length; i++){
+        //         if(Array.isArray(arr[i])){
+        //         tra(arr[i]);
+        //         }else{
+        //             temp.push(arr[i]);
+                    
+        //         }
+        //     }
+        // }
+        // tra(myA);
+        // console.log(temp);
+    //     let temp = [];
+    //     const check = (arr)=>{
+    //     if(typeof arr == 'object'){
+    //         if(Array.isArray(arr)){
+    //             for(let value of arr){
+    //                 check(value);
+    //             }
+    //         }else{
+    //             document.write("Object<br>");
+    //             document.write(arr+"<br>");
+    //         }
+    //     }
+    // }
+    // check(myA);
+    </script>
+</body>
+</html>

@@ -20,78 +20,63 @@
         <canvas id="can" class="can" width="500" height="500"></canvas>
     </div>
     <script>
-        class Tictoc{
+        class Tictoc {
             constructor(id) {
                 this.id = id;
                 this.can = document.getElementById("can");
-                this.pen = can.getContext("2d");
+                this.pen = this.can.getContext("2d");
                 this.width = this.can.width;
                 this.height = this.can.height;
             }
-            modi(x,y){
-                this.pen.fillRect( this.width/2 + x, this.height/2 - y,1,1);
+            modi(x, y) {
+                this.pen.fillRect(this.width / 2 + x, this.height / 2 - y, 1, 1);
             }
-            mainArea(){
-                for(let x=0; x<=360; x+=0.1){
-                    let radian = (Math.PI/180) * x;
-                    let r = this.width/2;
-                    this.modi(Math.cos(radian)*r , Math.sin(radian)*r);
+            drawClockFace() {
+                for (let x = 0; x <= 360; x += 0.1) {
+                    let radian = (Math.PI / 180) * x;
+                    let r = this.width / 2 - 10; // Radius for the clock face
+                    this.modi(Math.cos(radian) * r, Math.sin(radian) * r);
                 }
             }
-            tic(){
-                let num = 0;
-                let max = 10;
-                // let x = -1.57;
-                const tac = (num , max)=>{
-                    for(let x=0; x<=max; x+=6){
-                    let r = this.width/2;
-                    let radian = (Math.PI/180) * x;
-                    this.printLine(0,0,Math.cos(x)*r, Math.sin(x)*r);
-                }
-                }
-                setInterval(num+=6 ,1000);
-                // setInterval(tac(num) , 1000);
-                setInterval(max+=10 ,1000);
-                
-                setInterval(tac(num,max) , 1000);
+            drawHand(length, angle, width = 2) {
+                let radian = (Math.PI / 180) * angle;
+                let x2 = Math.cos(radian) * length;
+                let y2 = Math.sin(radian) * length;
+                this.pen.beginPath();
+                this.pen.moveTo(this.width / 2, this.height / 2);
+                this.pen.lineTo(this.width / 2 + x2, this.height / 2 - y2);
+                this.pen.lineWidth = width;
+                this.pen.stroke();
             }
-            printLine(x1, y1, x2, y2) {
-                if (x1 > x2) {
-                    [x1, x2] = [x2, x1];
-                    [y1, y2] = [y2, y1];
-                    for (let x = x2; x <= x1; x = x + 0.1) {
-                    let gi = (y1 - y2) / (x1 - x2);
-                    let y = gi * (x - x1) + (y1);
-                    this.modi(x, y);
-                }
-                }if (x2 > x1){
-                    for (let x = x1; x <= x2; x = x + 0.1) {
-                    let gi = (y1 - y2) / (x1 - x2);
-                    let y = gi * (x - x1) + (y1);
-                    this.modi(x, y);
-                }
-                }
-                
-                // if (x1 == x2) {
-                //     if (y1 > y2) {
-                //         [x1, x2] = [x2, x1];
-                //         [y1, y2] = [y2, y1];
-                //     }
-                //     for (let y = y1; y <= y2; y = y + 0.1) {
-                //         let gi = (y1 - y2) / (x1 - x2);
-                //         let x = gi * (x - x1) + (y1);
-                //         this.modi(x, y);
-                //     }
-                // }
+            drawHands() {
+                let dateTime = new Date();
+                let hours = dateTime.getHours() % 12; // Convert to 12-hour format
+                let minutes = dateTime.getMinutes();
+                let seconds = dateTime.getSeconds();
+    
+                // Calculate angles for hands
+                let hourAngle = (360 / 12) * (hours + minutes / 60); // Hour hand angle
+                let minuteAngle = (360 / 60) * minutes; // Minute hand angle
+                let secondAngle = (360 / 60) * seconds; // Second hand angle
+    
+                // Draw hands
+                this.pen.strokeStyle = 'black'; // Hour hand
+                this.drawHand(this.width / 4, hourAngle, 6);
+                this.pen.strokeStyle = 'blue'; // Minute hand
+                this.drawHand(this.width / 3, minuteAngle, 4);
+                this.pen.strokeStyle = 'red'; // Second hand
+                this.drawHand(this.width / 2.5, secondAngle, 2);
             }
-            run(){
-                this.modi(1,1);
-                this.mainArea();
-                this.tic();
+            run() {
+                this.pen.clearRect(0, 0, this.width, this.height); // Clear canvas
+                this.drawClockFace();
+                this.drawHands();
+                requestAnimationFrame(this.run.bind(this)); // Re-run for animation
             }
         }
         const tictoc = new Tictoc("tictoc");
         tictoc.run();
+    </script>
     </script>
 </body>
 </html>
