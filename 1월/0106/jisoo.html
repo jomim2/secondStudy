@@ -58,10 +58,9 @@
                 this.pen =this.can.getContext("2d");
                 this.width = this.can.width;
                 this.scale = 5;
-
             }
             printDot(x,y){
-                this.pen.fillRect(10 + x*this.scale*10,this.width-y*this.scale-10,1,1);
+                this.pen.fillRect(10 + x,this.width-Math.log2(y)-10,1,1);
             }
             printScale(){
                 for(let i=0; i<this.width; i++){
