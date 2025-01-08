@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .myBox{
+            width:200px; height: 200px; background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="myBox"></div>
+    <script>
+        const myBox = document.querySelector(".myBox");
+        // myBox.style.width = '400px';
+        alert(getComputedStyle(myBox).width);
+        // getComputedStyle 을 사용하여 CSS 에 접근할 수 있습니다.
+    </script>
+</body>
+</html>
