@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const officeNumber = [
+            "11213",
+            "A1C2E3",
+            "48075",
+            "H1H2H2",
+            "111111",
+            "hhhhhh"
+        ];
+        const regPattern = /\w\d\w\d\w\d/;
+        officeNumber.forEach((officeItem)=>{
+            if(regPattern.test(officeItem)){
+                document.write(officeItem + "<br>");
+            }
+        })
+    </script>
+</body>
+</html>

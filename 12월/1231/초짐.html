@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +34,7 @@
             drawClockFace() {
                 for (let x = 0; x <= 360; x += 0.1) {
                     let radian = (Math.PI / 180) * x;
-                    let r = this.width / 2 - 10; // Radius for the clock face
+                    let r = this.width / 2 - 10; 
                     this.modi(Math.cos(radian) * r, Math.sin(radian) * r);
                 }
             }
