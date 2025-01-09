@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="numArea">0</div>
+    <button id="btn">버튼</button>
+    <script>
+        let numArea = document.getElementById("numArea");
+        let num = 0;
+        document.getElementById("btn").addEventListener("click",(e)=>{
+            numArea.innerHTML = num;
+            num++;
+        });
+        if(num > 12){
+            document.getElementById("btn").removeEventListener("click",listener);
+        }
+    </script>
+</body>
+</html>
