@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" pattern="\d*" id="textArea">
+    <input id="btn" type="submit">
+    <script>
+        //testS = "01055989197";
+        //testS2 = "010-5598-9197";
+        //reg = /01[16790][-\//n]?\d?[\d]{3}[-\//n]?[\d]{3}/;
+        
+        let zzak = /^[\d.]*[13579]&/;
+        let hol = /^[\d.]*[02468]&/;
+        let testS = "color - color";
+        let reg = /\B-\B/;
+        document.getElementById("btn").addEventListener("click",(e)=>{
+            const myV = document.getElementById("textArea").value;
+        });
+        console.log(reg.test(testS));
+    </script>
+</body>
+</html>

@@ -13,6 +13,7 @@
 <body>
     <canvas width="400" height="400" id="can" class="can"></canvas>
     <canvas width="400" height="400" id="can2" class="can"></canvas>
+    <canvas width="400" height="400" id="can3" class="can"></canvas>
     <script>
         class Can{
             constructor(id) {
@@ -43,7 +44,6 @@
                     this.pen.fillText(i/this.scale ,0 ,this.width-i * this.scale);
                 }
             }
-
             run(){
                 this.printDot(1,1);
                 this.printScale();
@@ -58,6 +58,7 @@
                 this.pen =this.can.getContext("2d");
                 this.width = this.can.width;
                 this.scale = 5;
+                this.mit = 2;
             }
             printDot(x,y){
                 this.pen.fillRect(10 + x,this.width-Math.log2(y)-10,1,1);
@@ -70,10 +71,51 @@
             }
             printText(){
                 for(let i=0; i<=this.width; i++){
-                    this.pen.fillText(i,10 + (i *this.scale) *this.scale ,this.width);
+                    this.pen.fillText(i,10 + (i *this.scale) *5 ,this.width);
                 }
                 for(let i=0; i<=this.width; i+=this.scale){
-                    this.pen.fillText(2 ** (i/this.scale) ,0 ,this.width-i * this.scale);
+                    let num = (this.mit ** (i/this.scale)).toExponential(1);
+                    this.pen.fillText(num ,0 , this.width-i * 5 - 10);
+                }
+            }
+            printXY(){
+                for(let x= 0 ; x<=this.width; x+=0.001){
+                    let y = this.mit ** x;
+                    this.printDot(x,y);
+                }
+            }
+            run(){
+                this.printDot(1,1)
+                this.printScale();
+                this.printText();
+                this.printXY();
+            }   
+        }
+        class Can3{
+            constructor(id) {
+                this.id = id;
+                this.can = document.getElementById("can3");
+                this.pen =this.can.getContext("2d");
+                this.width = this.can.width;
+                this.scale = 5;
+                this.mit = 3;
+            }
+            printDot(x,y){
+                this.pen.fillRect(10 + x * this.scale,this.width-(Math.log(y)/Math.log(3)) * this.scale-10,1,1);
+            }
+            printScale(){
+                for(let i=0; i<this.width; i++){
+                    this.pen.fillRect(10,i,1,1);
+                    this.pen.fillRect(i,this.width-10,1,1);
+                }
+            }
+            printText(){
+                for(let i=0; i<=this.width; i++){
+                    this.pen.fillText(i,10 + (i *this.scale) *5 ,this.width);
+                }
+                for(let i=0; i<=this.width; i+=this.scale){
+                    let num = (this.mit ** (i/this.scale)).toExponential(1);
+                    this.pen.fillText(num ,0 , this.width-i * 5 - 10);
                 }
             }
             printXY(){
@@ -93,6 +135,8 @@
         can.run();
         const can2 = new Can2("can");
         can2.run();
+        const can3 = new Can3("can");
+        can3.run();
     </script>
 </body>
 </html>
