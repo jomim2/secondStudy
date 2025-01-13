@@ -15,7 +15,7 @@
 <body>
     <canvas width="400" height="400" id="can" class="can"></canvas>
     <script>
-        class TicTok {
+        class TikTok {
             constructor(id) {
                 this.id = id;
                 this.can = document.getElementById("can");
@@ -33,80 +33,93 @@
                     this.printDot(Math.cos(radian) * r, Math.sin(radian) * r);
                 }
             }
-            getDate(){
+            getDate() {
                 const nowDate = new Date();
                 const hours = nowDate.getHours() % 12;
                 const minutes = nowDate.getMinutes();
                 const secondes = nowDate.getSeconds();
-                console.log(hours , minutes , secondes);
-                this.printCross(hours,minutes,secondes);
+                // console.log(hours, minutes, secondes);
+                this.init(hours, minutes, secondes);
             }
-            printCross(hours,minutes,secondes) {
-                let deg = 90 - (secondes *6 );
-                if(deg < 0){
-                    deg = 
-                }
-                    let radian = Math.PI / 180 * deg;
-                    for (let x = 0; x <= Math.cos(radian) * this.width / 2; x++) {
+            init(hours, minutes, secondes) {
+                this.pen.clearRect(0, 0, this.width, this.height);
+                this.pen.fillStyle = 'black';
+                this.printClock();
+                this.printHourSecondsAndMinute(secondes, 6, 'red', 2);
+                // this.printHourSecondsAndMinute(minutes, 6, 'blue', 2.5);
+                // this.printHourSecondsAndMinute(hours, 30, 'black', 3);
+            }
+            printHourSecondsAndMinute(hourOrMinOrSec, minus, color, line) {
+                let deg = 90 - (hourOrMinOrSec * minus);
+                let radian = Math.PI / 180 * deg;
+                this.pen.fillStyle = color;
+                if ((hourOrMinOrSec * minus) > 180) {
                         let gi = (Math.sin(radian) * this.width / 2) / (Math.cos(radian) * this.width / 2)
-                        let y = gi * (x - Math.cos(radian) * this.width / 2) + (Math.sin(radian) * this.width / 2);
-                        this.lineDraw(x, y);
-                    }
-                // for (let x = 0; x <= this.width; x++) {
-                //     this.printDot(x, 0);
-                // }
-                // for (let x = 0; x >= -this.width / 2; x--) {
-                //     this.printDot(x, 0);
-                // }
-                // for (let y = 0; y <= this.height / 2; y++) {
-                //     this.printDot(0, y);
-                // }
-                // for (let y = 0; y >= -this.height / 2; y--) {
-                //     this.printDot(0, y);
-                // }
-                // this.printDot(Math.cos(radian) *this.width/2 , Math.sin(radian) *this.width/2);
-                //x1                                //y1
-                
-                    
-                
-                //  //x1
-                // // y1
-                // x2 =0;
-                // y2 =0;
-
+                        let y = gi * (Math.cos(radian) * this.width / line - Math.cos(radian) * this.width / 2) + (Math.sin(radian) * this.width / 2);
+                        this.lineDraw(Math.cos(radian) * this.width / line, y);
+                } else {
+                        let gi = (Math.sin(radian) * this.width / 2) / (Math.cos(radian) * this.width / 2)
+                        let y = gi * (Math.cos(radian) * this.width / line - Math.cos(radian) * this.width / 2) + (Math.sin(radian) * this.width / 2);
+                        this.lineDraw(Math.cos(radian) * this.width / line, y);
+                }
             }
             lineDraw(x2, y2) {
+                // console.log(x2 ,y2);
+
+
+
+                // let tempx = Number(x2.toFixed(2));
+                // console.log(tempx)
+                // console.log(Number(tempx))
+
+
+
                 let x1 = 0;
                 let y1 = 0;
-                if (x1 > x2){
-                    [x1,x2] = [x2,x1];
-                    [y1,y2] = [y2,y1];
-                    // console.log(x1);
+                if (x2 == Number(x2.toFixed(2))) {
+                    console.log(x2 ,y2);
+
+                    // console.log(y1 ,y2);
+                    if (y1 > y2) {
+                        [x1, x2] = [x2, x1];
+                        [y1, y2] = [y2, y1];
+                    }
+                    for (let y = 0; y <= this.width/2; y++) {
+                        // console.log(y1,y2);
+                        this.printDot(0, y);
+                    }
+                } else {
+                    if (x1 > x2) {
+                        [x1, x2] = [x2, x1];
+                        [y1, y2] = [y2, y1];
+                        // console.log(x1);
+                    }
+                    for (let x = x1; x <= x2; x++) {
+                        let gi = (y2 - y1) / (x2 - x1);
+                        let y = gi * (x - x1) + y1;
+                        this.printDot(x, y);
+                    }
                 }
-                for(let x = x1; x <=x2; x++){
-                    let gi = (y2 -y1) / (x2 - x1);
-                    let y = gi * (x -x1) + y1;
-                    this.printDot(x,y);
-                }
+
             }
-            timeSet(){
-                const get = ()=>{
+            timeSet() {
+                const get = () => {
                     this.getDate();
-                    setTimeout(get , 1000);
+                    setTimeout(get, 1000);
                 }
                 get();
             }
             run() {
                 this.printClock();
                 this.printDot(1, 1);
-                this.printCross();
+                // this.printCross();
                 // this.lineDraw(-50,-50);
                 // this.getDate();
                 this.timeSet();
             }
         }
-        const tictok = new TicTok();
-        tictok.run();
+        const tiktok = new TikTok();
+        tiktok.run();
     </script>
 </body>
 
