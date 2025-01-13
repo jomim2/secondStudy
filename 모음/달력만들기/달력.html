@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="styleSheet" href="./달력.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="mainArea" class="mainArea">
+
+    </div>
+    <script>
+        class MakeCalendar {
+            constructor(id) {
+                this.id = id;
+                this.day = ['일', '월', '화', '수', '목', '금', '토'];
+                this.selectMonth = new Date().getMonth()+1;
+                this.selectYear = new Date().getFullYear();
+                this.yearAndMonth = new Date(`${this.selectYear}/${this.selectMonth}/1`);;
+            }
+            display() {
+                document.getElementById("mainArea").innerHTML = `
+                <div class="selectYearAndMonth">
+                    <input type="number" id="year">
+                    <select name="month" id="sel">
+                        <option value="1">1월</option>
+                        <option value="2">2월</option>
+                        <option value="3">3월</option>
+                        <option value="4">4월</option>
+                        <option value="5">5월</option>
+                        <option value="6">6월</option>
+                        <option value="7">7월</option>
+                        <option value="8">8월</option>
+                        <option value="8">9월</option>
+                        <option value="10">10월</option>
+                        <option value="11">11월</option>
+                        <option value="12">12월</option>
+                    </select>
+                    <button id="btn">달력보기</button>
+                </div>
+                <main class="makeCal">
+                    <div class="dayArea" id="dayArea">
+                    </div>
+                    <div class="calArea" id="calArea">
+                    </div>
+                </main>
+                `;
+                for (let i = 0; i < this.day.length; i++) {
+                    document.getElementById("dayArea").innerHTML += `
+                        <div>${this.day[i]}</div>
+                    `;
+                }
+            }
+            getDate() {
+                document.getElementById("btn").addEventListener("click", (e) => {
+                    this.selectYear = Number(document.getElementById("year").value);
+                    this.selectMonth = Number(document.getElementById('sel').value);
+                    this.yearAndMonth = new Date(`${this.selectYear}/${this.selectMonth}/1`);
+                    console.log(this.selectedDay);
+                    this.makeCalBox();
+                });
+            }
+            selectBoxInit(){
+                document.getElementById("year").value = this.selectYear;
+                document.getElementById('sel').value = this.selectMonth;
+            }
+            makeCalBox() {
+                document.getElementById("calArea").innerHTML = '';
+                for (let i = 0; i < this.yearAndMonth.getDay(); i++) {
+                    document.getElementById("calArea").innerHTML += `
+                    <div></div>
+                `;
+                }
+                let num=1;
+                
+                for(let i=1; i<=32; i++){
+                    let date = new Date(`${this.selectYear}/${this.selectMonth}/${i}`);
+                    if( isNaN(date.getDate()) || (date.getDate() == 1 ) && (i != 1)){break;}
+                    else if(date.getDay() == 0){
+                        document.getElementById("calArea").innerHTML += `
+                        <div class="sunday">${date.getDate()}</div>
+                        `;
+                    }else if(date.getDay() == 6){
+                        document.getElementById("calArea").innerHTML += `
+                        <div class="saturday">${date.getDate()}</div>
+                        `;
+                    }else{
+                        document.getElementById("calArea").innerHTML += `
+                        <div>${date.getDate()}</div>
+                        `;
+                    }
+                }
+            }
+            run() {
+                this.display();
+                this.getDate();
+                this.makeCalBox();
+                this.selectBoxInit();
+            }
+        }
+        const makeCalendar = new MakeCalendar("makeCalendar");
+        makeCalendar.run();
+    </script>
+</body>
+
+</html>

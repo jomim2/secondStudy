@@ -25,6 +25,7 @@
             shiftItem(){return this.storage.shift();}
         }
         
+        
         class Deck{
             constructor(id){
                 this.id = id;
@@ -56,6 +57,62 @@
         sLL1.setNext(sLL2);
         sLL2.setNext(sLL3);
         document.write(sLL1.next().next().value);
+        
+
+        class DoubleLinkedList2{
+            constructor(id){
+                this.id = id;
+                this._value = '';
+                this.pNode = null;
+                this.nNode = null;
+            }
+            set value (item){this._value = item;}
+            get value (){return this._value;}
+            setPNode(node){this.pNode = node;}
+            setNNode(node){this.nNode = node;}
+            prevNode(){return this.pNode;}
+            nextNode(){return this.nNode;}
+        }
+        const dll1 = new DoubleLinkedList2('dll1');
+        const dll2 = new DoubleLinkedList2('dll2');
+        const dll3 = new DoubleLinkedList2('dll3');
+        dll1.value = "Love";
+        dll2.value = "CDR";
+        dll3.value = "Zard";
+        dll1.setNNode(dll2);
+        dll2.setPNode(dll1);
+        dll2.setNNode(dll3);
+        dll3.setPNode(dll2);
+
+        document.write(dll1.nextNode().nextNode().prevNode().value);
+
+
+
+        class DoubleLinkedList{
+            constructor(id){
+                this.id = id;
+                this._value = "";
+                this.pN = null;
+                this.nN = null;
+            }
+            get value(){return this._value;}
+            set value(item){this._value = item;}
+            setpN(node){this.pN = node;}
+            setnN(node){this.nN = node;}
+            pNode(){return this.pN;}
+            nNode(){return this.nN;}
+        }
+        const dL1 = new DoubleLinkedList("dL1");
+        const dL2 = new DoubleLinkedList("dL2");
+        const dL3 = new DoubleLinkedList("dL3");
+        dL1.value = "mimi";
+        dL2.value = "jomim";
+        dL3.value = "binu";
+        dL1.setnN(dL2);
+        dL2.setpN(dL1);
+        dL2.setnN(dL3);
+        dL3.setpN(dL2);
+        document.write(dL1.nNode())
     </script>
 </body>
 </html>

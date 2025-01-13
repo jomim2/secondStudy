@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Queue {
+            constructor(id) {
+                this.id = id;
+                this._value = '';
+                this.pNode = null;
+                this.nNode = null;
+            }
+            set value(item) { this._value = item; }
+            get value() { return this._value; }
+            setnN(item) {
+                this.nNode = item;
+            }
+            setpN(item){
+                this.pNode = item;
+            }
+            shiftItem() {
+                if(this.pNode == !null){
+                    return this.pNode.shiftItem();
+                }else{
+                    return this.pNode.value;
+                }
+            }
+            pushItem(item) {
+                if(this.nNode == !null){
+                    this.nNode.pushItem(item);
+                }else{
+                    this.nNode.value = item;
+                }
+            }
+        }
+        const QDL1 = new Queue("QDL1");
+        const QDL2 = new Queue("QDL2");
+        const QDL3 = new Queue("QDL3");
+        QDL1.value ="A";
+        QDL2.value= "B";
+        QDL3.value= "C"; 
+        
+
+        QDL1.setnN(QDL2);
+        QDL2.setpN(QDL1);
+        QDL2.setnN(QDL3);
+        QDL3.setpN(QDL2);
+        document.write(QDL1);
+    </script>
+</body>
+
+</html>

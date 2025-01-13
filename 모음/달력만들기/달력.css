@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+.mainArea {
+  border-radius: 1rem;
+  margin: auto;
+  margin-top: 3rem;
+  text-align: center;
+  font-family: "Black Han Sans", serif;
+  border: none;
+  height: 25rem;
+  width: 30rem;
+  text-align: center;
+  background-color: #FFF7F7;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem; }
+
+.selectYearAndMonth {
+  padding: 1.5rem; }
+
+input {
+  width: 5rem;
+  background-color: #D4BEE4;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px; }
+
+select {
+  width: 5rem;
+  background-color: #D4BEE4;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px; }
+
+.dayArea {
+  display: flex;
+  background-color: #D4BEE4; }
+
+.dayArea > div {
+  text-align: center;
+  border: none;
+  flex: 1; }
+
+.calArea {
+  width: 100%;
+  height: 19rem;
+  border: none; }
+
+.calArea > div {
+  width: calc(100% / 7);
+  box-sizing: border-box;
+  height: calc(100% / 6);
+  line-height: 3rem;
+  display: inline-block;
+  float: left;
+  -webkit-border-radius: 3rem;
+  -moz-border-radius: 3rem;
+  -ms-border-radius: 3rem;
+  -o-border-radius: 3rem; }
+
+button {
+  width: 5rem;
+  height: 1.5rem;
+  font-family: "Black Han Sans", serif;
+  background-color: #D4BEE4;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px; }
+
+.sunday {
+  color: red; }
+
+.saturday {
+  color: blue; }
+
+/*# sourceMappingURL=%EB%8B%AC%EB%A0%A5.css.map */

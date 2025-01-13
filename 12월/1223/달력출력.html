@@ -92,6 +92,7 @@
                         this.id = id;
                         this.year = new Date().getFullYear();
                         this.month = new Date().getMonth()+1;
+                        this.yoli = new Date().getDay();
                         this.tempDate = [];
                     }
                     btnControl() {
@@ -112,8 +113,14 @@
                     }
                     display() {
                         console.log((new Date(`${this.year}/${this.month}/1`).getDate()));
+                        let yoli =  new Date(`${this.year}/${this.month}/1`).getDay();
                         document.getElementById("cal").innerHTML ='';
-                        for(let i=1; i<=35 ; i++){
+                        for(let i=0; i<yoli; i++){
+                            document.getElementById("cal").innerHTML += `
+                            <div class="day"></div>
+                            `;
+                        }
+                        for(let i=1; i<=35 - yoli ; i++){
                         if( `${new Date(this.year+"/"+this.month+"/"+i).getDate()}`) 
                             document.getElementById("cal").innerHTML +=
                             `<div class="day">${new Date(this.year+"/"+this.month+"/"+i).getDate()}</div>`;
