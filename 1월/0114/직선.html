@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="can" class="can" width="300" height="300"></canvas>
+    <script>
+        class Canvas{
+            constructor(id){
+                this.id = id;
+                this.can = document.getElementById("can");
+                this.pen = this.can.getContext("2d");
+                this.scale = 10;
+            }
+            printDot(x,y){
+                this.pen.fillRect(this.can.width/2 + x *this.scale , this.can.height/2 - y * this.scale,1,1);
+            }
+            printCross(){
+                for(let i = -this.can.width/2; i<=this.can.width/2; i+=0.01){
+                    this.printDot(i, 0);
+                    this.printDot(0, i);
+                }
+                for(let i = -this.can.width; i<=this.can.width; i+=this.scale){
+                    for(let j=-3; j<=3; j+=0.01){
+                        this.pen.fillRect(i,j+this.can.width/2,1,1);
+                        this.pen.fillRect(j+this.can.width/2,i,1,1);
+                    }
+                }
+            }
+            printLine(){
+                for(let x=-this.can.width/2; x<this.can.width/2; x+=0.01){
+                    let y = 3*x + 4;
+                    this.printDot(x,y);
+                    this.printMove(x,y);
+                }
+
+            }
+            printMove(x,y){
+                let [myX , myY ] = [3 ,-2];
+                let yiDong = [
+                    [1,0,myX],
+                    [0,1,myY],
+                    [0,0,1]
+                ];
+                
+            }
+            run(){
+                this.printCross();
+                // this.printDot(1,1);
+                this.printLine();
+            }
+        }
+        const canvas = new Canvas("canvas");
+        canvas.run();
+    </script>
+</body>
+</html>

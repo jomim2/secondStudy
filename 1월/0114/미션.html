@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <title>캔버스</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 1.2rem;
+            font-family: "Jua", serif;
+        }
+
+        html,
+        body {
+            background-color: #FFF7F7;
+        }
+
+        .mainArea {
+            /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+            /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+            /* box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px; */
+            box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;
+            width: 55rem;
+            text-align: center;
+            margin: auto;
+            margin-top: 7rem;
+            display: flex;
+            height: 25rem;
+        }
+
+        article {
+            /* border: 1px solid red; */
+            /* line-height: 3rem; */
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        article>div {
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            width: 100%;
+            line-height: 2.5em;
+        }
+
+        .can {
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            /* border: 1px solid red; */
+        }
+
+        input {
+            position: relative;
+            top: -0.2rem;
+            margin-left: 0.1rem;
+            margin-right: 0.1rem;
+            width: 3rem;
+            height: 1.5rem;
+            font-size: 0.8rem;
+            border-radius: 0.2rem;
+            border: none;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+        }
+
+        button {
+            /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            width: 5rem;
+            height: 2rem;
+            border: none;
+            border-radius: 1rem;
+            background-color: #EBD3F8;
+        }
+
+        .drawBtn {
+            width: 10rem;
+            height: 2.2rem;
+        }
+
+        button:hover {
+            background-color: #C8ACD6;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="mainArea">
+        <article>
+            <canvas id="can" class="can" width="450" height="450"></canvas>
+        </article>
+        <article>
+            <div>
+                ⭐직선⭐
+                (<input type="number" id="lineX1" placeholder="X좌표"><input type="number" id="lineY1" placeholder="Y좌표">)
+                (<input type="number" id="lineX2" placeholder="X좌표"><input type="number" id="lineY2" placeholder="Y좌표">)
+            </div>
+            <div>
+                ⭐삼각형⭐
+                (<input type="number" id="TriX1" placeholder="X좌표"><input type="number" id="TriY1" placeholder="Y좌표">)
+                (<input type="number" id="TriX2" placeholder="X좌표"><input type="number" id="TriY2" placeholder="Y좌표">)
+                (<input type="number" id="TriX3" placeholder="X좌표"><input type="number" id="TriY3" placeholder="Y좌표">)
+            </div>
+            <div>
+                ⭐사각형⭐
+                (<input type="number" id="x1" placeholder="X좌표"><input type="number" id="y1" placeholder="Y좌표">)
+                (<input type="number" id="x2" placeholder="X좌표"><input type="number" id="y2" placeholder="Y좌표">)
+            </div>
+            <div>
+                ⭐원⭐
+                (<input type="number" id="circleX" placeholder="X좌표"><input type="number" id="circleY"
+                    placeholder="Y좌표">)
+                (<input type="number" id="radiusV" placeholder="반지름">)
+            </div>
+            <div>
+                <button id="drawBtn" class="drawBtn">도형 모두 그리기</button>
+            </div>
+            <div>
+                x축 이동:<input type="number" id="moveX">
+                y축 이동:<input type="number" id="moveY">
+                <button id="moveBtn">이동하기</button><br>
+                x키우기:<input type="number" id="scaleX">
+                y키우기:<input type="number" id="scaleY">
+                <button id="scaleBtn">확대하기</button><br>
+                sin:<input type="number" id="spinX">
+                cos:<input type="number" id="spinY">
+                <button id="spinBtn">회전하기</button>
+            </div>
+        </article>
+    </main>
+    <script>
+        class Canvas {
+            constructor(id) {
+                this.id = id;
+                this.can = document.getElementById("can");
+                this.pen = this.can.getContext("2d");
+                this.scale = 15;
+                //네모만들기
+                this.x1 = null;
+                this.y1 = null;
+                this.x2 = null;
+                this.y2 = null;
+                //직선그리기
+                this.lineX1 = null;
+                this.lineY1 = null;
+                this.lineX2 = null;
+                this.lineY2 = null;
+                //세모 꼭짓점
+                this.TriX1 = null;
+                this.TriY1 = null;
+                this.TriX2 = null;
+                this.TriY2 = null;
+                this.TriX3 = null;
+                this.TriY3 = null;
+                //원그리기
+                this.r = null;
+                this.circleX = null;
+                this.circleY = null;
+
+            }
+            printDot(x, y, z, color = 'black') {
+                this.pen.fillStyle = color;
+                this.pen.fillRect(this.can.width / 2 + x * this.scale, this.can.height / 2 - y * this.scale, z, z);
+                this.pen.fillStyle = 'black';
+            }
+            printCross() {
+                for (let i = -this.can.width / 2; i <= this.can.width / 2; i += 0.01) {
+                    this.printDot(i, 0, 1);
+                    this.printDot(0, i, 1);
+                }
+                for (let i = 0; i <= this.can.width / 2; i += 1) {
+                    for (let j = -0.3; j <= 0.3; j += 0.01) {
+                        this.printDot(i, j, 1);
+                        this.printDot(j, i, 1);
+                        this.printDot(-i, j, 1);
+                        this.printDot(j, -i, 1);
+                    }
+                }
+            }
+            btnControl() {
+                window.addEventListener("click", (e) => {
+                    switch (e.target.id) {
+                        case "drawBtn": this.makeAlle();
+                            break;
+                        case "moveBtn": this.moveSQU();
+                            break;
+                        case "scaleBtn": this.scaleSQU();
+                            break;
+                        case "spinBtn": this.spinSQU();
+                            break;
+                    }
+                });
+            }
+            makeAlle() {
+                const makeSQU = () => {
+                    this.x1 = Number(document.getElementById("x1").value);
+                    this.y1 = Number(document.getElementById("y1").value);
+                    this.x2 = Number(document.getElementById("x2").value);
+                    this.y2 = Number(document.getElementById("y2").value);
+                    if (x1 < x2) {
+                        this.printSQU(this.x1, this.y1, this.x2, this.y2);
+                        this.printSQU(this.x1, this.y2, this.x2, this.y1);
+                    } else {
+                        this.printSQU(this.x2, this.y2, this.x1, this.y1);
+                        this.printSQU(this.x2, this.y1, this.x1, this.y2);
+                    }
+                }
+                const makeLine = () => {
+                    this.lineX1 = Number(document.getElementById("lineX1").value);
+                    this.lineY1 = Number(document.getElementById("lineY1").value);
+                    this.lineX2 = Number(document.getElementById("lineX2").value);
+                    this.lineY2 = Number(document.getElementById("lineY2").value);
+                    if (this.lineX1 > this.lineX2) {
+                        [this.lineX1, this.lineX2] = [this.lineX2, this.lineX1];
+                        [this.lineY1, this.lineY2] = [this.lineY2, this.lineY1];
+                        line(this.lineX1, this.lineY1, this.lineX2, this.lineY2, 'pink');
+                    } else {
+                        line(this.lineX1, this.lineY1, this.lineX2, this.lineY2, 'pink');
+                    }
+                }
+                const line = (x1, y1, x2, y2, color = 'blue') => {
+                    const gi = (((y1) - (y2)) / ((x1) - (x2)));
+                    if (x1 == x2) {
+                        if (y1 > y2) {
+                            [y1, y2] = [y2, y1];
+                        }
+                        for (let y = y1; y < y2; y += 0.01) {
+                            this.printDot(x1, y, 1, color);
+                        }
+                    } else {
+                        for (let x = x1; x < x2; x += 0.01) {
+                            let y = gi * (x - (x1)) + (y1);
+                            this.printDot(x, y, 1, color);
+                        }
+                    }
+                }
+                // line(-3, -4, 9, -7);
+                const makeCircle = () => {
+                    this.r = Number(document.getElementById("radiusV").value);
+                    this.circleX = Number(document.getElementById("circleX").value);
+                    this.circleY = Number(document.getElementById("circleY").value);
+                    for (let x = 0; x <= 360; x++) {
+                        let radian = Math.PI / 180 * x;
+                        this.printDot(this.r * Math.cos(radian) + this.circleX, this.r * Math.sin(radian) +this.circleY, 3, "orange");
+                    }
+                }
+                const makeTri = () => {
+                    this.TriX1 = Number(document.getElementById("TriX1").value);
+                    this.TriY1 = Number(document.getElementById("TriY1").value);
+                    this.TriX2 = Number(document.getElementById("TriX2").value);
+                    this.TriY2 = Number(document.getElementById("TriY2").value);
+                    this.TriX3 = Number(document.getElementById("TriX3").value);
+                    this.TriY3 = Number(document.getElementById("TriY3").value);
+                    if (this.TriX1 > this.TriX2) {
+                        [this.TriX1, this.TriX2] = [this.TriX2, this.TriX1];
+                        [this.TriY1, this.TriY2] = [this.TriY2, this.TriY1];
+                        line(this.TriX1, this.TriY1, this.TriX2, this.TriY2);
+                    } else {
+                        line(this.TriX1, this.TriY1, this.TriX2, this.TriY2);
+                    }
+                    if (this.TriX2 > this.TriX3) {
+                        [this.TriX2, this.TriX3] = [this.TriX3, this.TriX2];
+                        [this.TriY2, this.TriY3] = [this.TriY3, this.TriY2];
+                        line(this.TriX2, this.TriY2, this.TriX3, this.TriY3);
+                    } else {
+                        line(this.TriX2, this.TriY2, this.TriX3, this.TriY3);
+                    }
+                    if (this.TriX1 > this.TriX3) {
+                        [this.TriX1, this.TriX3] = [this.TriX3, this.TriX1];
+                        [this.TriY1, this.TriY3] = [this.TriY3, this.TriY1];
+                        line(this.TriX1, this.TriY1, this.TriX3, this.TriY3);
+                    } else {
+                        line(this.TriX1, this.TriY1, this.TriX3, this.TriY3);
+                    }
+                }
+                makeSQU();
+                makeCircle();
+                makeTri();
+                makeLine();
+            }
+            printSQU(x1, y1, x2, y2) {
+                for (let x = x1; x <= x2; x += 0.1) {
+                    for (let y = y1; y <= y2; y += 0.1) {
+                        this.printDot(x, y, 1, '#3ABEF9');
+                    }
+                }
+                for (let x = x1; x <= x2; x += 0.1) {
+                    this.printDot(x, y1, 3);
+                    this.printDot(x, y2, 3);
+                }
+                for (let y = y1; y <= y2; y += 0.1) {
+                    this.printDot(x1, y, 3);
+                    this.printDot(x2, y, 3);
+                }
+            }
+            moveSQU() {
+                this.moveX = Number(document.getElementById("moveX").value);
+                this.moveY = Number(document.getElementById("moveY").value);
+                const tempA = [
+                    [1, 0, this.moveX],
+                    [0, 1, this.moveX],
+                    [0, 0, 1]
+                ];
+                const tempB = [
+                    [this.x2],
+                    [this.y1],
+                    [1]
+                ];
+                const tempC = [
+                    [this.x1],
+                    [this.y2],
+                    [1]
+                ];
+                let resultA = [];
+
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempB[i].length; j++) {
+                        let sum = 0;
+                        for (let k = 0; k < tempA[i].length; k++) {
+                            sum += Number(tempA[i][k] * tempB[k][j]);
+                            console.log(sum);
+                        }
+                        resultA.push(sum);
+                    }
+                }
+                let resultB = [];
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempC[i].length; j++) {
+                        let sum = 0;
+                        for (let k = 0; k < tempA[i].length; k++) {
+                            sum += Number(tempA[i][k] * tempC[k][j]);
+                            console.log(sum);
+                        }
+                        resultB.push(sum);
+                    }
+                }
+                console.log(resultA);
+                this.x2 = resultA[0];
+                this.y1 = resultA[1];
+                this.x1 = resultB[0];
+                this.y2 = resultB[1];
+                if (this.x1 < this.x2) {
+                    this.printLine(this.x1, this.y1, this.x2, this.y2, 'pink');
+                    this.printLine(this.x1, this.y2, this.x2, this.y1, 'yellow');
+                } else {
+                    this.printLine(this.x2, this.y2, this.x1, this.y1, 'blue');
+                    this.printLine(this.x2, this.y1, this.x1, this.y2, 'yellow');
+                }
+            
+            }
+            run() {
+                this.printCross();
+                this.btnControl();
+            }
+        }
+        const canvas = new Canvas('can');
+        canvas.run();
+    </script>
+</body>
+
+</html>

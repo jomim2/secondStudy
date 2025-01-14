@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can {
+            border: 1px solid red;
+        }
+
+        input {
+            width: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="mainArea">
+        <canvas id="can" class="can" width="400" height="400"></canvas>
+        <div>
+            x1:<input type="number" id="x1">
+            y1:<input type="number" id="y1">
+            x2:<input type="number" id="x2">
+            y2:<input type="number" id="y2">
+            <button id="btn">그리기</button><br>
+            x축 이동:<input type="number" id="moveX">
+            y축 이동:<input type="number" id="moveY">
+            <button id="btn2">이동하기</button><br>
+            x키우기:<input type="number" id="scaleX">
+            y키우기:<input type="number" id="scaleY">
+            <button id="btn3">확대하기</button><br>
+            sin:<input type="number" id="spinX">
+            cos:<input type="number" id="spinY">
+            <button id="btn4">회전하기</button>
+        </div>
+    </main>
+    <script>
+        class Canvas {
+            constructor(id) {
+                this.id = id;
+                this.can = document.getElementById("can");
+                this.pen = this.can.getContext("2d");
+                this.scale = 10;
+                this.x1 = null;
+                this.y1 = null;
+                this.x2 = null;
+                this.y2 = null;
+                this.moveX = null;
+                this.moveY = null;
+                this.scaleX = null;
+                this.scaleY = null;
+            }
+            printDot(x, y, z) {
+                this.pen.fillRect(this.can.width / 2 + x * this.scale, this.can.height / 2 - y * this.scale, z, z);
+            }
+            printCross() {
+                for (let i = -this.can.width / 2; i <= this.can.width / 2; i += 0.01) {
+                    this.printDot(i, 0, 1);
+                    this.printDot(0, i, 1);
+                }
+                for (let i = -this.can.width; i <= this.can.width; i += this.scale) {
+                    for (let j = -3; j <= 3; j += 0.01) {
+                        this.pen.fillRect(i, j + this.can.width / 2, 1, 1);
+                        this.pen.fillRect(j + this.can.width / 2, i, 1, 1);
+                    }
+                }
+            }
+            btnControl() {
+                window.addEventListener("click", (e) => {
+                    switch (e.target.id) {
+                        case "btn": this.makeSQU();
+                            break;
+                        case "btn2": this.moveSQU();
+                            break;
+                        case "btn3": this.scaleSQU();
+                            break;
+                        case "btn4": this.spinSQU();
+                            break;
+                    }
+                });
+            }
+            makeSQU() {
+                this.x1 = Number(document.getElementById("x1").value);
+                this.y1 = Number(document.getElementById("y1").value);
+                this.x2 = Number(document.getElementById("x2").value);
+                this.y2 = Number(document.getElementById("y2").value);
+                if (this.x1 < this.x2) {
+                    this.printLine(this.x1, this.y1, this.x2, this.y2, 'salmon');
+                    this.printLine(this.x1, this.y2, this.x2, this.y1, 'salmon');
+                } else {
+                    this.printLine(this.x2, this.y2, this.x1, this.y1, 'salmon');
+                    this.printLine(this.x2, this.y1, this.x1, this.y2, 'salmon');
+                }
+            }
+            moveSQU() {
+                this.moveX = Number(document.getElementById("moveX").value);
+                this.moveY = Number(document.getElementById("moveY").value);
+                const tempA = [
+                    [1, 0, this.moveX],
+                    [0, 1, this.moveX],
+                    [0, 0, 1]
+                ];
+                const tempB = [
+                    [this.x2],
+                    [this.y1],
+                    [1]
+                ];
+                const tempC = [
+                    [this.x1],
+                    [this.y2],
+                    [1]
+                ];
+                let resultA = [];
+
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempB[i].length; j++) {
+                        let sum = 0;
+                        for (let k = 0; k < tempA[i].length; k++) {
+                            sum += Number(tempA[i][k] * tempB[k][j]);
+                            console.log(sum);
+                        }
+                        resultA.push(sum);
+                    }
+                }
+                let resultB = [];
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempC[i].length; j++) {
+                        let sum = 0;
+                        for (let k = 0; k < tempA[i].length; k++) {
+                            sum += Number(tempA[i][k] * tempC[k][j]);
+                            console.log(sum);
+                        }
+                        resultB.push(sum);
+                    }
+                }
+                console.log(resultA);
+                this.x2 = resultA[0];
+                this.y1 = resultA[1];
+                this.x1 = resultB[0];
+                this.y2 = resultB[1];
+                if (this.x1 < this.x2) {
+                    this.printLine(this.x1, this.y1, this.x2, this.y2, 'pink');
+                    this.printLine(this.x1, this.y2, this.x2, this.y1, 'yellow');
+                } else {
+                    this.printLine(this.x2, this.y2, this.x1, this.y1, 'blue');
+                    this.printLine(this.x2, this.y1, this.x1, this.y2, 'yellow');
+                }
+            }
+            scaleSQU() {
+                this.scaleX = Number(document.getElementById("scaleX").value);
+                this.scaleY = Number(document.getElementById("scaleY").value);
+                const tempA = [
+                    [this.scaleX, 0, 0],
+                    [0, this.scaleY, 0],
+                    [0, 0, 1]
+                ];
+                const tempB = [
+                    [this.x2],
+                    [this.y1],
+                    [1]
+                ];
+                const tempC = [
+                    [this.x1],
+                    [this.y2],
+                    [1]
+                ];
+                let resultA = [];
+
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempB[i].length; j++) {
+                        let sum = 0;
+                        for (let k = 0; k < tempA[i].length; k++) {
+                            sum += Number(tempA[i][k] * tempB[k][j]);
+                            console.log(sum);
+                        }
+                        resultA.push(sum);
+                    }
+                }
+                let resultB = [];
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempC[i].length; j++) {
+                        let sum = 0;
+                        for (let k = 0; k < tempA[i].length; k++) {
+                            sum += Number(tempA[i][k] * tempC[k][j]);
+                            console.log(sum);
+                        }
+                        resultB.push(sum);
+                    }
+                }
+                console.log(resultA);
+                this.x2 = resultA[0];
+                this.y1 = resultA[1];
+                this.x1 = resultB[0];
+                this.y2 = resultB[1];
+                if (this.x1 < this.x2) {
+                    this.printLine(this.x1, this.y1, this.x2, this.y2, 'pink');
+                    this.printLine(this.x1, this.y2, this.x2, this.y1, 'yellow');
+                } else {
+                    this.printLine(this.x2, this.y2, this.x1, this.y1, 'blue');
+                    this.printLine(this.x2, this.y1, this.x1, this.y2, 'yellow');
+                }
+            }
+            spinSQU(){
+                let cos = Math.cos(Number(document.getElementById("spinX").value)*Math.PI/180);
+                let sin = Math.sin(Number(document.getElementById("spinY").value)*Math.PI/180);
+                const tempA = [
+                    [cos, sin, 0],
+                    [-sin,cos, 0],
+                    [0, 0, 1]
+                ];
+                const tempB = [
+                    [this.x2],
+                    [this.y1],
+                    [1]
+                ];
+                const tempC = [
+                    [this.x1],
+                    [this.y2],
+                    [1]
+                ];
+                let resultA = [];
+
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempB[i].length; j++) {
+                        let sum = 0;
+                        for (let k = 0; k < tempA[i].length; k++) {
+                            sum += Number(tempA[i][k] * tempB[k][j]);
+                            console.log(sum);
+                        }
+                        resultA.push(sum);
+                    }
+                }
+                let resultB = [];
+                for (let i = 0; i < tempA.length; i++) {
+                    for (let j = 0; j < tempC[i].length; j++) {
+                        let sum = 0;
+                        for (let k = 0; k < tempA[i].length; k++) {
+                            sum += Number(tempA[i][k] * tempC[k][j]);
+                            console.log(sum);
+                        }
+                        resultB.push(sum);
+                    }
+                }
+                console.log(resultA);
+                this.x2 = resultA[0];
+                this.y1 = resultA[1];
+                // this.x1 = resultB[0];
+                // this.y2 = resultB[1];
+                if (this.x1 < this.x2) {
+                    this.printLine(this.x1, this.y1, this.x2, this.y2, 'pink');
+                    this.printLine(this.x1, this.y2, this.x2, this.y1, 'yellow');
+                } else {
+                    this.printLine(this.x2, this.y2, this.x1, this.y1, 'blue');
+                    this.printLine(this.x2, this.y1, this.x1, this.y2, 'yellow');
+                }
+            }
+            printLine(x1, y1, x2, y2, color) {
+                this.pen.fillStyle = color;
+                for (let x = x1; x <= x2; x += 0.1) {
+                    for (let y = y1; y <= y2; y += 0.1) {
+                        this.printDot(x, y, 1);
+                    }
+                }
+                this.pen.fillStyle = 'black';
+
+                this.pen.fillStyle = 'green';
+                for (let x = x1; x <= x2; x += 0.1) {
+                    this.printDot(x, y1, 3);
+                    this.printDot(x, y2, 3);
+                }
+                for (let y = y1; y <= y2; y += 0.1) {
+                    this.printDot(x1, y, 3);
+                    this.printDot(x2, y, 3);
+                }
+                this.pen.fillStyle = 'black';
+            }
+            run() {
+                this.printCross();
+                this.btnControl();
+            }
+        }
+        const canvas = new Canvas("canvas");
+        canvas.run();
+    </script>
+</body>
+
+</html>
