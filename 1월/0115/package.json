@@ -1,0 +1,14 @@
+{
+  "name": "0115",
+  "version": "1.0.0",
+  "main": "reg.js",
+  "scripts": {
+    "start" : "json-server --watch ./js/score.js --port 5500"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}
