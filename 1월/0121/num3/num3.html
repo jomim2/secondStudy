@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        main{
+            text-align: center;
+        }
+        .can {
+            border: 1px solid red;
+        }
+        button{
+            width: 5rem;
+            height: 2rem;
+            margin: 1rem;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2>삼각형의 좌표를 입력하세요</h2>
+        좌표1:<input type="num" id="x1"><input type="num" id="y1"><br>
+        좌표2:<input type="num" id="x2"><input type="num" id="y2"><br>
+        좌표3:<input type="num" id="x3"><input type="num" id="y3"><br>
+        <button id="btn">출력하기</button><br>
+        <canvas width="500" height="500" id="can" class="can"></canvas><br>
+        삼각형의 중심은<span id="result">0</span>입니다.
+    </main>
+    <script src="./num3.js">
+    </script>
+</body>
+
+</html>

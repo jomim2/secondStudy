@@ -1,0 +1,80 @@
+$pointColor :#8174A0;
+$font :"Gowun Batang", serif;
+$cuteFont:"Orbit", serif;
+$btnColor:#333849;
+$fontColor : #EEEEEE;
+@mixin flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: $font;
+}
+body {
+    @include flex();
+    min-height: 100vh;
+    background: #10131c;
+}
+.navArea{
+    border: 1px solid red;
+    @include flex();
+}
+main{
+    text-align: center;
+    // border: 1px solid red;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+}
+h1{
+    color:$fontColor;
+    margin: auto;
+    padding: 1rem;
+    font-size: 3rem;
+}
+.navigation5  {
+    @include flex();
+    margin: auto;
+    position: relative;
+    width: 9rem;
+    height: 9rem;
+    background: #212532;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    transition-delay: 0.3s;
+}
+
+.navigation5.active {
+    width: 25rem;
+    height: 30rem;
+    transition-delay: 0s;
+    z-index: 1;
+}
+
+
+.navigation5:hover{
+    color: $pointColor;
+    filter: drop-shadow(0 0 2px $pointColor) drop-shadow(0 0 5px $pointColor) drop-shadow(0 0 15px $pointColor);
+    -webkit-filter: drop-shadow(0 0 2px $pointColor) drop-shadow(0 0 5px $pointColor) drop-shadow(0 0 15px $pointColor);
+}
+.xbutton {
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.5s;
+    position: relative;
+    z-index: 100;
+    width: 2rem;
+    height: 2rem;
+    background-color:$btnColor;
+    color: $fontColor;
+    top: -13.5rem;
+    left: 28.5rem;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 2rem;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .can {
+            border: 1px solid red;
+
+        }
+    </style>
+</head>
+<body>
+    <canvas id="can" class="can" width="500" height="500"></canvas>
+    <script>
+        class Memory {
+            constructor(id) {
+                this.id = id;
+                this.can = document.getElementById("can");
+                this.pen = this.can.getContext("2d");
+                this.data = { "freemem": 5852823552, "totalmem": 16861405184 };
+            }
+            modiDot(x, y) {
+                this.pen.fillRect(this.can.width / 2 + x, this.can.width / 2 - y, 1, 1);
+                // console.log(1);
+            }
+            printCircle() {
+                for (let x = 0; x <= 360; x++) {
+                    let radian = Math.PI / 180 * x;
+                    this.modiDot(Math.cos(radian) * this.can.width / 2, Math.sin(radian) * this.can.width / 2);
+                }
+            }
+            printData() {
+                console.log(this.data.freemem / (1024**3));
+                console.log(this.data.totalmem / (1024**3));
+                const freeGB = this.data.freemem / (1024**3);
+                const TotalGB = this.data.totalmem / (1024**3);
+                
+                const deg = 360 / (TotalGB) ;
+                console.log(deg);
+                let freedeg = (deg * freeGB);
+                
+                console.log(Math.PI / 180 * freedeg);
+                let radian = Math.PI / 180 * freedeg;
+                let gi = Math.cos(radian) * this.can.width;
+                // let y = gi * ( - x) + y1;
+
+            }
+            lineDraw(x2, y2) {
+                let x1 = 0;
+                let y1 = 0;
+                console.log(1);
+                if (x2 == Number(x2.toFixed(2))) {
+                    console.log(x2, y2);
+                    if (y1 > y2) {
+                        [x1, x2] = [x2, x1];
+                        [y1, y2] = [y2, y1];
+                    }
+                    for (let y = 0; y <= this.width / 2; y++) {
+                        this.modiDot(0, y);
+                    }
+                } else {
+                    if (x1 > x2) {
+                        [x1, x2] = [x2, x1];
+                        [y1, y2] = [y2, y1];
+                        // console.log(x1);
+                    }
+                    for (let x = x1; x <= x2; x++) {
+                        let gi = (y2 - y1) / (x2 - x1);
+                        let y = gi * (x - x1) + y1;
+                        this.modiDot(x, y);
+                    }
+                }
+            }
+            run() {
+                this.printCircle();
+                this.modiDot(1, 1);
+                this.printData();
+            }
+        }
+        const memory = new Memory('memory');
+        memory.run();
+    </script>
+</body>
+
+</html>

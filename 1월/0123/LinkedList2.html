@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Buffer{
+            constructor(id){
+                this.id = id;
+                this.storage = [];
+            }
+            pushItem(item){this.storage.push(item);}
+            shiftItem(){return this.storage.shift();}
+
+        }
+        class DoubleLinkedList{
+            constructor(id){
+                this.id= id;
+                this._value = null;
+                this._next = null;
+                this._prev = null;
+            }
+            set value(item){this._value = item;}
+            get value(){return this._value;}
+            set nextNode(NextItem){this._next = NextItem}
+            get nextNode(){return this._next;}
+            set prevNode(prevItem){this._prev = prevItem;}
+            get prevNode(){return this._prev;}
+        }
+        const V1 = new DoubleLinkedList("V1");
+        const V2 = new DoubleLinkedList("V2");
+        const V3 = new DoubleLinkedList("V3");
+        V1.value = "MIMI";
+        V2.value = "jomimi";
+        V3.value = "jomim";
+        V1.nextNode=(V2);
+        V2.prevNode=(V1);
+        V2.nextNode=(V3);
+        V3.prevNode=(V2);
+        document.write(V1.nextNode.nextNode.value);
+        document.write(V1.nextNode.prevNode.nextNode.value);
+    </script>
+</body>
+</html>
