@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="GET">GET</button>
+    <button id="POST">POST</button>
+    <button id="PUT">PUT</button>
+    <button id="DEL">DELETE</button>
+    <script>
+        document.getElementById("GET").addEventListener("click", () => {
+            fetch("http://localhost:3000/posts/")
+                .then((res) => res.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.error("Error:", error));
+        })
+        document.getElementById("POST").addEventListener("click", () => {
+            fetch("http://localhost:3000/posts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: "TEST",
+                    body: "I am TEST!",
+                    userId: 2,
+                }),
+            })
+                .then((res) => res.json())
+                .then((data) => console.log(data))
+        });
+        document.getElementById("PUT").addEventListener("click", () => {
+            fetch("http://localhost:3000/posts/2", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: "2",
+                    title: "TEST",
+                    body: "I am TEST!!!!",
+                    userId: 1,
+                }),
+            })
+                .then((res) => console.log(res.json()))
+                .then((data) => console.log(data))
+                .catch((err)=>console.log(err));
+        });
+        document.getElementById("DEL").addEventListener("click",()=>{
+            fetch("http://localhost:3000/posts/1",{
+                method : "DELETE",
+            })
+            .then((res)=>res.json())
+            .then((data)=>console.log(data))
+        })
+    </script>
+</body>
+
+</html>

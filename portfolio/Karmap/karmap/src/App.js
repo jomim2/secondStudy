@@ -1,5 +1,5 @@
-import './App.css';
-import './page/Main';
+import './css/App.css';
+import Main from './page/Main';
 import { useState } from 'react';
 function Header() {
   return (

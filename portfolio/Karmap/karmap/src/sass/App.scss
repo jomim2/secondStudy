@@ -1,0 +1,289 @@
+$pointColor :#ab94e1;
+$font :"Gowun Batang",
+serif;
+$cuteFont:"Orbit",
+serif;
+$btnColor:#454e63;
+$fontColor : #ECDFCC;
+$backgroundColor : #171b25;
+$miniBoxColor:#ECDFCC;
+$bainsuBoxColor:#BB8493;
+$resultColor:#2a303d;
+$navColor2 : #FFF56D;
+$navColor3 : #C6E7FF;
+$navColor4 : #FFACAC;
+$navColor5 : #B3FFAE;
+
+@mixin filter($color) {
+    filter: drop-shadow(0 0 1px $color) drop-shadow(0 0 2px $color) drop-shadow(0 0 5px $color);
+    -webkit-filter: drop-shadow(0 0 1px $color) drop-shadow(0 0 2px $color) drop-shadow(0 0 5px $color);
+}
+
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin bainsu5Small {
+    height: 4vh;
+    flex: 1;
+    line-height: 4vh;
+}
+
+@mixin biansu {
+    transition: 0.5s;
+    background-color: $btnColor;
+    color: $fontColor;
+    // border: 1px solid #171b25;
+    border-radius: 1rem;
+    margin: 0.1rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    @include flex();
+    min-height: 100vh;
+    background: $backgroundColor;
+}
+
+h1 {
+    font-family: $font;
+    color: $fontColor;
+    margin: auto;
+    padding: 1rem;
+    font-size: 3.3rem;
+    // border: 1px solid red;
+    text-align: center;
+}
+
+main {
+    text-align: center;
+    // border: 1px solid red;
+    width: 100%;
+    height: 80vh;
+    // overflow: hidden;
+}
+
+.navArea {
+    // border: 1px solid red;
+    font-family: $cuteFont;
+    font-size: 1.1rem;
+    width: 90vw;
+    max-width: 1700px;
+    min-width: 1200px;
+    // min-height: 1000px;
+    @include flex();
+}
+
+.navigation {
+    @include flex();
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
+    //flex: 1;
+    width: 9rem;
+    height: 9rem;
+    background: $btnColor;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+    transition-delay: 0.3s;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+}
+
+.navigation.active {
+    width: calc(100% / 4.05);
+    height: 70vh;
+    transition-delay: 0s;
+    z-index: 1;
+    margin-top: 1rem;
+}
+
+
+.nav2:hover {
+    color: $navColor2;
+    @include filter($navColor2);
+}
+.nav3:hover {
+    color: $navColor3;
+    @include filter($navColor3);
+}
+.nav4:hover {
+    color: $navColor4;
+    @include filter($navColor4);
+}
+.nav5:hover {
+    color: $navColor5;
+    @include filter($navColor5);
+}
+.xbutton {
+    cursor: pointer;
+    position: relative;
+    top: -45%;
+    left: 30%;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.8rem;
+    //background-color: $backgroundColor;
+    color: $fontColor;
+    //top: -13.5rem;
+    //right: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 2rem;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.textInfo {
+    font-size: 1.7rem;
+}
+
+.miniBox {
+    transition: 0.2s;
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    width: 90%;
+    background-color: $backgroundColor;
+    height: 88%;
+    top: 10%;
+    border-radius: 0.5rem;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+// .bainsu2{
+//     border-radius:15px ;
+//     -webkit-border-radius:15px ;
+//     -moz-border-radius:15px ;
+//     -ms-border-radius:15px ;
+//     -o-border-radius:15px ;
+// }
+.biansuArea {
+    width: 95%;
+    height: 40%;
+    margin: auto;
+    margin-top: 1rem;
+    // border: 1px solid red;
+}
+
+.biansuBox {
+    @include biansu();
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
+
+// .biansuBox:hover{
+//     @include filter(#EE66A6);
+// }
+.biansu2:hover {
+    @include filter($navColor2);
+}
+
+.biansu3:hover {
+    @include filter($navColor3);
+}
+
+.biansu4:hover {
+    @include filter($navColor4);
+}
+
+.biansu5:hover {
+    @include filter($navColor5);
+}
+
+.textInfo2 {
+    // color: $fontColor;
+    position: relative;
+    top: -46%;
+    left: 1rem;
+    width: 5rem;
+    // border: 1px solid red;
+    height: 2rem;
+    font-size: 1.8rem;
+}
+
+.bainsu5Big {
+    @include flex();
+    // width: 95%;
+    margin: auto;
+
+}
+
+.bainsu5Small1 {
+    @include biansu();
+    @include bainsu5Small();
+
+}
+
+.bainsu5Small2 {
+    @include biansu();
+    @include bainsu5Small();
+
+}
+
+.bainsu5Small1:hover,
+.bainsu5Small2:hover {
+    @include filter($navColor5);
+}
+.biansuBoxInfo{
+    @include biansu();
+    background-color: $resultColor;
+    cursor:default;
+}
+
+.resultBox{
+    @include biansu();
+    position: absolute;
+    background-color: $resultColor;
+    cursor:default;
+    width: 85%;
+    height: 10vh;
+    // z-index: 500;
+    top:35vh;
+    line-height: 9vh;
+}
+
+
+.clickedBtn2{
+    background-color: $navColor2;
+    color:#171b25;
+}.clickedBtn3{
+    background-color: $navColor3;
+    color:#171b25;
+}.clickedBtn4{
+    background-color: $navColor4;
+    color:#171b25;
+}.clickedBtn5{
+    background-color: $navColor5;
+    color:#171b25;
+}

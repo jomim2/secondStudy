@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "TEST",
+      "body": "I am TEST!",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "TEST",
+      "body": "I am TEST!",
+      "userId": 2
+    },
+    {
+      "id": 1,
+      "title": "TEST",
+      "body": "I am TEST!",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "TEST",
+      "body": "I am TEST!",
+      "userId": 1
+    }
+  ]
+}
