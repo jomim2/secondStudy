@@ -1,0 +1,1175 @@
+@import 'set';
+$pointBackNight : #464f63;
+$pointBackDay : #dde5ef;
+
+* {
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
+.contactArea {
+    font-family: $basicFont;
+    display: none;
+    height: 95vh;
+    // border: 1px solid red;
+    text-align: center;
+    max-width: 1600px;
+    min-width: 800px;
+    margin: auto;
+}
+
+// 동그라미 넣는 부분
+.circleArea {
+    // border: 1px solid red;
+    margin: auto;
+    max-width: 1600px;
+    min-width: 800px;
+    // height: 10%;
+    position: relative;
+    top: -1.5rem;
+    @include flex();
+    justify-content: space-around;
+    // border: 1px solid red;
+}
+
+// 선 그리는 라인이요!
+.roadLine {
+    position: relative;
+    display: inline-block;
+    border: 1px solid $fontColor;
+    width: 80%;
+    margin: auto;
+    top: 5rem;
+}
+
+.roadLine.night {
+    border: 1px solid $nightFontColor;
+}
+
+
+// 애니매이션 넣기!!!!!
+
+@keyframes btnScale {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+}
+50% {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+}
+}
+// 동그라미
+.circle {
+    animation: btnScale 1s ease-in-out infinite;
+    -webkit-animation: btnScale 1s ease-in-out infinite;
+    z-index: 100;
+    display: inline-block;
+    position: relative;
+    top:0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: $pointColorPink;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.circle:hover {
+    background-color: #b7a5c4;
+    cursor: pointer;
+}
+
+// 나의 일대기 info text
+.lifeTextInfo {
+    position: relative;
+    top: -1rem;
+    width: 100%;
+    margin: auto;
+    height: 2rem;
+    color: black;
+    @include flex();
+    // border: 1px solid red;
+}
+
+//  일대기 글씨
+.lifeInfoTextArea {
+    flex: 1;
+    position: relative;
+    font-size: 1.1rem;
+    color: $fontColor;
+    //top:3rem;
+    // border:1px solid red
+}
+
+.lifeInfoTextArea.night,
+.infoTextDetail.night,
+.introduceBtn.night,
+.introduceBoxDetail.night,
+.introduceBoxDetail.night>div>div,
+.introduceBoxDetail.night>div>div>div>a
+{
+    color: $nightFontColor;
+}
+//  수정 깔끔하게 //
+.introduceBtn.night{
+    border-color: #dde5ef15;
+    text-shadow: 1px 1px 1px #dde5ef37;
+}
+//  수정 깔끔하게 //
+.introduceBtn.night:hover{
+    background-color: #51596bb0;
+}
+
+.introduceBtn.night,
+.introduceBoxDetail.night {
+    background-color: $pointBackNight;
+}
+
+
+//// 국기
+/// 
+/// 
+/// 
+.flagArea {
+    @include flex();
+    // max-width: 1600px;
+    width: 100%;
+    margin: auto;
+    // border: 1px solid red;
+    justify-content: end;
+    // top:1rem;
+}
+
+.flagBox {
+    flex: 1;
+    position: relative;
+    left: 1.2rem;
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    transform: translateY(-20px);
+    -webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+}
+
+.flagBox.show {
+    opacity: 1;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+}
+
+.flag {
+    width: 80px;
+    height: 80px;
+    margin-left: 1rem;
+}
+
+
+// 원 누르면 나오는 박스 
+.infoTextDetail {
+    //border: 1px solid red;
+    height: 15vh;
+    position: relative;
+    //top:10vh;
+    font-size: 1em;
+    line-height: 4.5vh;
+    width: 75%;
+    margin: auto;
+    // background-color: $pointBackDay;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    color: $fontColor;
+}
+
+// 하단 영역 ( 버튼 ,보유 스킬 , 자격증 , 연락 방법)
+.introduceArea {
+    width: 80%;
+    height: 45vh;
+    margin: auto;
+    @include flex();
+    
+    background-color: $pointBackDay;
+    border-radius: 2rem;
+}
+.introduceArea.night{
+    background-color: $pointBackNight;
+}
+// 버튼 영역
+.introduceBox {
+    // border: 1px solid red;
+    height: 40vh;
+    position: relative;
+    // top:10vh;
+    width: 10%;
+    margin: auto;
+    flex: 1;
+
+}
+
+// 왼쪽 영역 버튼 박스
+.introduceBtn {
+    height: calc(40vh / 5);
+    width: 12rem;
+    //width: ;
+    line-height: calc(40vh / 5);
+    border-radius: 1rem;
+    margin: auto;
+    margin-top: calc(40vh / 10);
+    //flex: 2;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+//  수정 깔끔하게 //
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 2px;
+    border: 0.5px solid #464f6313;
+    text-shadow: 1px 1px 1px #464f633e;
+//  수정 깔끔하게 //
+
+    color: $fontColor;
+    // letter-spacing: 0.1rem;
+}
+
+//  수정 깔끔하게 //
+.introduceBtn:hover {
+    background-color: #c7d8eca7;
+}
+
+// 오른쪽 영역
+.introduceBoxDetail {
+    //border: 1px solid red;
+    flex: 3;
+    height: 40vh;
+    margin-right: 3rem;
+    background-color: $pointBackDay;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    overflow: scroll;
+    // @include flex();
+    color: $fontColor;
+   
+}
+
+
+.nightIcon {
+    display: none;
+}
+
+.nightIcon.night {
+    display: block;
+}
+
+.dayIcon.night {
+    display: none;
+}
+
+
+
+//  skill 박스 안의 내용 컨텐츠 ////////////////////////
+//  아이콘 설정
+.icon {
+    text-align: center;
+    display: inline-block;
+    color: $fontColor;
+    font-size: 4rem;
+    height: 4rem;
+    width: 4rem;
+    margin: 0.3rem;
+    line-height: 4rem;
+    border-radius: 30%;
+    -webkit-border-radius: 30%;
+    -moz-border-radius: 30%;
+    -ms-border-radius: 30%;
+    -o-border-radius: 30%;
+}
+.icon:active{
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+}
+// 스킬박스,,,,, 맨 처음 나오는....
+.showSkillsBox {
+    display: flex;
+    justify-content: left;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.skillPoint {
+    // color: $fontColor;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.introduceBoxDetail.night{
+    background-color: #464f63;
+}
+.iconImg.night{
+    filter: invert(100%);
+}
+.iconImgSkill{
+    width: 80%;
+    height:80%;
+}
+//  스킬 상세 내용 text
+.skillSpan {
+    font-size: 1rem;
+    text-align: center;
+    transition: 0s;
+    -webkit-transition: 0s;
+    -moz-transition: 0s;
+    -ms-transition: 0s;
+    -o-transition: 0s;
+    // margin-right: 1rem;
+}
+
+
+.iconArea {
+    flex: 1;
+}
+
+.skillTextArea {
+    flex: 4;
+}
+
+.skillsBox.displayNone {
+    display: block;
+}
+
+
+
+// 스킬아이콘이랑 스킬제목 넣는 박스,,,
+.skillsInfoBox {
+    @include flex();
+    text-align: center;
+    width:10rem;
+    // flex: 1;
+    height: 100%;
+    
+    // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: 0s;
+    -webkit-transition: 0s;
+    -moz-transition: 0s;
+    -ms-transition: 0s;
+    -o-transition: 0s;
+}
+
+// 왼쪽 영역 오른쪽 영역 스킬 박스 
+.showFront,
+.showBack,
+.showLanguage,
+.showDevTools {
+    height: calc(100% / 4);
+    flex: 1;
+}
+
+.skillsInfoBox.night {
+    // color: $nightFontColor;
+}
+
+.FAndB {
+    //height: calc(100% / 4);
+    //border: 1px solid red;
+    // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    // padding-left: 1rem;
+    font-size: 1.2rem;
+    // line-height:  1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0s;
+    width: 8rem;
+    //border: 1px saddlebrown solid;
+    -webkit-transition: 0s;
+    -moz-transition: 0s;
+    -ms-transition: 0s;
+    -o-transition: 0s;
+    text-align: left;
+    font-weight: 400;
+}
+
+
+//////////////  자격증 Area  ////////////
+.certificationsArea {
+    @include flex();
+    // border: 1px solid red;
+    height: 100%;
+    width: 100%;
+}
+
+.certificationsBox {
+    flex: 1;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    // padding: 1rem;
+    height: 100%;
+
+}
+.certifiIcon{
+    font-size: 2rem;
+    // border: 1px solid red;
+    width:4.5rem;
+    height:2rem;
+}
+
+.certificationsBox>div {
+    // border: 1px solid rgb(231, 231, 231);
+    margin: 0.5rem 0;
+    /* 상하 간격 조정 */
+
+}
+
+.cerIcon {
+    width: 60%;
+    height: 5vh;
+    line-height: 5vh;
+    font-weight: 900;
+    // background-color: #c2acc2;
+    border-bottom: 1px dashed #a48fb4;
+    text-align: center;
+}
+
+.certifiLogo{
+    // border: 1px solid red;
+    width: 100%;
+    height: 100%;
+}
+
+    ////////// 연락 방법 AREA!!! ////////////
+
+    .contactBoxArea {
+        height:100%;
+        width:100%;
+        display: flex;
+    }
+    
+    .iconImg {
+        width:2rem;
+        height: 2rem;
+        filter:opacity(0.6);
+    }
+    .contactBox {
+        flex: 1;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        // padding: 1rem;
+        height: 100%;
+    }
+    .introduceBoxDetail.night>div>div>div>.iconImg{
+        filter: invert(100%);
+    }
+    .contactBox>div {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        margin: 2rem;
+        // font-size: 1rem;
+    }
+    .contactIcon{
+        font-size: 2rem;
+    }
+    .contactIcon.night {
+        color: $nightFontColor;
+    }
+    .contactText{
+        font-weight: 500;
+        // background-color: #c2acc2;
+        box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 2px;
+        border-radius: 1rem;
+        border: 0.5px solid #464f6313;
+        // text-shadow: 1px 1px 1px #464f633e;    
+        // padding:1rem 2rem;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        height: 5vh;
+        text-align: center;
+    }
+    .contactText:hover{
+        background-color: #c7d8eca7;
+    }
+    .contactText.night{
+        border-color: #dde5ef15;
+        // border: 1px solid red;
+    }
+    .contactText.night:hover{
+        background-color: #51596bb0;
+    }
+    .alink{
+        // border: 1px solid red;
+        height: 5vh;
+        width: 100%;
+        line-height: 5vh;
+    }
+//  내 사진 설정 
+.picsArea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // border: 1px solid red;
+    transition: 0;
+    -webkit-transition: 0;
+    -moz-transition: 0;
+    -ms-transition: 0;
+    -o-transition: 0;
+    display: block;
+    // @include flex();
+    // justify-content: space-around;
+}
+
+.picsArea.displayNone {
+    display: none;
+}
+
+@keyframes animateBg {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 50px 50px;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.picsArea.backgroundImg {
+    background-image: url("../../../public/img/stars.png");
+    background-size: contain;
+    animation: animateBg 9s ease-in-out infinite;
+    -webkit-animation: animateBg 9s ease-in-out infinite;
+}
+
+.myPics {
+    display: none;
+}
+
+.myPics.show {
+    display: block;
+    position: absolute;
+    width: 30%;
+    height: 80%;
+    top: 20%;
+
+    // z-index: 300;
+}
+
+.myPics1 {
+    left: 0%;
+}
+
+.myPics2 {
+    left: 70%;
+    // top:-60%;
+    // border: 1px solid red;
+}
+
+.myPics3 {
+    // flex: 1;
+    left: 35%;
+    // top:-140%;
+
+}
+
+.myPics4 {
+    display: none;
+}
+
+.pictureOfMe {
+    // max-width: calc(100% / 4);
+    // width: 100%;
+    position: relative;
+    height: 100%;
+    // top:30%;
+    // height: calc(100% / 4);
+}
+
+
+
+
+// /////////////////////// 미디어 쿼리 부분 ///////////////////
+@media (max-width :550px) {
+    .bodyArea {
+        width: 100%;
+        overflow: hidden;
+        // border: 1px solid red;
+        height: 100%;
+    }
+
+    .contactArea {
+        display: none;
+        height: 90vh;
+        // border: 1px solid red;
+        text-align: center;
+        max-width: 100%;
+        min-width: 100%;
+        margin: auto;
+    }
+
+    // 동그라미 넣는 부분
+    .circleArea {
+        // border: 1px solid red;
+        margin: auto;
+        max-width: 100%;
+        min-width: 100%;
+        top: -4.5rem;
+        // height: 10%;
+        position: relative;
+        @include flex();
+        justify-content: space-around;
+        // border: 1px solid red;
+    }
+
+
+    // 선 그리는 라인이요!
+    .roadLine {
+        position: relative;
+        display: inline-block;
+        border: 1px solid $fontColor;
+        width: 100%;
+        margin: auto;
+        top: 2rem;
+    }
+
+    .roadLine.night {
+        border: 1px solid $nightFontColor;
+    }
+
+    // 동그라미
+    .circle {
+        z-index: 100;
+        display: inline-block;
+        // position: relative;
+        // top:3rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: $pointColorPink;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+
+    .circle:hover {
+        background-color: #b7a5c4;
+        cursor: pointer;
+    }
+
+    // 나의 일대기 info text
+    .lifeTextInfo {
+        position: relative;
+        top: -1rem;
+        width: 100%;
+        margin: auto;
+        height: 2rem;
+        color: black;
+        @include flex();
+        // border: 1px solid red;
+    }
+
+    //  일대기 글씨
+    .lifeInfoTextArea {
+        flex: 1;
+        // width:25%;
+        position: relative;
+        font-size: 0.7rem;
+        color: $fontColor;
+        top: -3rem;
+        // border:1px solid red
+    }
+
+    .lifeInfoTextArea.night,
+    .infoTextDetail.night,
+    .introduceBtn.night,
+    .introduceBoxDetail.night {
+        color: $nightFontColor;
+    }
+
+    .introduceBtn.night,
+    .introduceBoxDetail.night {
+        background-color: $pointBackNight;
+    }
+
+
+    //// 국기
+    /// 
+    /// 
+    /// 
+    .flagArea {
+        @include flex();
+        // max-width: 1600px;
+        width: 100%;
+        margin: auto;
+        // border: 1px solid red;
+        justify-content: end;
+        // top:1rem;
+    }
+
+    .flagBox {
+        flex: 1;
+        position: relative;
+        top: -1.5rem;
+        left: 1rem;
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+        transform: translateY(-20px);
+        -webkit-transform: translateY(-20px);
+        -moz-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+        -o-transform: translateY(-20px);
+    }
+
+    .flagBox.show {
+        opacity: 1;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+    }
+
+    .flag {
+        width: 3rem;
+        height: 3rem;
+        margin-left: 0rem;
+
+    }
+
+
+    // 원 누르면 나오는 박스 
+    .infoTextDetail {
+        //border: 1px solid red;
+        height: 17vh;
+        position: relative;
+        text-align: left;
+        top: -3.8rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.1rem;
+        line-height: 3.1vh;
+        width: 90%;
+        padding: 0.3rem;
+    }
+
+    // 하단 영역 ( 버튼 ,보유 스킬 , 자격증 , 연락 방법)
+    .introduceArea{
+        width: 95%;
+        height: 40vh;
+        display: block;
+        margin: auto;
+        background-color: none;
+        position: relative;
+        top:-2rem;
+        border-radius: 1rem;
+        }
+
+        .introduceArea.night{
+        background-color: none;
+        }
+    // 버튼 영역
+    .introduceBox {
+        // border: 1px solid red;
+        height: 5vh;
+        position: relative;
+        display: flex;
+        width: 100%;
+        margin: auto;
+        top: -2rem;
+        margin-bottom: 0;
+    }
+
+    // 왼쪽 영역 버튼 박스
+    .introduceBtn {
+        height: 1.5rem;
+        // width: 10rem;
+        //width: ;
+        position: relative;
+        // top:-3rem;
+        line-height: 1.5rem;
+        border-radius: 1rem;
+        margin: auto;
+        margin-top: 3rem;
+        //flex: 2;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+        cursor: pointer;
+        font-size: 1rem;
+        color: $fontColor;
+        width: 30%;
+    }
+
+    // 오른쪽 영역
+    .introduceBoxDetail {
+        //border: 1px solid red;
+        //flex: 3;
+        width: 100%;
+        height: 100%;
+        margin-right: 0rem;
+        background-color: $pointBackDay;
+        border-radius: 1rem;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+        overflow: scroll;
+        //@includeflex():;
+        color: $fontColor;
+        transition: 0s;
+        -webkit-transition: 0s;
+        -moz-transition: 0s;
+        -ms-transition: 0s;
+        -o-transition: 0s;
+    }
+
+
+
+    //  skill 박스 안의 내용 컨텐츠 ////////////////////////
+    //  아이콘 설정
+    .icon {
+        font-size: 2rem;
+        height: 3rem;
+        width: 3rem;
+        line-height: 2rem;
+        position: relative;
+        top:1.5rem;
+        margin: 0.3rem;
+        line-height: 2rem;
+        border-radius: 30%;
+        -webkit-border-radius: 30%;
+        -moz-border-radius: 30%;
+        -ms-border-radius: 30%;
+        -o-border-radius: 30%;
+    }
+
+    // 스킬박스,,,,, 맨 처음 나오는....
+    .showSkillsBox {
+        display: flex;
+        justify-content: left;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+
+    .skillPoint {
+        // color: $fontColor;
+        font-weight: 400;
+        font-size: 1rem;
+        display: none;
+    }
+
+    .iconImg {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-top: 5%;
+        left: -0.1rem;
+        filter:opacity(0.7)
+    }
+
+    //  스킬 상세 내용 text
+    .skillSpan {
+        font-size: 0.8rem;
+        text-align: center;
+        transition: 0s;
+        -webkit-transition: 0s;
+        -moz-transition: 0s;
+        -ms-transition: 0s;
+        -o-transition: 0s;
+        // margin-right: 1rem;
+    }
+
+
+    .iconArea {
+        flex: 1;
+    }
+
+    .skillTextArea {
+        flex: 4;
+        display: none;
+    }
+
+    .skillsBox.displayNone {
+        display: block;
+    }
+
+
+
+    // 스킬아이콘이랑 스킬제목 넣는 박스,,,
+    .skillsInfoBox {
+        width:3rem; 
+        height:2rem;
+        line-height: 2rem;
+        transition: 0s;
+        -webkit-transition: 0s;
+        -moz-transition: 0s;
+        -ms-transition: 0s;
+        -o-transition: 0s;
+    }
+
+    // 왼쪽 영역 오른쪽 영역 스킬 박스 
+    .showFront,
+    .showBack,
+    .showLanguage,
+    .showDevTools {
+        height: calc(100% / 4);
+        flex: 1;
+    }
+
+    .skillsInfoBox.night {
+        // color: $nightFontColor;
+    }
+
+    .FAndB {
+        //height: calc(100% / 4);
+        //border: 1px solid red;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        //padding-left: 1rem;
+        font-size: 1.1em;
+        //line-height:  1.2em;
+        display: grid;
+
+        transition: 0s;
+        //width: 10rem;
+        //border: 1px saddlebrown solid;
+        -webkit-transition: 0s;
+        -moz-transition: 0s;
+        -ms-transition: 0s;
+        -o-transition: 0s;
+        text-align: left;
+        font-weight: 400;
+    }
+
+
+
+    //////////////  자격증 Area  ////////////
+    .certificationsArea {
+        @include flex();
+        height: 100%;
+        width: 100%;
+    }
+
+    .certificationsBox {
+        flex: 1;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        // padding: 1rem;
+        height: 100%;
+        font-size: 1rem;
+    }
+    
+    .certificationsBox>div {
+        // border: 1px solid rgb(231, 231, 231);
+        margin: 0.5rem 0;
+        font-size: 0.7rem;
+    }
+    
+    .cerIcon {
+        width: 80%;
+        height: 5vh;
+        line-height: 5vh;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+
+    .certifiIcon{
+        font-size: 1rem !important;
+    }
+    .certifiLogo{
+        // border: 1px solid red;
+        width: 80%;
+        height: 80%;
+        position: relative;
+        top:1rem;
+    }
+    ////////// 연락 방법 AREA!!! ////////////
+
+    .contactBoxArea {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .contactBox {
+        // display: block;
+        overflow: hidden;
+        box-sizing: border-box;
+        height: calc(100% / 3);
+        margin-left: 0;
+        width: 100%;
+        display: block;
+    }
+    .contactBox>div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.5rem;
+	    // flex : 1;
+	    margin-bottom: 0rem;
+        font-size: 1rem;
+    }
+    .contactIcon{
+        font-size: 5rem;
+        // border: 1px solid red;
+        height: 40%;
+        // margin-top: 0.2rem;
+    }
+    .contactText{
+        // flex: 1;
+        font-weight: 500;
+        // background-color: #c2acc2;
+        border-radius: 1rem;
+        padding:0;
+        height: 30%;
+        width: 60%;
+        position: relative;
+        left: 13%;
+        // width: 60%;
+        // margin: auto;
+        // margin-top: 1rem;
+        
+        // border:1px solid red;
+    }
+    
+
+    //  내 사진 설정 
+    .picsArea {
+        position: relative;
+        width: 100%;
+        height: 90%;
+        // border: 1px solid red;
+        transition: 0;
+        -webkit-transition: 0;
+        -moz-transition: 0;
+        -ms-transition: 0;
+        -o-transition: 0;
+        top:2.1rem;
+        border-radius: 1rem;
+        // @include flex();
+        // justify-content: space-around;
+    }
+	.iconImg{
+	margin-top:0.1rem;
+	width:1.5rem;
+	height:1.5rem;
+	}
+    .picsArea.displayNone {
+        display: none;
+    }
+
+    @keyframes animateBg {
+        0% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 50px 50px;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    .picsArea.backgroundImg {
+        background-image: url("../../../public/img/stars.png");
+        background-size: contain;
+        animation: animateBg 9s ease-in-out infinite;
+        -webkit-animation: animateBg 9s ease-in-out infinite;
+    }
+
+    .myPics {
+        display: none;
+    }
+
+    .myPics.show {
+        display: block;
+        position: absolute;
+        width: 30%;
+        height: 80%;
+        top: 20%;
+
+        // z-index: 300;
+    }
+
+    .myPics1 {
+        left: 0%;
+    }
+
+    .myPics2 {
+        left: 70%;
+        // top:-60%;
+        // border: 1px solid red;
+    }
+
+    .myPics3 {
+        // flex: 1;
+        left: 35%;
+        // top:-140%;
+
+    }
+
+    .myPics4 {
+        display: none;
+    }
+
+    .pictureOfMe {
+        // max-width: calc(100% / 4);
+        // width: 100%;
+        position: relative;
+        height: 100%;
+        // top:30%;
+        // height: calc(100% / 4);
+    }
+
+
+
+
+}

@@ -1,0 +1,153 @@
+$backColor : #262626;
+// $skyColor : [#262626 , #1F2544 , #474F7A , #9290C3];
+
+@mixin filter($color) {
+    filter: drop-shadow(0 0 1px $color) drop-shadow(0 0 2px $color) drop-shadow(0 0 5px $color);
+    -webkit-filter: drop-shadow(0 0 1px $color) drop-shadow(0 0 2px $color) drop-shadow(0 0 5px $color);
+}
+
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 600vh;
+    color: aliceblue;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        font-size: 1rem;
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+    }
+
+    to {
+        opacity: 1;
+        font-size: 2rem;
+
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+    }
+}
+
+@keyframes backColor {
+    from {
+        background-color: #262626;
+    }
+
+    to {
+        background-color: #9290C3;
+    }
+}
+
+div {
+    text-align: center;
+    //top:50vh;
+    height: 100vh;
+    line-height: 100vh;
+    // color: $backColor;
+}
+
+.textBox {
+    opacity: 1;
+    font-size: 2rem;
+    //background-color: antiquewhite;
+    //position: relative;
+    //top:50vh;
+    //border: 1px solid red;
+    // height: 10rem;
+    display: inline-block;
+    transition: 0.3s;
+    animation: appear 2s ease-out;
+    animation-timeline: view();
+    -webkit-animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+    -webkit-animation-range: entry 0% cover 50%;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+
+article {
+    animation: backColor 2s ease-in-out;
+    -webkit-animation: backColor 2s ease-in-out;
+    animation-timeline: view();
+    -webkit-animation-timeline: view();
+    animation-range: entry 0% cover 100%;
+    -webkit-animation-range: entry 0% cover 100%;
+    transition: 0.3s;
+}
+
+
+@keyframes hand1 {
+    from {
+        transform: translate(50vw);
+        -webkit-transform: translate(50vw);
+        -moz-transform: translate(50vw);
+        -ms-transform: translate(50vw);
+        -o-transform: translate(50vw);
+}
+
+    to {
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -ms-transform: translate(0);
+        -o-transform: translate(0);
+}
+}
+
+aside{
+    height: 100vh;
+}
+
+aside > div {
+    cursor: pointer;
+    background-image: url("../img/hand.png");
+    background-size:45%;
+    background-repeat: no-repeat;
+    //float: right;
+    position: relative;
+    left: 60%;
+    animation: hand1 2s linear;
+    animation-timeline: view();
+    -webkit-animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+    -webkit-animation-range: entry 0% cover 40%;
+    transition: 0.3s;
+    -webkit-animation: hand1 2s linear;
+}
+
+@keyframes hand2 {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(-20deg);
+        -webkit-transform: rotate(-20deg);
+        -moz-transform: rotate(-20deg);
+        -ms-transform: rotate(-20deg);
+        -o-transform: rotate(-20deg);
+}
+}
+
+.handShake {
+    animation: hand2 0.5s linear 4 alternate;
+    -webkit-animation: hand2 0.5s linear 4 alternate;
+}

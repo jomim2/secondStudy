@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@300..800&family=Gowun+Batang&family=Jua&family=Noto+Serif+KR:wght@200..900&family=Orbit&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./blog.css">
+</head>
+
+<body>
+    <section class="banner">
+        <header>
+            <a href="#" class="logo"><span>JungIm's </span>portfolio Site</a>
+            <ul>
+                <!-- <li><a href="#">Home</a></li> -->
+                <li><a href="#">About Me</a></li>
+                <li><a href="#">portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </header>
+        <div class="content">
+            <h3>hey_</h3>
+            <h2>I am <span id="text">JungIm</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae enim ducimus cum consequuntur asperiores
+                cupiditate esse odio, at, assumenda non dolores tenetur obcaecati facilis quos quisquam, corrupti
+                tempora magnam! Illo.</p>
+            <button>Hire Me</button>
+            <button class="chat"><ion-icon name="chatbubbles-outline"></ion-icon>Les's Chat</button>
+        </div>  
+        <img src="hand.png" class="colors">
+        <img src="me.png" class="myPic">
+        <ul class="sci">
+            <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+            <!-- <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li> -->
+        </ul>
+        <div class="dayNight">
+            <ion-icon name="moon-outline"></ion-icon>
+            <ion-icon name="sunny-outline"></ion-icon>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.132/dist/typed.umd.js"></script>
+
+    <script>
+        let typingText = new Typed("#text",{
+            strings : ["jomim" , "Coder" , "korean" , "jungim"],
+            loop:true,
+            typeSpeed : 100,
+            backSpeed : 50,
+            backDelay : 1000,
+        })
+
+        let banner = document.querySelector('.banner');
+        let dayNight = document.querySelector('.dayNight');
+        dayNight.addEventListener("click",(e)=>{
+            banner.classList.toggle("night");
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,490 @@
+@import "set";
+
+.portfolioArea {
+    // border:1px solid red;
+    height: 90vh;
+    display: none;
+    color: $fontColor;
+    max-width: 1200px;
+    text-align: center;
+    margin: auto;
+}
+
+.portfolioArea.night {
+    color: $nightFontColor;
+}
+
+
+
+
+//////////////
+/// $pointColor :#ab94e1;
+$font :"Gowun Batang",
+serif;
+$cuteFont:"Orbit",
+serif;
+$btnColor:#454e63;
+// $fontColor : #ECDFCC;
+$backgroundColor : #171b25;
+$miniBoxColor:#ECDFCC;
+$bainsuBoxColor:#BB8493;
+$resultColor:#2a303d;
+$navColor2 : #FFF56D;
+$navColor3 : #C6E7FF;
+$navColor4 : #FFACAC;
+$navColor5 : #B3FFAE;
+
+$navDayColor : #b1c3da;
+$miniBoxDayColor : #EFECEC;
+$resultDayColor :#EAEAEA;
+
+@mixin filter($color) {
+    filter: drop-shadow(0 0 1px $color) drop-shadow(0 0 2px $color) drop-shadow(0 0 5px $color);
+    -webkit-filter: drop-shadow(0 0 1px $color) drop-shadow(0 0 2px $color) drop-shadow(0 0 5px $color);
+}
+
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin bainsu5Small {
+    height: 4vh;
+    flex: 1;
+    line-height: 4vh;
+}
+
+@mixin biansu {
+    transition: 0.5s;
+    background-color: $btnColor;
+    color: $fontColor;
+    // border: 1px solid #171b25;
+    
+    margin: 0.1rem;
+
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+
+//// nav 영역 박스 넣는 곳
+.navArea {
+    // border: 1px solid red;
+    font-family: $basicFont;
+    font-size: 1.1rem;
+    width: 100%;
+    margin: auto;
+    max-width: 1700px;
+    min-width: 1200px;
+    // min-height: 1000px;
+    // position: relative;
+    // top:1rem;
+    @include flex();
+    // justify-content: left;
+}
+
+
+//// 실제 박스 
+.navigation {
+    margin: auto;
+    margin-top: 5vh;
+    // margin-bottom: 2rem;
+    width: 10rem;
+    height: 10rem;
+    background: $navDayColor;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+    transition-delay: 0.3s;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+    text-align: center;
+}
+
+.navigation.night {
+    background: $btnColor;
+}
+
+// 박스가 커지면 ?? 
+.navigation.active {
+    width: 30%;
+    height: 37vh;
+    margin-top: 0rem;
+    cursor: default;
+}
+
+//// 글씨와 박스에 필터효과 넣는 곳
+.nav2:hover {
+    color: $navColor2;
+    @include filter($navColor2);
+}
+
+.nav3:hover {
+    color: $navColor3;
+    @include filter($navColor3);
+}
+
+.nav4:hover {
+    color: $navColor4;
+    @include filter($navColor4);
+}
+
+.nav5:hover {
+    color: $navColor5;
+    @include filter($navColor5);
+}
+//// 박스 묶는 Area
+.boxselectArea{
+    
+}
+
+//// 박스 커지고 나서 X 버튼
+.xbutton {
+    cursor: pointer;
+    position: relative;
+    //top: -45%;
+    //left: 30%;
+    width: 1rem;
+    height: 1rem;
+    // top:0.2rem;
+    font-size: 1.2rem;
+    //background-color: $backgroundColor;
+    color: $dayBackColor;
+    //top: -13.5rem;
+    //right: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 2rem;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+// 커지기 전의 박스의 인포
+.textInfo {
+    font-size: 1em;
+    color: $fontColor;
+    // color:#2a303d;
+    position: relative;
+    top: 43%;
+}
+
+.textInfo.night,
+.textInfo2.night {
+    color: $nightFontColor;
+}
+
+// display flex 를 위한 박스
+
+
+// 포폴 영상 , 이미지 넣는 곳
+.miniBox {
+    // border: 1px solid red;
+    transition: 0.2s;
+    //position: relative;
+    margin: auto;
+    text-align: center;
+    background-color: $miniBoxDayColor;
+    height:14vh;
+    //margin-top: 0.1rem;
+    // margin-bottom: 1vh;
+    // border-radius: 0.5rem;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.miniBox.night {
+    background-color: $backgroundColor;
+}
+
+
+//// 박스 커졌을 때 맨위에 있는 포폴 제목 
+.textInfo2 {
+    display: inline-block;
+    width: 85%;
+    color: $fontColor;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 1.1rem;
+}
+
+
+
+///// 여기에 포폴 내용 적기. 기간 사이트 이동?
+.resultBox {
+    @include biansu();
+    background-color: $resultDayColor;
+    flex: 1;
+    // border: 1px solid red;
+    height: 15vh;
+    margin: auto;
+    color: $fontColor;
+    // display: flex;
+    overflow: scroll;
+    padding: 0.8rem;
+}
+
+.resultBox.night {
+    background-color: $resultColor;
+    color: $nightFontColor;
+}
+
+
+/////개인 포폴 영역 잡기
+.madeByMyselfArea {
+    height: 40vh;
+    max-width: 1600px;
+    margin: auto;
+    margin-top: 0.5rem;
+    // margin-bottom: 1rem;
+}
+
+///// 팀 포폴 영역 잡기
+.madeByTeam {
+    // margin: 1rem;
+    // border: 1px solid red;
+    height: 40vh;
+    max-width: 1600px;
+    margin: auto;
+    margin-top: 1.5rem;
+
+}
+
+
+.videoBox {
+    width: 80%;
+    height: 80%;
+    flex: 1;
+    //margin-top: 2%;
+    cursor: default;
+    // border: 1px solid red;
+}
+
+//// 포폴 개인 영역 인포 내용 
+.personalInfo,
+.teamInfo {
+    // border: 1px solid red;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 0.3rem;
+    // margin-top: 1rem;
+}
+
+
+//// 포폴 팀 영역 인포 내용
+
+
+
+
+
+// resultTextArea (포폴 짧은 소개 영역)
+.resultTextArea {
+    // flex: 1;
+    font-size: 0.9rem;
+    height: 100%;
+    line-height: 1.1rem;
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+
+.resultTextAreaIcon {
+    height: 2rem;
+    // margin-bottom: 0.3rem;
+    flex: 1;
+    width: 100%;
+    height:100%;
+    // display: flex;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    place-items:center;
+    // justify-content: space-around;
+    // position: relative;
+    // top:2.2rem;
+    // flex: 1;
+}
+
+/////// 링크 영역! (사이트, pdf AREA)
+.linkAndPdf {
+    // margin-top: 3.5rem;
+    // height: 20%;
+    // flex: 2;
+    height: 5vh;
+    // border:1px solid red;
+    width: 100%;
+    @include flex();
+}
+.siteIcon{
+    margin-right: 0.3rem;
+    font-size: 1rem;
+}
+a {
+    text-decoration: none;
+    color: $fontColor;
+    // padding: 1rem;
+    // display: block;
+    // border: 1px solid red;
+}
+
+a.night {
+    color: $nightFontColor;
+}
+
+.linkArea {
+    // border: 1px solid red;
+    width: 100%;
+    // height:100%;
+    line-height: 2rem;
+    font-size:0.9rem;
+    // box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+
+//  사이트 바로가기 영역
+.iconImgSmall {
+    // border: 1px solid red;
+    width: 1.8rem;
+    height: 1.8rem;
+    // margin-top: 10%;
+}
+
+
+@media (max-width :550px) {
+
+    .portfolioArea {
+        // border:1px solid red;
+        height: 100%;
+        color: $fontColor;
+        max-width: 100%;
+        text-align: center;
+        margin: auto;
+        overflow: scroll;
+        margin-bottom: 7rem;
+    }
+
+    // *{overflow: hidden;}
+    .bodyArea {
+        width: 100%;
+        overflow: scroll;
+        // border: 1px solid red;
+        // height: 100%;
+    }
+
+    //// nav 영역 박스 넣는 곳
+    .navArea {
+        // border: 1px solid red;
+        font-family: $basicFont;
+        font-size: 1.1rem;
+        width: 100%;
+        margin: auto;
+        max-width: 90%;
+        min-width: 90%;
+        @include flex();
+        flex-direction: column;
+    }
+
+
+    //// 실제 박스 
+    .navigation {
+        margin: auto;
+        margin-top: 5vh;
+        // margin-bottom: 2rem;
+        width: 8rem;
+        height: 8rem;
+        background: $navDayColor;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.4s;
+        // transition-delay: 0.3s;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        -webkit-transition: 0.4s;
+        -moz-transition: 0.4s;
+        -ms-transition: 0.4s;
+        -o-transition: 0.4s;
+        text-align: center;
+    }
+
+    .navigation.night {
+        background: $btnColor;
+        // height:10rem;
+    }
+
+    // 박스가 커지면 ?? 
+    .navigation.active {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+
+    // 커지기 전의 박스의 인포
+
+    .textInfo.night,
+    .textInfo2.night {
+        color: $nightFontColor;
+    }
+
+
+
+    .resultBox{
+        height:17vh;
+    }
+
+
+    /////개인 포폴 영역 잡기
+    .madeByMyselfArea {
+        height: auto;
+        max-width: 100%;
+        margin: auto;
+        margin-top: 1rem;
+        // border: 1px solid red;
+    }
+
+    ///// 팀 포폴 영역 잡기
+    .madeByTeam {
+        height: auto;
+        max-width: 100%;
+        margin: auto;
+        margin-top: 2rem;
+        overflow: scroll;
+    }
+    .linkAndPdf{
+        position: relative;
+        top:-0.5vh;
+    }
+    
+
+
+    //// 포폴 개인 영역 인포 내용 
+ 
+
+    //// 포폴 팀 영역 인포 내용
+
+
+
+
+
+    // resultTextArea (포폴 짧은 소개 영역)
+
+}
+@media (max-width :1400px) {
+    .navigation.active{
+        height: 39vh;
+    }
+}

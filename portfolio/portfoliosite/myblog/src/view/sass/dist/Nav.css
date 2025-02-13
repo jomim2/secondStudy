@@ -1,0 +1,131 @@
+@keyframes animateColor {
+  0%, 100% {
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(50px);
+    -webkit-transform: translateY(50px);
+    -moz-transform: translateY(50px);
+    -ms-transform: translateY(50px);
+    -o-transform: translateY(50px);
+  }
+}
+@keyframes animateMyPic {
+  0%, 100% {
+    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-50px);
+    -webkit-transform: translateX(-50px);
+    -moz-transform: translateX(-50px);
+    -ms-transform: translateX(-50px);
+    -o-transform: translateX(-50px);
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "42dot Sans", serif;
+}
+
+.bodyArea {
+  margin: auto;
+  max-width: 100vw;
+  font-family: "42dot Sans", serif;
+  overflow: hidden;
+  height: 100vh;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 8vh;
+  max-width: 1600px;
+  margin: auto;
+  z-index: 1000;
+}
+
+nav ul {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li {
+  flex: 1;
+  list-style: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.5em;
+  color: #333;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+nav ul.night li a {
+  color: #fff;
+}
+
+nav h1 {
+  flex: 1;
+  font-size: 2.5em;
+  color: #333;
+}
+
+nav h1 .nameSpan {
+  color: #D16BA5;
+}
+
+nav h1 .siteSpan {
+  color: #555;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+nav h1 .siteSpan.night {
+  color: #FFF7F7;
+}
+
+@media (max-width: 500px) {
+  .bodyArea {
+    width: 100%;
+    overflow: scroll;
+  }
+
+  nav {
+    height: 10vh;
+  }
+
+  nav h1 {
+    font-size: 1.2rem;
+    flex: 0.5;
+  }
+
+  nav ul li a {
+    font-size: 1rem;
+  }
+}
