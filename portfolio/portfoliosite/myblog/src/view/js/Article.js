@@ -4,7 +4,7 @@ import "../sass/Article.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareXmark, faArrowUpRightFromSquare, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-function Article({ day, changeDay }) {
+const Article = ({ day, changeDay }) => {
     const [activeNavs, setActiveNavs] = useState([true, true, true]);
     const [activeNavs2, setActiveNavs2] = useState([true, true, true]);
 
@@ -127,17 +127,19 @@ function Article({ day, changeDay }) {
                 text: <p>냉장고 속 재료를 활용하여 음식을 추천하는 <br />웹 애플리케이션입니다. <br />이 프로젝트를 통해 Django를 활용한<br /> 웹 구현 방법을 익히고, React의 Hooks 활용법을<br /> 숙지하였습니다. 또한, Django 서버와 React 서버를<br /> 연결하는 과정을 학습했습니다.</p>,
                 pdf: "/pdf/fridge.pdf",
                 date: "2024.11.04~2024.11.18",
-                usedSkill: getSkillObjects(["Html", "Css", "Javascript", "Nodejs", "React", "Django", "SQL"])
+                usedSkill: getSkillObjects(["React", "Css", "Nodejs", "Django", "SQL"])
             },
             {
-                name: "공개 예정...",
+                name: "안전신호등",
                 madeBy: "team",
-                link: null,
-                video: null,
-                text: <p>현재 준비 중인 프로젝트로, 곧 공개될 예정입니다.</p>,
-                pdf: "/pdf/Cinema_Kiosk.pdf",
-                date: "2024.10.01~2024.10.31",
-                usedSkill: getSkillObjects(["Html", "Css", "Javascript", "Nodejs", "Express", "SQL"])
+                link: "http://kkms4001.iptime.org:21052/",
+                video: "/video/SafetyTrafficLights.gif",
+                text: <p>서울, 경기, 인천 지역의 범죄, 사고, 날씨 현황을 확인할 수 있는 웹 애플리케이션입니다.<br />
+                    이 프로젝트에서 범죄 페이지를 담당하여 공공 API에서 제공하는 JSON 데이터를 받아 그래프로 시각화하였습니다.<br />
+                    이 과정에서 JSON 데이터 파싱과 D3.js를 활용한 시각화 기법을 숙지하였습니다.</p>,
+                pdf: "/pdf/SafetyTrafficLights.pdf",
+                date: "2025.02.13~2025.03.03",
+                usedSkill: getSkillObjects(["Html", "Css", "Javascript", "Nodejs", "Express", "SQL", "React",])
             },
         ]
     }

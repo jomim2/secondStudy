@@ -6,7 +6,7 @@ import { faSun, faMoon, faPhone, faEnvelope, faLaptopCode, faA, faLanguage } fro
 // import { faHtml5, faCss3Alt, faJs, faNode, faPython, faDocker, faSass, faReact ,faJava } from "@fortawesome/free-brands-svg-icons";
 
 // import { SiTypescript } from "react-icons/si";
-function Footer({ day, changeDay }) {
+const Footer = ({ day, changeDay }) => {
     // 상단에 있는 깃발 요소 넣는 data
     const myLife = {
         data: [

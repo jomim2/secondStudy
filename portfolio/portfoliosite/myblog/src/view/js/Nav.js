@@ -1,22 +1,22 @@
 import "../sass/Nav.scss"
-function Nav(){
+const Nav = () => {
     // 상단 메뉴 선택시 display
-    const displayHome = ()=>{
+    const displayHome = () => {
         document.getElementById("homeArea").style.display = "block";
         document.getElementById("portfolioArea").style.display = "none";
         document.getElementById("contactArea").style.display = "none";
     }
-    const displayPortfolio = ()=>{
+    const displayPortfolio = () => {
         document.getElementById("portfolioArea").style.display = "block";
         document.getElementById("homeArea").style.display = "none";
         document.getElementById("contactArea").style.display = "none";
     }
-    const displayContact = () =>{
+    const displayContact = () => {
         document.getElementById("contactArea").style.display = "block";
         document.getElementById("homeArea").style.display = "none";
         document.getElementById("portfolioArea").style.display = "none";
     }
-    return(
+    return (
         <nav>
             <h1 onClick={displayHome}><span className="nameSpan">JungIm's </span><span id="siteSpan" className="siteSpan">Portfolio Site</span></h1>
             <ul id="menubar">

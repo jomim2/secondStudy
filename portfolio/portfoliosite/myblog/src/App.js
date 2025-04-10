@@ -4,6 +4,7 @@ import Main from './view/js/Main';
 import Article from './view/js/Article';
 import Footer from './view/js/Footer';
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [day, setDay] = useState(true);
 

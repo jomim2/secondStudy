@@ -91,6 +91,7 @@ nav h1 {
   flex: 1;
   font-size: 2.5em;
   color: #333;
+  cursor: pointer;
 }
 
 nav h1 .nameSpan {
@@ -127,5 +128,24 @@ nav h1 .siteSpan.night {
 
   nav ul li a {
     font-size: 1rem;
+  }
+}
+@media (max-width: 1300px) {
+  .bodyArea {
+    width: 100%;
+    overflow: scroll;
+  }
+
+  nav {
+    height: 10vh;
+  }
+
+  nav h1 {
+    font-size: 1.4rem;
+    flex: 0.5;
+  }
+
+  nav ul li a {
+    font-size: 1.2rem;
   }
 }

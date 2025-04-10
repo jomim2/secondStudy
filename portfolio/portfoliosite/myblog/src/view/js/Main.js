@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../sass/Main.scss";
 import TypingEffect from './TypingEffect';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon ,faArrowPointer} from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
 // 안녕하세요!
 // 제 이름은 이정임 입니다! 😊
 // <br></br>
@@ -23,7 +23,7 @@ import { faSun, faMoon ,faArrowPointer} from "@fortawesome/free-solid-svg-icons"
 // 저의 꿈은 앞으로도 평생 문제에 부딪히고 해결해 가면서 성취감을 느끼는 개발자가 되는 것이에요! 🤔
 // <br></br>
 // 이제는 제 꿈을 이룰 시간인 것 같아요. ⭐
-function Main({ day, changeDay }) {
+const Main = ({ day, changeDay }) => {
     const introduceMySelf = <div className="cutArea">
         <img src="/img/cut/cut1.png" className="cut"></img>
         <img src="/img/cut/cut2.png" className="cut"></img>
@@ -32,8 +32,8 @@ function Main({ day, changeDay }) {
     </div>
         ;
     const [disPalyP, setDisplayP] = useState(false)
-    const [move , setMove] = useState(true)
-    const [mobile , setMobile] = useState(false)
+    const [move, setMove] = useState(true)
+    const [mobile, setMobile] = useState(false)
 
     const displayPTag = () => {
         setDisplayP(!disPalyP);
@@ -48,9 +48,9 @@ function Main({ day, changeDay }) {
                     <div className={`textBox`}>
                         {/* <h3 className={`${day ? "" : "night"}`}>hello,</h3> */}
                         <h2 className={`${day ? "" : "night"}`}>I am <span id="text"><TypingEffect /></span></h2>
-                        <FontAwesomeIcon icon={faArrowPointer}  className={`mouseClick ${day ? "" : "night"}`}/>
+                        <FontAwesomeIcon icon={faArrowPointer} className={`mouseClick ${day ? "" : "night"}`} />
                         <div className="btnArea">
-                            <button className={`${day ? "" : "night"} ${move ? "" : "stopMove"} `} onClick={()=>{displayPTag()}}>제 소개를 간단하게 해도 될까요?</button>
+                            <button className={`${day ? "" : "night"} ${move ? "" : "stopMove"} `} onClick={() => { displayPTag() }}>제 소개를 간단하게 해도 될까요?</button>
                         </div>
                         <p className={`${disPalyP ? "displayP" : ""} ${day ? "" : "night"} `}>
                             {introduceMySelf}
@@ -61,7 +61,7 @@ function Main({ day, changeDay }) {
                     <span className={`dayIcon ${day ? "" : "night"}`}><FontAwesomeIcon icon={faMoon} /></span>
                     <span className={`nightIcon ${day ? "" : "night"}`}><FontAwesomeIcon icon={faSun} /></span>
                 </div>
-                <div className={`imgArea ${mobile ? "mobile" : "" }`}>
+                <div className={`imgArea ${mobile ? "mobile" : ""}`}>
                     <img src={"/img/cloud.png"} onDragStart={(e) => e.preventDefault()}
                         style={{
                             userDrag: "none",
@@ -76,14 +76,14 @@ function Main({ day, changeDay }) {
                             pointerEvents: "none",
                             cursor: "default"
                         }} className="colors2" alt="cloud2" />
-                    <img src={"/img/me.png"} onDragStart={(e) => e.preventDefault()} 
-                    style={{
-                        userDrag: "none",
-                        WebkitUserDrag: "none",
-                        pointerEvents: "none",
-                        cursor: "default"
-                    }}
-                    className="myPic" alt="me" />
+                    <img src={"/img/me.png"} onDragStart={(e) => e.preventDefault()}
+                        style={{
+                            userDrag: "none",
+                            WebkitUserDrag: "none",
+                            pointerEvents: "none",
+                            cursor: "default"
+                        }}
+                        className="myPic" alt="me" />
                 </div>
             </div>
         </main>

@@ -60,7 +60,7 @@ $resultDayColor :#EAEAEA;
     background-color: $btnColor;
     color: $fontColor;
     // border: 1px solid #171b25;
-    
+
     margin: 0.1rem;
 
     -webkit-transition: 0.5s;
@@ -142,10 +142,9 @@ $resultDayColor :#EAEAEA;
     color: $navColor5;
     @include filter($navColor5);
 }
+
 //// 박스 묶는 Area
-.boxselectArea{
-    
-}
+.boxselectArea {}
 
 //// 박스 커지고 나서 X 버튼
 .xbutton {
@@ -195,7 +194,7 @@ $resultDayColor :#EAEAEA;
     margin: auto;
     text-align: center;
     background-color: $miniBoxDayColor;
-    height:14vh;
+    height: 14vh;
     //margin-top: 0.1rem;
     // margin-bottom: 1vh;
     // border-radius: 0.5rem;
@@ -308,11 +307,11 @@ $resultDayColor :#EAEAEA;
     // margin-bottom: 0.3rem;
     flex: 1;
     width: 100%;
-    height:100%;
+    height: 100%;
     // display: flex;
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    place-items:center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
     // justify-content: space-around;
     // position: relative;
     // top:2.2rem;
@@ -329,10 +328,12 @@ $resultDayColor :#EAEAEA;
     width: 100%;
     @include flex();
 }
-.siteIcon{
+
+.siteIcon {
     margin-right: 0.3rem;
     font-size: 1rem;
 }
+
 a {
     text-decoration: none;
     color: $fontColor;
@@ -350,7 +351,7 @@ a.night {
     width: 100%;
     // height:100%;
     line-height: 2rem;
-    font-size:0.9rem;
+    font-size: 0.9rem;
     // box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
 
@@ -442,8 +443,8 @@ a.night {
 
 
 
-    .resultBox{
-        height:17vh;
+    .resultBox {
+        height: 17vh;
     }
 
 
@@ -464,15 +465,16 @@ a.night {
         margin-top: 2rem;
         overflow: scroll;
     }
-    .linkAndPdf{
+
+    .linkAndPdf {
         position: relative;
-        top:-0.5vh;
+        top: -0.5vh;
     }
-    
+
 
 
     //// 포폴 개인 영역 인포 내용 
- 
+
 
     //// 포폴 팀 영역 인포 내용
 
@@ -483,8 +485,9 @@ a.night {
     // resultTextArea (포폴 짧은 소개 영역)
 
 }
+
 @media (max-width :1400px) {
-    .navigation.active{
+    .navigation.active {
         height: 39vh;
     }
 }

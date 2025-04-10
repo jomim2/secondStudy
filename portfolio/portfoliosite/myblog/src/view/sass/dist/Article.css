@@ -89,7 +89,7 @@
 
 .navigation.active {
   width: 30%;
-  height: 35vh;
+  height: 37vh;
   margin-top: 0rem;
   cursor: default;
 }
@@ -151,7 +151,7 @@
   margin: auto;
   text-align: center;
   background-color: #EFECEC;
-  height: 13vh;
+  height: 14vh;
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
   -ms-transition: 0.2s;
@@ -185,7 +185,7 @@
   -o-transition: 0.5s;
   background-color: #EAEAEA;
   flex: 1;
-  height: 14vh;
+  height: 15vh;
   margin: auto;
   color: #555;
   overflow: scroll;
@@ -208,12 +208,12 @@
   height: 40vh;
   max-width: 1600px;
   margin: auto;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .videoBox {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   flex: 1;
   cursor: default;
 }
@@ -244,7 +244,7 @@
 }
 
 .linkAndPdf {
-  height: 4vh;
+  height: 5vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -267,13 +267,13 @@ a.night {
 
 .linkArea {
   width: 100%;
-  height: 4vh;
-  line-height: 4vh;
+  line-height: 2rem;
+  font-size: 0.9rem;
 }
 
 .iconImgSmall {
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 @media (max-width: 550px) {
@@ -284,7 +284,7 @@ a.night {
     text-align: center;
     margin: auto;
     overflow: scroll;
-    margin-bottom: 7vh;
+    margin-bottom: 7rem;
   }
 
   .bodyArea {
@@ -314,7 +314,6 @@ a.night {
     border-radius: 10px;
     cursor: pointer;
     transition: 0.4s;
-    transition-delay: 0.3s;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -332,21 +331,16 @@ a.night {
 
   .navigation.active {
     width: 100%;
-    margin-top: 1rem;
-    cursor: default;
-    height: 35vh;
-  }
-
-  .textInfo {
-    font-size: 0.9em;
-    color: #555;
-    position: relative;
-    top: 43%;
+    margin-bottom: 1rem;
   }
 
   .textInfo.night,
 .textInfo2.night {
     color: #FFF7F7;
+  }
+
+  .resultBox {
+    height: 17vh;
   }
 
   .madeByMyselfArea {
@@ -364,53 +358,13 @@ a.night {
     overflow: scroll;
   }
 
-  .videoBox {
-    width: 100%;
-    height: 100%;
-    cursor: default;
-  }
-
-  .personalInfo,
-.teamInfo {
-    text-align: center;
-    font-size: 1.1rem;
-  }
-
-  .resultTextArea {
-    font-size: 1rem;
-    height: 1rem;
-    line-height: 1rem;
-    font-size: 0.8rem;
-  }
-
   .linkAndPdf {
-    height: 1vh;
-    line-height: 1vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.9rem;
-  }
-
-  a {
-    text-decoration: none;
-    color: #555;
-  }
-
-  a.night {
-    color: #FFF7F7;
-  }
-
-  .linkArea,
-.pdfArea {
-    flex: 1;
     position: relative;
-    top: 0.5rem;
-    height: 7vh;
-    line-height: 7vh;
+    top: -0.5vh;
   }
-
-  .resultTextAreaIcon {
-    height: 100%;
+}
+@media (max-width: 1400px) {
+  .navigation.active {
+    height: 39vh;
   }
 }

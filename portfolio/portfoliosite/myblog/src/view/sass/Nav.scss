@@ -76,25 +76,56 @@ nav h1 .siteSpan.night {
     color: $nightFontColor;
 }
 
+
+
 @media (max-width :500px) {
     .bodyArea {
         width: 100%;
         overflow: scroll;
         // border: 1px solid red;
     }
-    nav{
-        height:10vh;
+
+    nav {
+        height: 10vh;
     }
+
     nav h1 {
         font-size: 1.2rem;
         // width: 20%;
-        flex:0.5;
+        flex: 0.5;
         // border: 1px solid red;
     }
-    nav ul li a{
+
+    nav ul li a {
         // flex: 3;
         // width: 80%;
         // flex: 2;
         font-size: 1rem;
+    }
+}
+
+@media (max-width :1300px) {
+    .bodyArea {
+        width: 100%;
+        overflow: scroll;
+        // border: 1px solid red;
+    }
+
+    nav {
+        height: 10vh;
+    }
+
+    nav h1 {
+        font-size: 1.4rem;
+        // width: 20%;
+        flex: 0.5;
+        // border: 1px solid red;
+    }
+
+    nav ul li a {
+        // flex: 3;
+        // width: 80%;
+        // flex: 2;
+        font-size: 1.2rem;
     }
 }
