@@ -44,7 +44,7 @@ function Gallery() {
         // 애니매이션 효과 진행 속도 설정 우아하게~
         transition={{ duration: 1.5, ease: "easeOut" }}
         // 일단 조금이라도 보이면 한번 실행해라 40%보이면 실행해라
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, amount: 0.6 }}
       >
         <div className="img-box">
           <img
@@ -61,8 +61,8 @@ function Gallery() {
         className="fade-section"
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 1.5, ease: "easeInOut" }}
-        viewport={{ once: true, amount: 0.4 }}
+        transition={{ delay: 0.3, duration: 1, ease: "easeInOut" }}
+        viewport={{ once: true, amount: 0.3 }}
       >
         <div className="img-box">
           <img
@@ -95,10 +95,10 @@ function Gallery() {
             }}
             transition={{
               duration: 1.2,
-              delay: Math.floor(Math.random() * 4),
+              delay: Math.floor(Math.random() * 2),
               ease: "easeOut",
             }}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: false, amount: 0.5 }}
             style={{ width: "20rem", height: "11rem", borderRadius: "3px" }}
           />
         ))}

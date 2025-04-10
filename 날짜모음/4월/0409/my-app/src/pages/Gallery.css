@@ -10,6 +10,9 @@
 }
 
 .scroll-track {
+    margin: 3rem;
+    height: auto;
+    /* border: 1px solid red; */
     display: flex;
     width: max-content;
     /*콘텐츠를가지고있는친구이니까안에있는콘텐츠만큼사이즈키우기*/
