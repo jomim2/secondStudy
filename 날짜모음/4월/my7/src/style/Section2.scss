@@ -1,0 +1,72 @@
+@use './mixins'as *;
+
+.s2 {
+    padding: 2rem 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+
+    .text-area {
+        text-align: center;
+        margin: 2rem auto;
+
+        h2 {
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+
+        p {
+            font-size: 1.3rem;
+            color: #666;
+        }
+    }
+
+    .video-area {
+        display: flex;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+
+        .vbox {
+            flex: 1;
+            height: 100%;
+            transition: 1s ease;
+            -webkit-transition: 1s ease;
+            -moz-transition: 1s ease;
+            -ms-transition: 1s ease;
+            -o-transition: 1s ease;
+
+            &.active {
+                flex: 2;
+                height: auto;
+                opacity: 1;
+            }
+
+            &.noActive {
+                opacity: 0.5;
+            }
+
+            video {
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+    }
+
+    @include respond(mobile) {
+        .video-area {
+            flex-direction: column;
+            height: auto;
+        }
+
+        .vbox {
+            flex: none;
+            height: 100px;
+
+            &.active,
+            &.noActive {
+                flex: none;
+            }
+        }
+    }
+}

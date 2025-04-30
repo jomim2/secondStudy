@@ -11,6 +11,7 @@ function Gallery() {
       try {
         const res = await fetch(process.env.PUBLIC_URL + "/data/data.json");
         const data = await res.json();
+        console.log(data);
         setDataImg(data);
       } catch (err) {
         console.error("실패", err);

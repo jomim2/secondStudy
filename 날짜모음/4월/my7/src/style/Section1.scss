@@ -1,0 +1,51 @@
+.s1 {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    .videoS {
+        width: 100%;
+        height: 100%;
+
+        .swiper-slide {
+            width: 100%;
+            height: 100%;
+
+            .videodiv {
+                width: 100%;
+                height: 100%;
+
+                video {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover; // 객체 그 자체를 조절하고 싶을 때
+                }
+            }
+        }
+    }
+
+    .text-area {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 2.5rem;
+
+        h1 {
+            cursor: pointer;
+        }
+
+        h3 {
+            color: pink;
+            position: static;
+            margin: 50px auto;
+            text-align: center;
+        }
+    }
+}

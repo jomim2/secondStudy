@@ -1,0 +1,17 @@
+@mixin respond($bpoint) {
+  @if $bpoint == pc {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+  @if $bpoint == tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+  @if $bpoint == mobile {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+}
